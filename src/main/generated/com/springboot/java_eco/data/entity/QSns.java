@@ -15,7 +15,7 @@ import com.querydsl.core.types.Path;
 @Generated("com.querydsl.codegen.DefaultEntitySerializer")
 public class QSns extends EntityPathBase<Sns> {
 
-    private static final long serialVersionUID = -1783304229L;
+    private static final long serialVersionUID = -422700487L;
 
     public static final QSns sns = new QSns("sns");
 

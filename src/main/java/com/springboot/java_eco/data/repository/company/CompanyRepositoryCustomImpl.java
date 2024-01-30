@@ -3,7 +3,7 @@ package com.springboot.java_eco.data.repository.company;
 
 import com.querydsl.core.BooleanBuilder;
 import com.querydsl.core.types.Predicate;
-import com.springboot.java_eco.data.dto.company.CompanySearchDto;
+import com.springboot.java_eco.data.dto.common.CommonSearchDto;
 import com.springboot.java_eco.data.entity.Company;
 import com.springboot.java_eco.data.entity.QCompany;
 import org.springframework.data.jpa.repository.support.QuerydslRepositorySupport;
@@ -20,14 +20,14 @@ public class CompanyRepositoryCustomImpl extends QuerydslRepositorySupport imple
     }
 
     @Override
-    public List<Company> findAll(CompanySearchDto companySearchDto){
+    public List<Company> findAll(CommonSearchDto commonSearchDto){
         QCompany company = QCompany.company;
 
-        String filter_title = companySearchDto.getFilter_title();
-        String search_text = companySearchDto.getSearch_text();
+        String filter_title = commonSearchDto.getFilter_title();
+        String search_text = commonSearchDto.getSearch_text();
 
-        LocalDateTime start_date = companySearchDto.getStart_date();
-        LocalDateTime end_date = companySearchDto.getEnd_date();
+        LocalDateTime start_date = commonSearchDto.getStart_date();
+        LocalDateTime end_date = commonSearchDto.getEnd_date();
 
 
         BooleanBuilder builder = new BooleanBuilder();
@@ -71,7 +71,7 @@ public class CompanyRepositoryCustomImpl extends QuerydslRepositorySupport imple
         return companyList;
     }
     @Override
-    public List<Company> findInfo(CompanySearchDto CompanySearchDto){
+    public List<Company> findInfo(CommonSearchDto commonSearchDto){
 
         QCompany company = QCompany.company;
 

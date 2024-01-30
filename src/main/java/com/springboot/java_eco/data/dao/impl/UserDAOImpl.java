@@ -3,9 +3,9 @@ package com.springboot.java_eco.data.dao.impl;
 import ch.qos.logback.classic.Logger;
 import com.springboot.java_eco.data.dao.UserDAO;
 
-import com.springboot.java_eco.data.dto.user.UserSearchDto;
+import com.springboot.java_eco.data.dto.common.CommonSearchDto;
 import com.springboot.java_eco.data.entity.*;
-import com.springboot.java_eco.data.repository.User.UserRepository;
+import com.springboot.java_eco.data.repository.user.UserRepository;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
@@ -26,11 +26,11 @@ public class UserDAOImpl implements UserDAO {
     }
 
     @Override
-    public List<User> selectTotalUser(UserSearchDto userSearchDto) {
-        return userRepository.findAll(userSearchDto);
+    public List<User> selectTotalUser(CommonSearchDto commonSearchDto) {
+        return userRepository.findAll(commonSearchDto);
     }
-    public List<User> selectUser(UserSearchDto userSearchDto) {
-        return userRepository.findInfo(userSearchDto);
+    public List<User> selectUser(CommonSearchDto commonSearchDto) {
+        return userRepository.findInfo(commonSearchDto);
     }
 }
 

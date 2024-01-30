@@ -16,7 +16,7 @@ import com.querydsl.core.types.dsl.PathInits;
 @Generated("com.querydsl.codegen.DefaultEntitySerializer")
 public class QHistory extends EntityPathBase<History> {
 
-    private static final long serialVersionUID = -2122502793L;
+    private static final long serialVersionUID = -216139563L;
 
     private static final PathInits INITS = PathInits.DIRECT2;
 
@@ -59,7 +59,7 @@ public class QHistory extends EntityPathBase<History> {
 
     public QHistory(Class<? extends History> type, PathMetadata metadata, PathInits inits) {
         super(type, metadata, inits);
-        this.user = inits.isInitialized("user") ? new QUser(forProperty("user"), inits.get("user")) : null;
+        this.user = inits.isInitialized("user") ? new QUser(forProperty("user")) : null;
     }
 
 }

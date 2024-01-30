@@ -46,10 +46,6 @@ public class User implements UserDetails {
     private String phone;
 
 
-    @ManyToOne
-    @JoinColumn(name="car_uid")
-    private Car car;
-
     @CreatedDate
     @Column(updatable = false)
     private LocalDateTime created;
