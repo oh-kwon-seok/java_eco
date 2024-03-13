@@ -43,12 +43,17 @@ public class UserRepositoryCustomImpl extends QuerydslRepositorySupport implemen
             if (user.id != null) {
                 builder.or(user.id.like("%" + search_text + "%"));
             }
-            if (user.code != null) {
-                builder.or(user.code.like("%" + search_text + "%"));
+
+            if (user.company.name != null) {
+                builder.or(user.company.name.like("%" + search_text + "%"));
             }
-            if (user.customer_name != null) {
-                builder.or(user.customer_name.like("%" + search_text + "%"));
+            if (user.employment.name != null) {
+                builder.or(user.employment.name.like("%" + search_text + "%"));
             }
+            if (user.department.name != null) {
+                builder.or(user.department.name.like("%" + search_text + "%"));
+            }
+
             if (user.name != null) {
                 builder.or(user.name.like("%" + search_text + "%"));
             }
@@ -63,12 +68,16 @@ public class UserRepositoryCustomImpl extends QuerydslRepositorySupport implemen
             if("id".equals(filter_title)){
                 builder.and(user.id.like("%" + search_text + "%"));
             }
-            else if("code".equals(filter_title)){
-                builder.and(user.code.like("%" + search_text + "%"));
+            else if("company".equals(filter_title)){
+                builder.and(user.company.name.like("%" + search_text + "%"));
             }
-            else if("customer_name".equals(filter_title)){
-                builder.and(user.customer_name.like("%" + search_text + "%"));
+            else if("employment".equals(filter_title)){
+                builder.and(user.employment.name.like("%" + search_text + "%"));
             }
+            else if("department".equals(filter_title)){
+                builder.and(user.department.name.like("%" + search_text + "%"));
+            }
+
             else if("name".equals(filter_title)){
                 builder.and(user.name.like("%" + search_text + "%"));
             }
@@ -94,7 +103,7 @@ public class UserRepositoryCustomImpl extends QuerydslRepositorySupport implemen
 
                 .select(user)
                 .where(predicate,used,dateRange)
-                .orderBy(user.customer_name.desc()) // Order by created field in descending order
+                .orderBy(user.company.name.desc()) // Order by created field in descending order
                 .fetch();
 
         return userList;

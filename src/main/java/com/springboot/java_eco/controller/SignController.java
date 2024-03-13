@@ -79,14 +79,6 @@ public class SignController {
         return signUpResultDto;
     }
 
-    @PostMapping(value= "/mobile_update",consumes = "application/json", produces = "application/json")
-    public SignUpResultDto mobileUpdate(@RequestBody UserDto userDto) throws RuntimeException {
-        long currentTime = System.currentTimeMillis();
-
-        SignUpResultDto signUpResultDto = signService.mobileUpdate(userDto);
-
-        return signUpResultDto;
-    }
 
     @PostMapping(value= "/sign-in", consumes = "application/json", produces = "application/json")
     public SignInResultDto signIn(
@@ -106,27 +98,19 @@ public class SignController {
 
 
 
-    @PostMapping(value= "/password_init", consumes = "application/json", produces = "application/json")
-    public SignInResultDto passwordInit(
-            @RequestBody UserDto userDto
-    ) throws RuntimeException {
-
-        LOGGER.info("[passwordInit] 패스워드 초기화요청을 실행하고 있습니다.{},{}", userDto.getCode(),userDto.getPhone());
-        SignInResultDto signInResultDto = signService.passwordInit(userDto.getCode(), userDto.getPhone());
-        if(signInResultDto.getCode() == 0){
-            LOGGER.info("[signIn] 정상적으로 패스워드 초기화 요청이 실행됐습니다. id: {}, token : {}",userDto.getId(), signInResultDto.getToken());
-        }
-        return signInResultDto;
-    }
-
-
-
-
-
     @PostMapping(value= "/delete", consumes = "application/json", produces = "application/json")
     public ResponseEntity<String> delete(@RequestBody Map<String, List<String>> requestMap) throws Exception {
         List<String> id = requestMap.get("id");
         signService.delete(id);
+        return ResponseEntity.status(HttpStatus.OK).body("정상적으로 삭제되었습니다.");
+    }
+
+    @PostMapping(value= "/excel_upload", consumes = "application/json", produces = "application/json")
+    public ResponseEntity<String> excelUploadUser(@RequestBody Map<String, List<Map<String, Object>>> requestMap) throws Exception {
+        List<Map<String, Object>> requestList = requestMap.get("data");
+        LOGGER.info("LIST : {}",requestList);
+
+        signService.excelUploadUser(requestList);
         return ResponseEntity.status(HttpStatus.OK).body("정상적으로 삭제되었습니다.");
     }
 

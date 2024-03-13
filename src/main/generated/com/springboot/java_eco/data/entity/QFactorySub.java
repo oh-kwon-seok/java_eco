@@ -11,20 +11,18 @@ import com.querydsl.core.types.dsl.PathInits;
 
 
 /**
- * QDepartment is a Querydsl query type for Department
+ * QFactorySub is a Querydsl query type for FactorySub
  */
 @Generated("com.querydsl.codegen.DefaultEntitySerializer")
-public class QDepartment extends EntityPathBase<Department> {
+public class QFactorySub extends EntityPathBase<FactorySub> {
 
-    private static final long serialVersionUID = -1960494223L;
+    private static final long serialVersionUID = -1005061899L;
 
     private static final PathInits INITS = PathInits.DIRECT2;
 
-    public static final QDepartment department = new QDepartment("department");
+    public static final QFactorySub factorySub = new QFactorySub("factorySub");
 
     public final QBaseEntity _super = new QBaseEntity(this);
-
-    public final QCompany company;
 
     //inherited
     public final DateTimePath<java.time.LocalDateTime> created = _super.created;
@@ -32,7 +30,13 @@ public class QDepartment extends EntityPathBase<Department> {
     //inherited
     public final DateTimePath<java.time.LocalDateTime> deleted = _super.deleted;
 
+    public final StringPath description = createString("description");
+
+    public final QFactory factory;
+
     public final StringPath name = createString("name");
+
+    public final StringPath status = createString("status");
 
     public final NumberPath<Long> uid = createNumber("uid", Long.class);
 
@@ -41,25 +45,25 @@ public class QDepartment extends EntityPathBase<Department> {
 
     public final NumberPath<Integer> used = createNumber("used", Integer.class);
 
-    public QDepartment(String variable) {
-        this(Department.class, forVariable(variable), INITS);
+    public QFactorySub(String variable) {
+        this(FactorySub.class, forVariable(variable), INITS);
     }
 
-    public QDepartment(Path<? extends Department> path) {
+    public QFactorySub(Path<? extends FactorySub> path) {
         this(path.getType(), path.getMetadata(), PathInits.getFor(path.getMetadata(), INITS));
     }
 
-    public QDepartment(PathMetadata metadata) {
+    public QFactorySub(PathMetadata metadata) {
         this(metadata, PathInits.getFor(metadata, INITS));
     }
 
-    public QDepartment(PathMetadata metadata, PathInits inits) {
-        this(Department.class, metadata, inits);
+    public QFactorySub(PathMetadata metadata, PathInits inits) {
+        this(FactorySub.class, metadata, inits);
     }
 
-    public QDepartment(Class<? extends Department> type, PathMetadata metadata, PathInits inits) {
+    public QFactorySub(Class<? extends FactorySub> type, PathMetadata metadata, PathInits inits) {
         super(type, metadata, inits);
-        this.company = inits.isInitialized("company") ? new QCompany(forProperty("company")) : null;
+        this.factory = inits.isInitialized("factory") ? new QFactory(forProperty("factory"), inits.get("factory")) : null;
     }
 
 }

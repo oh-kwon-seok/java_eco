@@ -10,6 +10,7 @@ import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Map;
 
 @Service
 public class CompanyServiceImpl implements CompanyService {
@@ -43,6 +44,10 @@ public class CompanyServiceImpl implements CompanyService {
     @Override
     public void deleteCompany(List<Long> uid) throws Exception {
         companyDAO.deleteCompany(uid);
+    }
+    @Override
+    public void excelUploadCompany(List<Map<String, Object>> requestList) throws Exception {
+        companyDAO.excelUploadCompany(requestList);
     }
 
 }

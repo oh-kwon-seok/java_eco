@@ -6,6 +6,7 @@ import com.springboot.java_eco.data.dto.company.CompanyDto;
 import com.springboot.java_eco.data.entity.Company;
 
 import java.util.List;
+import java.util.Map;
 
 
 public interface CompanyDAO {
@@ -17,6 +18,8 @@ public interface CompanyDAO {
     Company updateCompany(CompanyDto companyDto) throws Exception;
 
     String deleteCompany(List<Long> uid) throws Exception;
+
+    String excelUploadCompany(List<Map<String, Object>> requestList) throws Exception;
 
 
 }

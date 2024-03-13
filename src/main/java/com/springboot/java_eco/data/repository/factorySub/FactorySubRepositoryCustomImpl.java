@@ -5,12 +5,13 @@ import ch.qos.logback.classic.Logger;
 import com.querydsl.core.BooleanBuilder;
 import com.querydsl.core.Tuple;
 import com.querydsl.core.types.Predicate;
+import com.springboot.java_eco.controller.FactorySubController;
 import com.springboot.java_eco.data.dto.common.CommonSearchDto;
 import com.springboot.java_eco.data.dto.factorySub.FactorySubSearchDto;
 import com.springboot.java_eco.data.entity.FactorySub;
-import com.springboot.java_jangan.controller.FactorySubController;
-import com.springboot.java_jangan.data.dto.factorySub.CommonSearchDto;
-import com.springboot.java_jangan.data.entity.*;
+
+import com.springboot.java_eco.data.entity.QFactory;
+import com.springboot.java_eco.data.entity.QFactorySub;
 import org.slf4j.LoggerFactory;
 import org.springframework.data.jpa.repository.support.QuerydslRepositorySupport;
 import org.springframework.stereotype.Component;
@@ -40,11 +41,11 @@ public class FactorySubRepositoryCustomImpl extends QuerydslRepositorySupport im
 
 
 
-        String filter_title = commonSearchDto.getFilter_title();
-        String search_text = commonSearchDto.getSearch_text();
+        String filter_title = factorySubSearchDto.getFilter_title();
+        String search_text = factorySubSearchDto.getSearch_text();
 
-        LocalDateTime start_date = commonSearchDto.getStart_date();
-        LocalDateTime end_date = commonSearchDto.getEnd_date();
+        LocalDateTime start_date = factorySubSearchDto.getStart_date();
+        LocalDateTime end_date = factorySubSearchDto.getEnd_date();
         BooleanBuilder builder = new BooleanBuilder();
 
         if("all".equals(filter_title)){
@@ -120,10 +121,7 @@ public class FactorySubRepositoryCustomImpl extends QuerydslRepositorySupport im
     @Override
     public List<FactorySub> findInfo(FactorySubSearchDto factorySubSearchDto){
 
-
         QFactory factory = QFactory.factory;
-
-
         QFactorySub factorySub = QFactorySub.factorySub;
         Long search_id = factorySubSearchDto.getFactory_uid();
 

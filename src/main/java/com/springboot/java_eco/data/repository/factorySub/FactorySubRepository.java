@@ -11,7 +11,7 @@ import java.util.List;
 public interface FactorySubRepository extends JpaRepository<FactorySub,String>, FactorySubRepositoryCustom {
 
 
-    List<FactorySub> findByUserOrderUid(Long uid);
+    List<FactorySub> findByFactoryUid(Long uid);
 
 
 

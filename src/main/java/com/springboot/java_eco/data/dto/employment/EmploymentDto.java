@@ -1,4 +1,4 @@
-package com.springboot.java_eco.data.dto.position;
+package com.springboot.java_eco.data.dto.employment;
 
 import lombok.*;
 
@@ -8,16 +8,19 @@ import lombok.*;
 @NoArgsConstructor
 @ToString
 
-public class PositionDto {
+public class EmploymentDto {
     private Long uid;
+    private Long company_uid;
+
     private String name;
     private String name2;
 
     private Long used;
     private String token;
 
-    public PositionDto(Long uid, String name, String name2, Long used, String token){
+    public EmploymentDto(Long uid, Long company_uid,String name, String name2, Long used, String token){
         this.uid = uid;
+        this.company_uid = company_uid;
         this.name = name;
         this.name2 = name2;
 

@@ -19,6 +19,12 @@ public class Department extends BaseEntity{
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long uid;
 
+    @ManyToOne(fetch = FetchType.EAGER)  // ToOne은 fetch = FetchType.LAZY로 꼭 !!! 세팅
+    @JoinColumn(name="company_uid")
+    private Company company;
+
+
+
     @Column(nullable = false)
     private String name;
 

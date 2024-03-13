@@ -18,19 +18,23 @@ public class QUser extends EntityPathBase<User> {
 
     private static final long serialVersionUID = -218749142L;
 
+    private static final PathInits INITS = PathInits.DIRECT2;
+
     public static final QUser user = new QUser("user");
 
     public final ListPath<String, StringPath> auth = this.<String, StringPath>createList("auth", String.class, StringPath.class, PathInits.DIRECT2);
 
-    public final StringPath code = createString("code");
+    public final QCompany company;
 
     public final DateTimePath<java.time.LocalDateTime> created = createDateTime("created", java.time.LocalDateTime.class);
 
-    public final StringPath customer_name = createString("customer_name");
-
     public final DateTimePath<java.time.LocalDateTime> deleted = createDateTime("deleted", java.time.LocalDateTime.class);
 
+    public final QDepartment department;
+
     public final StringPath email = createString("email");
+
+    public final QEmployment employment;
 
     public final StringPath id = createString("id");
 
@@ -45,15 +49,26 @@ public class QUser extends EntityPathBase<User> {
     public final NumberPath<Integer> used = createNumber("used", Integer.class);
 
     public QUser(String variable) {
-        super(User.class, forVariable(variable));
+        this(User.class, forVariable(variable), INITS);
     }
 
     public QUser(Path<? extends User> path) {
-        super(path.getType(), path.getMetadata());
+        this(path.getType(), path.getMetadata(), PathInits.getFor(path.getMetadata(), INITS));
     }
 
     public QUser(PathMetadata metadata) {
-        super(User.class, metadata);
+        this(metadata, PathInits.getFor(metadata, INITS));
+    }
+
+    public QUser(PathMetadata metadata, PathInits inits) {
+        this(User.class, metadata, inits);
+    }
+
+    public QUser(Class<? extends User> type, PathMetadata metadata, PathInits inits) {
+        super(type, metadata, inits);
+        this.company = inits.isInitialized("company") ? new QCompany(forProperty("company")) : null;
+        this.department = inits.isInitialized("department") ? new QDepartment(forProperty("department"), inits.get("department")) : null;
+        this.employment = inits.isInitialized("employment") ? new QEmployment(forProperty("employment"), inits.get("employment")) : null;
     }
 
 }

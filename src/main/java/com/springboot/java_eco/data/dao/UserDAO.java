@@ -4,6 +4,7 @@ import com.springboot.java_eco.data.dto.common.CommonSearchDto;
 import com.springboot.java_eco.data.entity.User;
 
 import java.util.List;
+import java.util.Map;
 
 public interface UserDAO {
 
@@ -11,5 +12,6 @@ public interface UserDAO {
 
     List<User> selectUser(CommonSearchDto userSearchDto);
 
+    String excelUploadUser(List<Map<String, Object>> requestList) throws Exception;
 
 }

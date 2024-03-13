@@ -31,9 +31,19 @@ public class QCompany extends EntityPathBase<Company> {
 
     public final StringPath email = createString("email");
 
+    public final StringPath emp_name = createString("emp_name");
+
+    public final StringPath emp_phone = createString("emp_phone");
+
+    public final StringPath fax = createString("fax");
+
     public final StringPath name = createString("name");
 
-    public final StringPath phone = createString("phone");
+    public final StringPath owner_name = createString("owner_name");
+
+    public final StringPath owner_phone = createString("owner_phone");
+
+    public final StringPath type = createString("type");
 
     public final NumberPath<Long> uid = createNumber("uid", Long.class);
 

@@ -15,38 +15,32 @@ import java.util.Map;
 public class UserDto {
 
     private String id;
-    private String code;
-    private String password;
 
+    private Long company_uid;
+    private Long employment_uid;
+    private Long department_uid;
+
+    private String password;
     private String name;
-    private String customer_name;
     private String email;
     private String phone;
-
-    private Long car_uid;
 
     private String auth;
     private Long used;
     private String token;
-    private List<Map<String, Object>> user_Item;
 
-    public UserDto( String id,String code,String customer_name,String password,String name,String email,String phone, Long car_uid, String auth, Long used, String token,List<Map<String, Object>> user_Item){
-
-        this.name = name;
+    public UserDto( String id, Long company_uid, Long employment_uid, Long department_uid, String password,String name,String email,String phone, String auth, Long used, String token){
         this.id = id;
-        this.code = code;
+        this.company_uid = company_uid;
+        this.employment_uid = employment_uid;
+        this.department_uid = department_uid;
         this.password = password;
         this.name = name;
-        this.customer_name = customer_name;
         this.email = email;
         this.phone = phone;
-
-        this.car_uid = car_uid;
         this.auth = auth;
         this.used = used;
-
         this.token = token;
-        this.user_Item = user_Item;
 
     }
 

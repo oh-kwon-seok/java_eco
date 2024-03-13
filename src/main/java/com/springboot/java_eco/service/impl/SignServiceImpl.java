@@ -10,6 +10,9 @@ import com.springboot.java_eco.data.dto.SignUpResultDto;
 import com.springboot.java_eco.data.dto.common.CommonSearchDto;
 import com.springboot.java_eco.data.dto.user.UserDto;
 import com.springboot.java_eco.data.entity.*;
+import com.springboot.java_eco.data.repository.company.CompanyRepository;
+import com.springboot.java_eco.data.repository.department.DepartmentRepository;
+import com.springboot.java_eco.data.repository.employment.EmploymentRepository;
 import com.springboot.java_eco.data.repository.history.HistoryRepository;
 import com.springboot.java_eco.data.repository.user.UserRepository;
 import com.springboot.java_eco.service.SignService;
@@ -22,6 +25,7 @@ import org.springframework.stereotype.Service;
 import java.time.LocalDateTime;
 import java.util.Collections;
 import java.util.List;
+import java.util.Map;
 import java.util.Optional;
 
 @Service
@@ -32,6 +36,9 @@ public class SignServiceImpl implements SignService {
 
 
     public UserRepository userRepository;
+    public CompanyRepository companyRepository;
+    public EmploymentRepository employmentRepository;
+    public DepartmentRepository departmentRepository;
 
 
     public HistoryRepository historyRepository;
@@ -39,9 +46,14 @@ public class SignServiceImpl implements SignService {
     public PasswordEncoder passwordEncoder;
 
     @Autowired
-    public SignServiceImpl(@Qualifier("userDAOImpl") UserDAO userDAO, UserRepository userRepository,  JwtTokenProvider jwtTokenProvider, PasswordEncoder passwordEncoder, HistoryRepository historyRepository){
+    public SignServiceImpl(@Qualifier("userDAOImpl") UserDAO userDAO, UserRepository userRepository, CompanyRepository companyRepository, EmploymentRepository employmentRepository, DepartmentRepository departmentRepository,
+    JwtTokenProvider jwtTokenProvider, PasswordEncoder passwordEncoder, HistoryRepository historyRepository){
         this.userDao = userDAO;
         this.userRepository = userRepository;
+        this.companyRepository = companyRepository;
+        this.employmentRepository = employmentRepository;
+        this.departmentRepository = departmentRepository;
+
         this.historyRepository = historyRepository;
         this.jwtTokenProvider = jwtTokenProvider;
         this.passwordEncoder = passwordEncoder;
@@ -63,20 +75,20 @@ public class SignServiceImpl implements SignService {
 
     @Override
     public  SignUpResultDto save(UserDto userDto) throws RuntimeException{
-        String id = userDto.getId();
-        String code = userDto.getCode();
-        String name = userDto.getName();
-        String customer_name = userDto.getCustomer_name();
 
+        Company company = companyRepository.findByUid(userDto.getCompany_uid());
+        Employment employment = employmentRepository.findByUid(userDto.getEmployment_uid());
+        Department department = departmentRepository.findByUid(userDto.getDepartment_uid());
+        String id = userDto.getId();
+        String name = userDto.getName();
         String password = userDto.getPassword();
 
         String email = userDto.getEmail();
         String phone = userDto.getPhone();
         String auth = userDto.getAuth();
+        Optional<User> selectedUser = userRepository.findById(userDto.getId());
 
-         Optional<User> selectedUser = Optional.ofNullable(userRepository.getById(userDto.getId()));
-
-        LOGGER.info("[selectUser] : {}",selectedUser.isPresent());
+        LOGGER.info("[selectUser] : {}",selectedUser);
 
         User user;
         SignUpResultDto signUpResultDto = new SignUpResultDto();
@@ -90,13 +102,18 @@ public class SignServiceImpl implements SignService {
             if (auth.equalsIgnoreCase("admin")) {
                 user = User.builder()
                         .id(id)
-                        .code(code)
+
                         .name(name)
-                        .customer_name(customer_name)
+                        .company(company)
+                        .employment(employment)
+                        .department(department)
 
                         .password(passwordEncoder.encode(password))
                         .email(email)
                         .phone(phone)
+
+
+
 
                         .auth(Collections.singletonList("ROLE_ADMIN"))
                         .created(LocalDateTime.now())
@@ -110,12 +127,16 @@ public class SignServiceImpl implements SignService {
             } else if(auth.equalsIgnoreCase("user")){
                 user = User.builder()
                         .id(id)
-                        .code(code)
+
                         .name(name)
-                        .customer_name(customer_name)
+                        .company(company)
+                        .employment(employment)
+                        .department(department)
+
                         .password(passwordEncoder.encode(password))
                         .email(email)
                         .phone(phone)
+
 
                         .auth(Collections.singletonList("ROLE_USER"))
                         .created(LocalDateTime.now())
@@ -135,11 +156,12 @@ public class SignServiceImpl implements SignService {
 
     @Override
     public  SignUpResultDto update(UserDto userDto) throws RuntimeException{
-        String id = userDto.getId();
-        String code = userDto.getCode();
-        String name = userDto.getName();
-        String customer_name = userDto.getCustomer_name();
+        Company company = companyRepository.findByUid(userDto.getCompany_uid());
+        Employment employment = employmentRepository.findByUid(userDto.getEmployment_uid());
+        Department department = departmentRepository.findByUid(userDto.getDepartment_uid());
 
+        String id = userDto.getId();
+        String name = userDto.getName();
         String password = userDto.getPassword();
 
 
@@ -157,10 +179,11 @@ public class SignServiceImpl implements SignService {
             if (auth.equalsIgnoreCase("admin")) {
                 user = User.builder()
                         .id(id)
-                        .code(code)
+                        .company(company)
+                        .employment(employment)
+                        .department(department)
                         .name(name)
                         .password(passwordEncoder.encode(password))
-                        .customer_name(customer_name)
                         .email(email)
                         .phone(phone)
                         .auth(Collections.singletonList("ROLE_ADMIN"))
@@ -176,10 +199,11 @@ public class SignServiceImpl implements SignService {
             } else if(auth.equalsIgnoreCase("user")){
                 user = User.builder()
                         .id(id)
-                        .code(code)
+                        .company(company)
+                        .employment(employment)
+                        .department(department)
                         .name(name)
                         .password(passwordEncoder.encode(password))
-                        .customer_name(customer_name)
                         .email(email)
                         .phone(phone)
                         .auth(Collections.singletonList("ROLE_USER"))
@@ -202,87 +226,13 @@ public class SignServiceImpl implements SignService {
         }
 
     }
-
-
 
     @Override
-    public  SignUpResultDto mobileUpdate(UserDto userDto) throws RuntimeException{
-        String id = userDto.getId();
-        String code = userDto.getCode();
-        String name = userDto.getName();
-        String customer_name = userDto.getCustomer_name();
-
-        String password = userDto.getPassword();
-
-
-        String email = userDto.getEmail();
-        String phone = userDto.getPhone();
-        String auth = userDto.getAuth();
-
-        Optional<User> selectedUser = Optional.ofNullable(userRepository.getById(userDto.getId()));
-
-
-
-
-        User user;
-        SignUpResultDto signUpResultDto = new SignUpResultDto();
-
-
-        if(selectedUser.isPresent()){
-            if (auth.equalsIgnoreCase("admin")) {
-                user = User.builder()
-
-                        .name(name)
-                        .password(password)
-                        .customer_name(customer_name)
-                        .email(email)
-                        .phone(phone)
-
-                        .auth(Collections.singletonList("ROLE_ADMIN"))
-
-                        .updated(LocalDateTime.now())
-                        .used(Math.toIntExact(userDto.getUsed()))
-                        .build();
-                userRepository.save(user);
-                // UserItem 저장
-
-                setSuccessResult(signUpResultDto);
-                return signUpResultDto;
-
-            } else if(auth.equalsIgnoreCase("user")){
-                user = User.builder()
-
-                        .name(name)
-                        .password(password)
-                        .customer_name(customer_name)
-                        .email(email)
-                        .phone(phone)
-
-                        .auth(Collections.singletonList("ROLE_USER"))
-                        .updated(LocalDateTime.now())
-                        .used(Math.toIntExact(userDto.getUsed()))
-                        .build();
-                userRepository.save(user);
-
-
-
-
-
-
-                setSuccessResult(signUpResultDto);
-                return signUpResultDto;
-            }else{
-                throw new RuntimeException();
-            }
-
-        }else{
-            setFailResult(signUpResultDto);
-            return signUpResultDto;
-
-
-        }
-
+    public void excelUploadUser(List<Map<String, Object>> requestList) throws Exception {
+        userDao.excelUploadUser(requestList);
     }
+
+
 
     @Override
     public SignInResultDto signIn(String id,String password,String clientIp) throws RuntimeException{
@@ -330,55 +280,6 @@ public class SignServiceImpl implements SignService {
 
     }
 
-    @Override
-    public SignInResultDto passwordInit(String code,String phone) throws RuntimeException {
-        LOGGER.info("[getSignInResult] signDateHandler로 회원 정보 요청", code, phone);
-
-        LOGGER.info("[getSignInResult] UserCode : {}", code);
-        LOGGER.info("[getSignInResult] UserPHone : {}", phone);
-
-
-        Optional<User> selectedUser = Optional.ofNullable(userRepository.findByCodeAndPhone(code,phone));
-
-        User user;
-        SignInResultDto signInResultDto = new SignInResultDto();
-
-        LOGGER.info("[selectedUser] selectedUser : {}", selectedUser);
-        if (selectedUser.isPresent()) {
-            String init_password = "1111";
-
-            User getUser = selectedUser.get();
-            String id = getUser.getId();
-            String name = getUser.getName();
-            String customer_name = getUser.getCustomer_name();
-            String email = getUser.getEmail();
-
-            user = User.builder()
-                    .name(name)
-                    .customer_name(customer_name)
-                    .password(passwordEncoder.encode(init_password))
-                    .id(id)
-                    .email(email)
-                    .code(code)
-                    .phone(phone)
-                    .updated(LocalDateTime.now())
-                    .used(1)
-                    .build();
-            userRepository.save(user);
-
-
-            LOGGER.info("[getSignInResult] 패스워드 일치");
-            LOGGER.info("[getSignInResult] SignInResultDto 객체 생성");
-            setSuccessResult(signInResultDto);
-            return signInResultDto;
-        } else {
-            LOGGER.info("[getSignInResult] in : {}", signInResultDto);
-            setFailResult(signInResultDto);
-            return signInResultDto;
-        }
-
-
-    }
 
 
 

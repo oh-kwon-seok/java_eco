@@ -10,6 +10,7 @@ import org.springframework.stereotype.Component;
 
 import java.time.LocalDateTime;
 import java.util.List;
+import java.util.Map;
 import java.util.Optional;
 
 @Component
@@ -31,7 +32,20 @@ public class CompanyDAOImpl implements CompanyDAO {
 
         company.setName(companyDto.getName());
         company.setEmail(companyDto.getEmail());
-        company.setPhone(companyDto.getPhone());
+
+        company.setOwner_name(companyDto.getOwner_name());
+        company.setOwner_phone(companyDto.getOwner_phone());
+
+
+        company.setEmp_name(companyDto.getEmp_name());
+
+        company.setEmp_phone(companyDto.getEmp_phone());
+        company.setFax(companyDto.getFax());
+
+
+
+
+        company.setType(companyDto.getType());
 
         company.setUsed(Math.toIntExact(companyDto.getUsed()));
 
@@ -68,7 +82,17 @@ public class CompanyDAOImpl implements CompanyDAO {
             company.setCode(companyDto.getCode());
             company.setName(companyDto.getName());
             company.setEmail(companyDto.getEmail());
-            company.setPhone(companyDto.getPhone());
+            company.setOwner_name(companyDto.getOwner_name());
+            company.setOwner_phone(companyDto.getOwner_phone());
+
+
+            company.setEmp_name(companyDto.getEmp_name());
+
+            company.setEmp_phone(companyDto.getEmp_phone());
+            company.setFax(companyDto.getFax());
+
+
+            company.setType(companyDto.getType());
             company.setUsed(Math.toIntExact(companyDto.getUsed()));
 
             company.setUpdated(LocalDateTime.now());
@@ -93,5 +117,62 @@ public class CompanyDAOImpl implements CompanyDAO {
             }
         }
         return "Companys deleted successfully";
+    }
+
+    @Override
+    public String excelUploadCompany(List<Map<String, Object>> requestList) throws Exception {
+
+        for (Map<String, Object> data : requestList) {
+            String code = (String) data.get("code");
+            String name = (String) data.get("name");
+            String owner_name = (String) data.get("owner_name");
+            String owner_phone = (String) data.get("owner_phone");
+            String emp_name = (String) data.get("emp_name");
+            String emp_phone = (String) data.get("emp_phone");
+            String fax = (String) data.get("fax");
+            String email = (String) data.get("email");
+            String type = (String) data.get("type");
+
+
+
+            // 예시로 이름과 수량이 모두 일치하는 Product를 찾는 메서드를 가정
+            Optional<Company> selectedCompany = Optional.ofNullable(companyRepository.findByCode(code));
+
+            if (selectedCompany.isPresent()) { // 해당 데이터가 있으면 수정
+                Company company = selectedCompany.get();
+
+                company.setCode(code);
+                company.setName(name);
+                company.setOwner_name(owner_name);
+                company.setOwner_phone(owner_phone);
+                company.setEmp_name(emp_name);
+                company.setEmp_phone(emp_phone);
+                company.setFax(fax);
+                company.setEmail(email);
+                company.setType(type);
+                company.setUsed(1);
+                company.setUpdated(LocalDateTime.now());
+                companyRepository.save(company);
+            } else {  // 해당 데이터가 없으면 추가
+                Company company = new Company();
+
+                company.setCode(code);
+                company.setName(name);
+                company.setOwner_name(owner_name);
+                company.setOwner_phone(owner_phone);
+                company.setEmp_name(emp_name);
+                company.setEmp_phone(emp_phone);
+                company.setFax(fax);
+                company.setEmail(email);
+                company.setType(type);
+                company.setUsed(1);
+
+                company.setCreated(LocalDateTime.now());
+                companyRepository.save(company);
+
+
+            }
+        }
+        return "Company excelupload successfully";
     }
 }

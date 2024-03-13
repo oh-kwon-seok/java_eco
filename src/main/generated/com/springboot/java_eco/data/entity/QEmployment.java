@@ -11,16 +11,16 @@ import com.querydsl.core.types.dsl.PathInits;
 
 
 /**
- * QDepartment is a Querydsl query type for Department
+ * QEmployment is a Querydsl query type for Employment
  */
 @Generated("com.querydsl.codegen.DefaultEntitySerializer")
-public class QDepartment extends EntityPathBase<Department> {
+public class QEmployment extends EntityPathBase<Employment> {
 
-    private static final long serialVersionUID = -1960494223L;
+    private static final long serialVersionUID = 1654561803L;
 
     private static final PathInits INITS = PathInits.DIRECT2;
 
-    public static final QDepartment department = new QDepartment("department");
+    public static final QEmployment employment = new QEmployment("employment");
 
     public final QBaseEntity _super = new QBaseEntity(this);
 
@@ -34,6 +34,8 @@ public class QDepartment extends EntityPathBase<Department> {
 
     public final StringPath name = createString("name");
 
+    public final StringPath name2 = createString("name2");
+
     public final NumberPath<Long> uid = createNumber("uid", Long.class);
 
     //inherited
@@ -41,23 +43,23 @@ public class QDepartment extends EntityPathBase<Department> {
 
     public final NumberPath<Integer> used = createNumber("used", Integer.class);
 
-    public QDepartment(String variable) {
-        this(Department.class, forVariable(variable), INITS);
+    public QEmployment(String variable) {
+        this(Employment.class, forVariable(variable), INITS);
     }
 
-    public QDepartment(Path<? extends Department> path) {
+    public QEmployment(Path<? extends Employment> path) {
         this(path.getType(), path.getMetadata(), PathInits.getFor(path.getMetadata(), INITS));
     }
 
-    public QDepartment(PathMetadata metadata) {
+    public QEmployment(PathMetadata metadata) {
         this(metadata, PathInits.getFor(metadata, INITS));
     }
 
-    public QDepartment(PathMetadata metadata, PathInits inits) {
-        this(Department.class, metadata, inits);
+    public QEmployment(PathMetadata metadata, PathInits inits) {
+        this(Employment.class, metadata, inits);
     }
 
-    public QDepartment(Class<? extends Department> type, PathMetadata metadata, PathInits inits) {
+    public QEmployment(Class<? extends Employment> type, PathMetadata metadata, PathInits inits) {
         super(type, metadata, inits);
         this.company = inits.isInitialized("company") ? new QCompany(forProperty("company")) : null;
     }

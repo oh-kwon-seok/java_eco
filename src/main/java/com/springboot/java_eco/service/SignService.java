@@ -7,6 +7,7 @@ import com.springboot.java_eco.data.dto.user.UserDto;
 import com.springboot.java_eco.data.entity.User;
 
 import java.util.List;
+import java.util.Map;
 
 public interface SignService {
 
@@ -15,7 +16,6 @@ public interface SignService {
 
     SignUpResultDto update(UserDto userDto);
 
-    SignUpResultDto mobileUpdate(UserDto userDto);
 
     List<User> getTotalUser(CommonSearchDto commonSearchDto);
     List<User> getUser(CommonSearchDto commonSearchDto);
@@ -23,7 +23,6 @@ public interface SignService {
     String delete(List<String> id) throws Exception;
     SignInResultDto signIn(String userId, String password,String clientIp) throws RuntimeException;
 
-    SignInResultDto passwordInit(String code, String phone) throws RuntimeException;
-
+    void excelUploadUser(List<Map<String, Object>> requestList) throws Exception;
 
 }

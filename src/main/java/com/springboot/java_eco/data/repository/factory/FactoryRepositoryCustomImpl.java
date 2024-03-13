@@ -6,8 +6,10 @@ import com.querydsl.core.BooleanBuilder;
 import com.querydsl.core.Tuple;
 import com.querydsl.core.types.Predicate;
 
+import com.springboot.java_eco.controller.FactoryController;
 import com.springboot.java_eco.data.dto.common.CommonSearchDto;
-import com.springboot.java_eco.data.entity.Factory;
+import com.springboot.java_eco.data.dto.factorySub.FactorySubSearchDto;
+import com.springboot.java_eco.data.entity.*;
 import org.slf4j.LoggerFactory;
 import org.springframework.data.jpa.repository.support.QuerydslRepositorySupport;
 import org.springframework.stereotype.Component;
@@ -51,6 +53,9 @@ public class FactoryRepositoryCustomImpl extends QuerydslRepositorySupport imple
             if (factory.description != null) {
                 builder.or(factory.description.like("%" + search_text + "%"));
             }
+            if (factory.company.name != null) {
+                builder.or(factory.company.name.like("%" + search_text + "%"));
+            }
 
 
         }else {
@@ -63,6 +68,8 @@ public class FactoryRepositoryCustomImpl extends QuerydslRepositorySupport imple
             }
             else if("description".equals(filter_title)){
                 builder.and(factory.description.like("%" + search_text + "%"));
+            }  else if("company".equals(filter_title)){
+                builder.and(factory.company.name.like("%" + search_text + "%"));
             }
 
         }
@@ -86,10 +93,19 @@ public class FactoryRepositoryCustomImpl extends QuerydslRepositorySupport imple
 
     }
 
-   
+    @Override
+    public List<Factory> findInfo(CommonSearchDto commonSubSearchDto){
 
+        QFactory factory = QFactory.factory;
 
+        Predicate used = factory.used.eq(1);
 
+        List<Factory> factoryList = from(factory)
+                .select(factory)
+                .where(used)
+                .fetch();
 
+        return factoryList;
 
+    }
 }

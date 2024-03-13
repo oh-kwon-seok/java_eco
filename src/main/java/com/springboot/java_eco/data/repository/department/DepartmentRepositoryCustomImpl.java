@@ -37,9 +37,14 @@ public class DepartmentRepositoryCustomImpl extends QuerydslRepositorySupport im
             if (department.name != null) {
                 builder.or(department.name.like("%" + search_text + "%"));
             }
+            if (department.company.name != null) {
+                builder.or(department.company.name.like("%" + search_text + "%"));
+            }
         }else {
             if("name".equals(filter_title)){
                 builder.and(department.name.like("%" + search_text + "%"));
+            }else if("company".equals(filter_title)){
+                builder.and(department.company.name.like("%" + search_text + "%"));
             }
         }
         Predicate dateRange = department.created.between(start_date, end_date);

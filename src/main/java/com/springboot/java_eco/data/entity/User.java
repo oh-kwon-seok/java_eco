@@ -31,16 +31,25 @@ public class User implements UserDetails {
     @Column(nullable = false, unique = true)
     private String id;
 
-    @Column(nullable = false)
-    private String code;
+    @ManyToOne(fetch = FetchType.EAGER)  // ToOne은 fetch = FetchType.LAZY로 꼭 !!! 세팅
+    @JoinColumn(name="company_uid")
+    private Company company;
 
-//    @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
+    @ManyToOne(fetch = FetchType.EAGER)  // ToOne은 fetch = FetchType.LAZY로 꼭 !!! 세팅
+    @JoinColumn(name="employment_uid")
+    private Employment employment;
+
+    @ManyToOne(fetch = FetchType.EAGER)  // ToOne은 fetch = FetchType.LAZY로 꼭 !!! 세팅
+    @JoinColumn(name="department_uid")
+    private Department department;
+
+
     @Column(nullable = false)
     private String password;
 
 
     private String name;
-    private String customer_name;
+
 
     private String email;
     private String phone;

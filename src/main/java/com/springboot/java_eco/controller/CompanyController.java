@@ -79,5 +79,13 @@ public class CompanyController {
         companyService.deleteCompany(uid);
         return ResponseEntity.status(HttpStatus.OK).body("정상적으로 삭제되었습니다.");
     }
+    @PostMapping(value= "/excel_upload", consumes = "application/json", produces = "application/json")
+    public ResponseEntity<String> excelUploadCompany(@RequestBody Map<String, List<Map<String, Object>>> requestMap) throws Exception {
+        List<Map<String, Object>> requestList = requestMap.get("data");
+        LOGGER.info("LIST : {}",requestList);
+
+        companyService.excelUploadCompany(requestList);
+        return ResponseEntity.status(HttpStatus.OK).body("정상적으로 업로드되었습니다.");
+    }
 
 }

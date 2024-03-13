@@ -8,4 +8,7 @@ import org.springframework.stereotype.Repository;
 public interface CompanyRepository extends JpaRepository<Company,Long>, CompanyRepositoryCustom {
 
     Company findByUid(Long uid);
+    Company findByCode(String code);
+
+
 }

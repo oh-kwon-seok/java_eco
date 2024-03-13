@@ -1,25 +1,19 @@
 package com.springboot.java_eco.data.dao;
 
 
-import com.springboot.java_jangan.data.dto.userOrderSub.UserOrderSubSearchDto;
-import com.springboot.java_jangan.data.entity.UserOrderSub;
+import com.springboot.java_eco.data.dto.factorySub.FactorySubSearchDto;
 
+import com.springboot.java_eco.data.entity.FactorySub;
 import java.util.List;
 
 
 public interface FactorySubDAO {
 
 
-    List<UserOrderSub> selectTotalUserOrderSub(UserOrderSubSearchDto userOrderSubSearchDto);
-
-    List<UserOrderSub> selectTotalUserOrderSubHistory(UserOrderSubSearchDto userOrderSubSearchDto);
+    List<FactorySub> selectTotalFactorySub(FactorySubSearchDto factorySubSearchDto);
 
 
-    List<UserOrderSub> selectTotalMobileUserOrderSub(UserOrderSubSearchDto userOrderSubSearchDto);
-
-    List<UserOrderSub> selectTotalMobileBuyUserOrderSub(UserOrderSubSearchDto userOrderSubSearchDto);
-
-    List<UserOrderSub> selectUserOrderSub(UserOrderSubSearchDto userOrderSubSearchDto);
+    List<FactorySub> selectFactorySub(FactorySubSearchDto factorySubSearchDto);
 
 
 
