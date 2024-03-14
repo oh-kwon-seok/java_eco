@@ -12,8 +12,8 @@ import lombok.*;
 @AllArgsConstructor
 @ToString(callSuper = true)
 @EqualsAndHashCode(callSuper = true)
-@Table(name="restric_material")
-public class RestricMaterial extends BaseEntity{
+@Table(name="restric_material_country")
+public class RestricMaterialCountry extends BaseEntity{
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -22,29 +22,25 @@ public class RestricMaterial extends BaseEntity{
     @Column(nullable = false)
     private String regulate_type; // 구분
 
-    @Column
-    private String ingr_std_name; // 표준명
 
     @Column
-    private String ingr_eng_name; // 영문명
+    private String regl_code; // 규제코드
 
     @Column
-    private String cas_no; //casNO
+    private String ingr_code; // 성분코드
 
     @Column
-    private String ingr_synonym; // 이명(별명)
+    private String country_name; // 국가명
 
     @Column
-    private String country_name; // 배합금지국가
-
-    @Column
-    private String notice_ingr_name; // 고시원료명
+    private String notice_ingr_name; // 고시성분명
 
     @Column
     private String provis_atrcl; // 단서조항
 
     @Column
     private String limit_cond; // 제한사항
+
 
 
 
