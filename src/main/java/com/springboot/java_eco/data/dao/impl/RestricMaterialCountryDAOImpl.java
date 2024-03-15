@@ -128,9 +128,8 @@ public class RestricMaterialCountryDAOImpl implements RestricMaterialCountryDAO 
             Optional<RestricMaterialCountry> selectedRestricMaterialCountry = restricMaterialCountryRepository.findById(uid);
             if (selectedRestricMaterialCountry.isPresent()) {
                 RestricMaterialCountry restricMaterialCountry = selectedRestricMaterialCountry.get();
-                restricMaterialCountry.setUsed(0);
-                restricMaterialCountry.setDeleted(LocalDateTime.now());
-                restricMaterialCountryRepository.save(restricMaterialCountry);
+
+                restricMaterialCountryRepository.delete(restricMaterialCountry);
             } else {
                 throw new Exception("RestricMaterialCountry with UID " + uid + " not found.");
             }

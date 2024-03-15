@@ -127,9 +127,8 @@ public class RestricMaterialDAOImpl implements RestricMaterialDAO {
             Optional<RestricMaterial> selectedRestricMaterial = restricMaterialRepository.findById(uid);
             if (selectedRestricMaterial.isPresent()) {
                 RestricMaterial restricMaterial = selectedRestricMaterial.get();
-                restricMaterial.setUsed(0);
-                restricMaterial.setDeleted(LocalDateTime.now());
-                restricMaterialRepository.save(restricMaterial);
+
+                restricMaterialRepository.delete(restricMaterial);
             } else {
                 throw new Exception("RestricMaterial with UID " + uid + " not found.");
             }
