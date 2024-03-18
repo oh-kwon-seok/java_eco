@@ -1,4 +1,4 @@
-package com.springboot.java_eco.data.dto.department;
+package com.springboot.java_eco.data.dto.type;
 
 import lombok.*;
 
@@ -8,7 +8,7 @@ import lombok.*;
 @NoArgsConstructor
 @ToString
 
-public class DepartmentDto {
+public class TypeDto {
     private Long uid;
     private Long company_uid;
 
@@ -17,7 +17,7 @@ public class DepartmentDto {
     private Long used;
     private String token;
 
-    public DepartmentDto(Long uid,Long company_uid, String name, Long used, String token){
+    public TypeDto(Long uid, Long company_uid, String name, Long used, String token){
         this.company_uid = company_uid;
         this.uid = uid;
         this.name = name;

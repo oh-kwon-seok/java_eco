@@ -11,5 +11,5 @@ public interface DepartmentRepository extends JpaRepository<Department,Long>, De
 
     Department findByUid(Long uid);
 
-    Department findByNameAndCompany(String name, Company company);
+    Department findByNameAndCompanyAndUsed(String name, Company company, Long used);
 }

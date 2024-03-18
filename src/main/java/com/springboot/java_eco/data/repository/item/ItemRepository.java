@@ -9,6 +9,8 @@ public interface ItemRepository extends JpaRepository<Item,Long>, ItemRepository
 
 
 
-    Item findByNameAndType(String name, String type);
+    Item findByCodeAndUsed(String code,Long used);
+
+
 
 }

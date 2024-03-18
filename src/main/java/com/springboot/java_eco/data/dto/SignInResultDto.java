@@ -3,6 +3,8 @@ package com.springboot.java_eco.data.dto;
 
 import lombok.*;
 
+@Getter
+@Setter
 @Data
 @AllArgsConstructor
 @NoArgsConstructor

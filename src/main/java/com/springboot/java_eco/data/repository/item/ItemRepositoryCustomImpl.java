@@ -27,6 +27,8 @@ public class ItemRepositoryCustomImpl extends QuerydslRepositorySupport implemen
     public List<Item> findAll(CommonSearchDto commonSearchDto){
         QItem item = QItem.item;
         QCompany company = QCompany.company;
+        QType type = QType.type;
+
         String filter_title = commonSearchDto.getFilter_title();
         String search_text = commonSearchDto.getSearch_text();
 
@@ -38,25 +40,24 @@ public class ItemRepositoryCustomImpl extends QuerydslRepositorySupport implemen
 
 
         if("all".equals(filter_title)){
-            if (item.name != null) {
-                builder.or(item.name.like("%" + search_text + "%"));
+            if (item.code != null) {
+                builder.or(item.code.like("%" + search_text + "%"));
             }
-            if (item.type != null) {
-                builder.or(item.type.like("%" + search_text + "%"));
-            }
-
             if (item.company != null) {
                 builder.or(company.name.like("%" + search_text + "%"));
             }
+            if (item.type != null) {
+                builder.or(type.name.like("%" + search_text + "%"));
+            }
 
         }else {
-            if("name".equals(filter_title)){
-                builder.and(item.name.like("%" + search_text + "%"));
+            if("code".equals(filter_title)){
+                builder.and(item.code.like("%" + search_text + "%"));
             }else if("company".equals(filter_title)){
                 builder.and(company.name.like("%" + search_text + "%"));
             }
             else if("type".equals(filter_title)){
-                builder.and(item.type.like("%" + search_text + "%"));
+                builder.and(type.name.like("%" + search_text + "%"));
             }
 
 
@@ -69,7 +70,8 @@ public class ItemRepositoryCustomImpl extends QuerydslRepositorySupport implemen
 
         List<Tuple> results = from(item)
                 .leftJoin(item.company, company).fetchJoin()
-                .select(item,company)
+                .leftJoin(item.type, type).fetchJoin()
+                .select(item,company,type)
                 .where(predicate,dateRange,used)
                 .orderBy(item.created.desc()) // Order by created field in descending order
                 .fetch();

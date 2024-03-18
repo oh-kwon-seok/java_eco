@@ -75,8 +75,8 @@ public class UserDAOImpl implements UserDAO {
             LOGGER.info("흐흐흐 : {}",name);
             LOGGER.info("ID라능 : {}",id);
             if (company != null) {
-                Employment employment = employmentRepository.findByNameAndCompany(employmentName, company);
-                Department department = departmentRepository.findByNameAndCompany(departmentName, company);
+                Employment employment = employmentRepository.findByNameAndCompanyAndUsed(employmentName, company,1L);
+                Department department = departmentRepository.findByNameAndCompanyAndUsed(departmentName, company, 1L);
                 if(employment != null && department != null){
                     Optional<User> selectedUser = Optional.ofNullable(userRepository.findByIdAndCompanyAndEmploymentAndDepartment(id,company,employment,department));
 

@@ -24,17 +24,43 @@ public class QItem extends EntityPathBase<Item> {
 
     public final QBaseEntity _super = new QBaseEntity(this);
 
+    public final StringPath buy_type = createString("buy_type");
+
+    public final StringPath classify_code = createString("classify_code");
+
+    public final StringPath code = createString("code");
+
     public final QCompany company;
+
+    public final StringPath component_code = createString("component_code");
 
     //inherited
     public final DateTimePath<java.time.LocalDateTime> created = _super.created;
 
+    public final StringPath currency_unit = createString("currency_unit");
+
     //inherited
     public final DateTimePath<java.time.LocalDateTime> deleted = _super.deleted;
 
-    public final StringPath name = createString("name");
+    public final StringPath description = createString("description");
 
-    public final StringPath type = createString("type");
+    public final StringPath hs_code = createString("hs_code");
+
+    public final StringPath ingr_eng_name = createString("ingr_eng_name");
+
+    public final StringPath ingr_kor_name = createString("ingr_kor_name");
+
+    public final StringPath inout_type = createString("inout_type");
+
+    public final StringPath inout_unit = createString("inout_unit");
+
+    public final StringPath nts_code = createString("nts_code");
+
+    public final StringPath simple_code = createString("simple_code");
+
+    public final QType type;
+
+    public final StringPath type_code = createString("type_code");
 
     public final NumberPath<Long> uid = createNumber("uid", Long.class);
 
@@ -62,6 +88,7 @@ public class QItem extends EntityPathBase<Item> {
     public QItem(Class<? extends Item> type, PathMetadata metadata, PathInits inits) {
         super(type, metadata, inits);
         this.company = inits.isInitialized("company") ? new QCompany(forProperty("company")) : null;
+        this.type = inits.isInitialized("type") ? new QType(forProperty("type"), inits.get("type")) : null;
     }
 
 }

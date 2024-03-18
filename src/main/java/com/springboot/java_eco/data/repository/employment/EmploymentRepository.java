@@ -11,6 +11,6 @@ public interface EmploymentRepository extends JpaRepository<Employment,Long>, Em
     Employment findByUid(Long uid);
 
 
-    Employment findByNameAndCompany(String name, Company company);
+    Employment findByNameAndCompanyAndUsed(String name, Company company, Long used);
 
 }
