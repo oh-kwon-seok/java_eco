@@ -69,6 +69,9 @@ public class ItemDAOImpl implements ItemDAO {
             item.setNts_code(itemDto.getNts_code());
             item.setDescription(itemDto.getDescription());
             item.setType(type);
+
+            item.setImage_url(String.valueOf(itemDto.getImage_url()));
+
             item.setUsed(1);
             item.setCompany(company);
             item.setUpdated(LocalDateTime.now());
@@ -92,6 +95,9 @@ public class ItemDAOImpl implements ItemDAO {
             item.setNts_code(itemDto.getNts_code());
             item.setDescription(itemDto.getDescription());
             item.setType(type);
+
+            item.setImage_url(String.valueOf(itemDto.getImage_url()));
+
             item.setUsed(1);
             item.setCompany(company);
             item.setCreated(LocalDateTime.now());
@@ -137,7 +143,7 @@ public class ItemDAOImpl implements ItemDAO {
             item.setType(type);
             item.setCompany(company);
 
-
+            item.setImage_url(String.valueOf(itemDto.getImage_url()));
 
             item.setUsed(Math.toIntExact(itemDto.getUsed()));
             item.setUpdated(LocalDateTime.now());

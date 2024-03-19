@@ -24,6 +24,8 @@ public class ItemDto {
     private String hs_code; // hs코드
     private String nts_code; // 국세청 코드
     private String description; // 비고
+    private String image_url;
+
     private Long company_uid;
     private Long type_uid;
 
@@ -47,6 +49,7 @@ public class ItemDto {
                    String hs_code, // hs코드
                    String nts_code, // 국세청 코드
                    String description, // 비고
+                   String image_url,
                    Long company_uid,
                    Long type_uid,
                    Long used, String token){
@@ -65,6 +68,7 @@ public class ItemDto {
         this.hs_code=hs_code;
         this.nts_code=nts_code;
         this.description=description;
+        this.image_url=image_url;
         this.company_uid=company_uid;
         this.type_uid=type_uid;
         this.used = used;
