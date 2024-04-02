@@ -269,6 +269,7 @@ public class SignServiceImpl implements SignService {
 
             SignInResultDto signInResultDto = SignInResultDto.builder()
                     .token(jwtTokenProvider.createToken(String.valueOf(user.getId()),user.getAuth()))
+                    .company_uid(user.getCompany().getUid())
                     .build();
 
             LOGGER.info("[getSignInResult] SignInResultDto 객체에 값 주입 lgoger: {}",signInResultDto);

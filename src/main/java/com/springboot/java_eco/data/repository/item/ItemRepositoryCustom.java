@@ -7,6 +7,7 @@ import java.util.List;
 
 public interface ItemRepositoryCustom {
     List<Item> findAll(CommonSearchDto commonSearchDto);
+    List<Item> findInfo(CommonSearchDto commonSearchDto);
 
 
 }

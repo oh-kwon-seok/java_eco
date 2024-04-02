@@ -14,6 +14,7 @@ import java.util.Map;
 public interface ItemService {
 
     List<Item> getTotalItem(CommonSearchDto commonSearchDto);
+    List<Item> getItem(CommonSearchDto commonSearchDto);
 
     Item saveItem(ItemDto ItemDto) throws Exception;
 

@@ -113,6 +113,11 @@ public class ItemDAOImpl implements ItemDAO {
         return itemRepository.findAll(commonSearchDto);
 
     }
+    @Override
+    public List<Item> selectItem(CommonSearchDto commonSearchDto) {
+        return itemRepository.findInfo(commonSearchDto);
+
+    }
 
     @Override
     public Item updateItem(ItemDto itemDto) throws Exception {
@@ -127,6 +132,7 @@ public class ItemDAOImpl implements ItemDAO {
 
         if (selectedItem.isPresent()) {
             Item item = selectedItem.get();
+            item.setCode(itemDto.getCode());
             item.setSimple_code(itemDto.getSimple_code());
             item.setIngr_kor_name(itemDto.getIngr_kor_name());
             item.setIngr_eng_name(itemDto.getIngr_eng_name());

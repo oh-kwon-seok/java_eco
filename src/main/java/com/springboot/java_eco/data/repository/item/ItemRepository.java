@@ -1,5 +1,6 @@
 package com.springboot.java_eco.data.repository.item;
 
+import com.springboot.java_eco.data.entity.Factory;
 import com.springboot.java_eco.data.entity.Item;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
@@ -8,6 +9,7 @@ import org.springframework.stereotype.Repository;
 public interface ItemRepository extends JpaRepository<Item,Long>, ItemRepositoryCustom {
 
 
+    Item findByUid(Long uid);
 
     Item findByCodeAndUsed(String code,Long used);
 

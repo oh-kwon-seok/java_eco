@@ -60,7 +60,6 @@ public class ItemRepositoryCustomImpl extends QuerydslRepositorySupport implemen
                 builder.and(type.name.like("%" + search_text + "%"));
             }
 
-
         }
         Predicate dateRange = item.created.between(start_date, end_date);
         // used 필드가 1인 항목만 검색 조건 추가
@@ -82,6 +81,20 @@ public class ItemRepositoryCustomImpl extends QuerydslRepositorySupport implemen
             itemList.add(itemEntity);
             LOGGER.info("[Entity] data: {}", itemEntity);
         }
+
+        return itemList;
+    }
+    @Override
+    public List<Item> findInfo(CommonSearchDto commonSearchDto){
+
+        QItem item = QItem.item;
+
+        Predicate used = item.used.eq(1);
+
+        List<Item> itemList = from(item)
+                .select(item)
+                .where(used)
+                .fetch();
 
         return itemList;
     }

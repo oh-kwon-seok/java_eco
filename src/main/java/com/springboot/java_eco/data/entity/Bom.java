@@ -19,20 +19,27 @@ public class Bom extends BaseEntity{
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long uid;
 
+    @ManyToOne(fetch = FetchType.EAGER)
+    @JoinColumn(name="company_uid")
+    private Company company;
+
+    @ManyToOne(fetch = FetchType.EAGER)
+    @JoinColumn(name="item_uid")
+    private Item item;
+
+
     @Column(nullable = false)
     private Long parent_uid;
 
     @Column(nullable = false)
     private String code;
 
-    @ManyToOne
-    @JoinColumn(name="item_uid")
-    private Item item;
-
-
-
     @Column(nullable = false)
-    private String type;
+    private Double qty;
+
+    @Column
+    private Double rate;
+
 
     @Column(nullable = false)
     private Integer used;

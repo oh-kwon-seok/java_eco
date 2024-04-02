@@ -26,6 +26,8 @@ public class QBom extends EntityPathBase<Bom> {
 
     public final StringPath code = createString("code");
 
+    public final QCompany company;
+
     //inherited
     public final DateTimePath<java.time.LocalDateTime> created = _super.created;
 
@@ -36,7 +38,9 @@ public class QBom extends EntityPathBase<Bom> {
 
     public final NumberPath<Long> parent_uid = createNumber("parent_uid", Long.class);
 
-    public final StringPath type = createString("type");
+    public final NumberPath<Double> qty = createNumber("qty", Double.class);
+
+    public final NumberPath<Double> rate = createNumber("rate", Double.class);
 
     public final NumberPath<Long> uid = createNumber("uid", Long.class);
 
@@ -63,6 +67,7 @@ public class QBom extends EntityPathBase<Bom> {
 
     public QBom(Class<? extends Bom> type, PathMetadata metadata, PathInits inits) {
         super(type, metadata, inits);
+        this.company = inits.isInitialized("company") ? new QCompany(forProperty("company")) : null;
         this.item = inits.isInitialized("item") ? new QItem(forProperty("item"), inits.get("item")) : null;
     }
 

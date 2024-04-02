@@ -28,6 +28,11 @@ public class ItemServiceImpl implements ItemService {
     }
 
     @Override
+    public List<Item> getItem(CommonSearchDto commonSearchDto){
+        return ItemDAO.selectItem(commonSearchDto);
+    }
+
+    @Override
     public Item saveItem(ItemDto ItemDto) throws Exception {
 
         return ItemDAO.insertItem(ItemDto);

@@ -18,6 +18,8 @@ public interface ItemDAO {
 
     List<Item> selectTotalItem(CommonSearchDto commonSearchDto);
 
+    List<Item> selectItem(CommonSearchDto commonSearchDto);
+
 
     Item updateItem(ItemDto itemDto) throws Exception;
 

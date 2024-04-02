@@ -15,4 +15,5 @@ public class SignUpResultDto {
     private int code;
     private String msg;
 
+
 }
