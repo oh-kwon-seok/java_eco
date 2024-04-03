@@ -1,6 +1,7 @@
 package com.springboot.java_eco.service.impl;
 
 import com.springboot.java_eco.data.dao.BomDAO;
+import com.springboot.java_eco.data.dto.common.CommonResultDto;
 import com.springboot.java_eco.data.dto.common.CommonSearchDto;
 import com.springboot.java_eco.data.dto.bom.BomDto;
 import com.springboot.java_eco.data.entity.Bom;
@@ -32,7 +33,7 @@ public class BomServiceImpl implements BomService {
         return bomDAO.selectBom(commonSearchDto);
     }
     @Override
-    public Bom saveBom(BomDto bomDto) throws Exception {
+    public CommonResultDto saveBom(BomDto bomDto) throws Exception {
 
         return bomDAO.insertBom(bomDto);
 

@@ -1,6 +1,7 @@
 package com.springboot.java_eco.controller;
 
 import ch.qos.logback.classic.Logger;
+import com.springboot.java_eco.data.dto.common.CommonResultDto;
 import com.springboot.java_eco.data.dto.common.CommonSearchDto;
 import com.springboot.java_eco.data.dto.bom.BomDto;
 import com.springboot.java_eco.data.entity.Bom;
@@ -53,12 +54,12 @@ public class BomController {
     }
 
     @PostMapping(value= "/save", consumes = "application/json", produces = "application/json")
-    public ResponseEntity<Bom> createBom(@RequestBody BomDto bomDto) throws Exception{
+    public CommonResultDto createBom(@RequestBody BomDto bomDto) throws Exception{
         long currentTime = System.currentTimeMillis();
         LOGGER.info("[bomDto]  : {}", bomDto);
-        Bom insertBom = bomService.saveBom(bomDto);
+        CommonResultDto bomResultDto = bomService.saveBom(bomDto);
         LOGGER.info("[createBom] response Time : {}ms", System.currentTimeMillis() - currentTime);
-        return ResponseEntity.status(HttpStatus.OK).body(insertBom);
+        return bomResultDto;
     }
     @PostMapping(value= "/update", consumes = "application/json", produces = "application/json")
     public ResponseEntity<Bom> updateBom(@RequestBody BomDto bomDto)

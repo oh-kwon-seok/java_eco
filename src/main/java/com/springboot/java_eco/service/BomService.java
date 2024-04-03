@@ -1,6 +1,7 @@
 package com.springboot.java_eco.service;
 
 
+import com.springboot.java_eco.data.dto.common.CommonResultDto;
 import com.springboot.java_eco.data.dto.common.CommonSearchDto;
 import com.springboot.java_eco.data.dto.bom.BomDto;
 import com.springboot.java_eco.data.entity.Bom;
@@ -17,7 +18,7 @@ public interface BomService {
     List<Bom> getBom(CommonSearchDto commonSearchDto);
 
 
-    Bom saveBom(BomDto bomDto) throws Exception;
+    CommonResultDto saveBom(BomDto bomDto) throws Exception;
 
     Bom updateBom(BomDto bomDto) throws Exception;
 
