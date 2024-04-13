@@ -1,7 +1,7 @@
 package com.springboot.java_eco.service;
 
 
-import com.springboot.java_eco.data.dto.common.CommonSearchDto;
+import com.springboot.java_eco.data.dto.common.CommonInfoSearchDto;
 import com.springboot.java_eco.data.dto.type.TypeDto;
 
 import com.springboot.java_eco.data.entity.Type;
@@ -12,9 +12,9 @@ import java.util.List;
 @Service
 public interface TypeService {
 
-    List<Type> getTotalType(CommonSearchDto commonSearchDto);
+    List<Type> getTotalType(CommonInfoSearchDto commonInfoSearchDto);
 
-    List<Type> getType(CommonSearchDto commonSearchDto);
+    List<Type> getType(CommonInfoSearchDto commonInfoSearchDto);
 
 
     Type saveType(TypeDto typeDto) throws Exception;

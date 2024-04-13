@@ -4,7 +4,7 @@ package com.springboot.java_eco.controller;
 import ch.qos.logback.classic.Logger;
 import com.springboot.java_eco.data.dto.SignInResultDto;
 import com.springboot.java_eco.data.dto.SignUpResultDto;
-import com.springboot.java_eco.data.dto.common.CommonSearchDto;
+import com.springboot.java_eco.data.dto.common.CommonInfoSearchDto;
 import com.springboot.java_eco.data.dto.user.UserDto;
 import com.springboot.java_eco.data.entity.User;
 import com.springboot.java_eco.service.SignService;
@@ -37,20 +37,20 @@ public class SignController {
 
 
     @GetMapping(value= "/select")
-    public ResponseEntity<List<User>> getTotalUser(@ModelAttribute CommonSearchDto commonSearchDto) throws RuntimeException{
+    public ResponseEntity<List<User>> getTotalUser(@ModelAttribute CommonInfoSearchDto commonInfoSearchDto) throws RuntimeException{
         long currentTime = System.currentTimeMillis();
 
-        List<User> selectedTotalUser = signService.getTotalUser(commonSearchDto);
+        List<User> selectedTotalUser = signService.getTotalUser(commonInfoSearchDto);
 
         LOGGER.info("[getTotalUser] response Time: {}ms,{}", System.currentTimeMillis() - currentTime);
         return ResponseEntity.status(HttpStatus.OK).body(selectedTotalUser);
     }
     @GetMapping(value= "/info_select")
-    public ResponseEntity<List<User>> getUser(@ModelAttribute CommonSearchDto commonSearchDto) throws RuntimeException{
+    public ResponseEntity<List<User>> getUser(@ModelAttribute CommonInfoSearchDto commonInfoSearchDto) throws RuntimeException{
 
         long currentTime = System.currentTimeMillis();
 
-        List<User> selectedTotalUser = signService.getUser(commonSearchDto);
+        List<User> selectedTotalUser = signService.getUser(commonInfoSearchDto);
 
         LOGGER.info("[getTotalUser] response Time: {}ms,{}", System.currentTimeMillis() - currentTime);
 

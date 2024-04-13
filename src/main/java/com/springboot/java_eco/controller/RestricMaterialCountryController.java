@@ -2,8 +2,8 @@ package com.springboot.java_eco.controller;
 
 
 import ch.qos.logback.classic.Logger;
+import com.springboot.java_eco.data.dto.common.CommonInfoSearchDto;
 import com.springboot.java_eco.data.dto.common.CommonResultDto;
-import com.springboot.java_eco.data.dto.common.CommonSearchDto;
 import com.springboot.java_eco.data.dto.restricMaterialCountry.RestricMaterialCountryDto;
 import com.springboot.java_eco.data.entity.RestricMaterialCountry;
 import com.springboot.java_eco.service.RestricMaterialCountryService;
@@ -31,11 +31,11 @@ public class RestricMaterialCountryController {
     }
 
     @GetMapping(value= "/select")
-    public ResponseEntity<List<RestricMaterialCountry>> getTotalRestricMaterialCountry(@ModelAttribute CommonSearchDto commonSearchDto) throws RuntimeException{
+    public ResponseEntity<List<RestricMaterialCountry>> getTotalRestricMaterialCountry(@ModelAttribute CommonInfoSearchDto commonInfoSearchDto) throws RuntimeException{
 
         long currentTime = System.currentTimeMillis();
 
-        List<RestricMaterialCountry> selectedTotalRestricMaterialCountry = restricMaterialCountryService.getTotalRestricMaterialCountry(commonSearchDto);
+        List<RestricMaterialCountry> selectedTotalRestricMaterialCountry = restricMaterialCountryService.getTotalRestricMaterialCountry(commonInfoSearchDto);
 
         LOGGER.info("[getTotalRestricMaterialCountry] response Time: {}ms,{}", System.currentTimeMillis() - currentTime);
 
@@ -43,11 +43,11 @@ public class RestricMaterialCountryController {
 
     }
     @GetMapping(value= "/info_select")
-    public ResponseEntity<List<RestricMaterialCountry>> getRestricMaterialCountry(@ModelAttribute CommonSearchDto commonSearchDto) throws RuntimeException{
+    public ResponseEntity<List<RestricMaterialCountry>> getRestricMaterialCountry(@ModelAttribute CommonInfoSearchDto commonInfoSearchDto) throws RuntimeException{
 
         long currentTime = System.currentTimeMillis();
 
-        List<RestricMaterialCountry> selectedTotalRestricMaterialCountry = restricMaterialCountryService.getRestricMaterialCountry(commonSearchDto);
+        List<RestricMaterialCountry> selectedTotalRestricMaterialCountry = restricMaterialCountryService.getRestricMaterialCountry(commonInfoSearchDto);
 
         LOGGER.info("[getTotalRestricMaterialCountry] response Time: {}ms,{}", System.currentTimeMillis() - currentTime);
 

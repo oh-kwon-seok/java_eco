@@ -36,6 +36,8 @@ public class QBom extends EntityPathBase<Bom> {
 
     public final QItem item;
 
+    public final NumberPath<Long> main = createNumber("main", Long.class);
+
     public final NumberPath<Long> parent_uid = createNumber("parent_uid", Long.class);
 
     public final NumberPath<Double> qty = createNumber("qty", Double.class);

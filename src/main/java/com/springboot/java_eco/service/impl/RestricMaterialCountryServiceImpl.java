@@ -1,8 +1,8 @@
 package com.springboot.java_eco.service.impl;
 
 import com.springboot.java_eco.data.dao.RestricMaterialCountryDAO;
+import com.springboot.java_eco.data.dto.common.CommonInfoSearchDto;
 import com.springboot.java_eco.data.dto.common.CommonResultDto;
-import com.springboot.java_eco.data.dto.common.CommonSearchDto;
 import com.springboot.java_eco.data.dto.restricMaterialCountry.RestricMaterialCountryDto;
 import com.springboot.java_eco.data.entity.RestricMaterialCountry;
 import com.springboot.java_eco.service.RestricMaterialCountryService;
@@ -23,13 +23,13 @@ public class RestricMaterialCountryServiceImpl implements RestricMaterialCountry
 
 
     @Override
-    public List<RestricMaterialCountry> getTotalRestricMaterialCountry(CommonSearchDto commonSearchDto){
-        return restricMaterialCountryDAO.selectTotalRestricMaterialCountry(commonSearchDto);
+    public List<RestricMaterialCountry> getTotalRestricMaterialCountry(CommonInfoSearchDto commonInfoSearchDto){
+        return restricMaterialCountryDAO.selectTotalRestricMaterialCountry(commonInfoSearchDto);
     }
 
     @Override
-    public List<RestricMaterialCountry> getRestricMaterialCountry(CommonSearchDto commonSearchDto){
-        return restricMaterialCountryDAO.selectRestricMaterialCountry(commonSearchDto);
+    public List<RestricMaterialCountry> getRestricMaterialCountry(CommonInfoSearchDto commonInfoSearchDto){
+        return restricMaterialCountryDAO.selectRestricMaterialCountry(commonInfoSearchDto);
     }
     @Override
     public CommonResultDto saveRestricMaterialCountry(RestricMaterialCountryDto restricMaterialCountryDto,String clientIp) throws Exception {

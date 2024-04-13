@@ -7,7 +7,7 @@ import com.springboot.java_eco.config.security.JwtTokenProvider;
 import com.springboot.java_eco.data.dao.UserDAO;
 import com.springboot.java_eco.data.dto.SignInResultDto;
 import com.springboot.java_eco.data.dto.SignUpResultDto;
-import com.springboot.java_eco.data.dto.common.CommonSearchDto;
+import com.springboot.java_eco.data.dto.common.CommonInfoSearchDto;
 import com.springboot.java_eco.data.dto.user.UserDto;
 import com.springboot.java_eco.data.entity.*;
 import com.springboot.java_eco.data.repository.company.CompanyRepository;
@@ -63,14 +63,14 @@ public class SignServiceImpl implements SignService {
 
 
     @Override
-    public List<User> getTotalUser(CommonSearchDto commonSearchDto){
-        return userDao.selectTotalUser(commonSearchDto);
+    public List<User> getTotalUser(CommonInfoSearchDto commonInfoSearchDto){
+        return userDao.selectTotalUser(commonInfoSearchDto);
 
     }
 
     @Override
-    public List<User> getUser(CommonSearchDto commonSearchDto){
-        return userDao.selectUser(commonSearchDto);
+    public List<User> getUser(CommonInfoSearchDto commonInfoSearchDto){
+        return userDao.selectUser(commonInfoSearchDto);
     }
 
     @Override

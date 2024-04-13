@@ -3,6 +3,7 @@ package com.springboot.java_eco.data.repository.sensor;
 
 import com.querydsl.core.BooleanBuilder;
 import com.querydsl.core.types.Predicate;
+import com.springboot.java_eco.data.dto.common.CommonInfoSearchDto;
 import com.springboot.java_eco.data.dto.common.CommonSearchDto;
 import com.springboot.java_eco.data.entity.Sensor;
 import com.springboot.java_eco.data.entity.QSensor;

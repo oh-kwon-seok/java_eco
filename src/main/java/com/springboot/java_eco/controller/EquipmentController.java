@@ -1,7 +1,7 @@
 package com.springboot.java_eco.controller;
 
 import ch.qos.logback.classic.Logger;
-import com.springboot.java_eco.data.dto.common.CommonSearchDto;
+import com.springboot.java_eco.data.dto.common.CommonInfoSearchDto;
 import com.springboot.java_eco.data.dto.equipment.EquipmentDto;
 import com.springboot.java_eco.data.entity.Equipment;
 import com.springboot.java_eco.service.EquipmentService;
@@ -27,11 +27,11 @@ public class EquipmentController {
     }
 
     @GetMapping(value= "/select")
-    public ResponseEntity<List<Equipment>> getTotalEquipment(@ModelAttribute CommonSearchDto commonSearchDto) throws RuntimeException{
+    public ResponseEntity<List<Equipment>> getTotalEquipment(@ModelAttribute CommonInfoSearchDto commonInfoSearchDto) throws RuntimeException{
 
         long currentTime = System.currentTimeMillis();
 
-        List<Equipment> selectedTotalEquipment = equipmentService.getTotalEquipment(commonSearchDto);
+        List<Equipment> selectedTotalEquipment = equipmentService.getTotalEquipment(commonInfoSearchDto);
 
         LOGGER.info("[getTotalEquipment] response Time: {}ms,{}", System.currentTimeMillis() - currentTime);
 
@@ -39,11 +39,11 @@ public class EquipmentController {
 
     }
     @GetMapping(value= "/info_select")
-    public ResponseEntity<List<Equipment>> getEquipment(@ModelAttribute CommonSearchDto commonSearchDto) throws RuntimeException{
+    public ResponseEntity<List<Equipment>> getEquipment(@ModelAttribute CommonInfoSearchDto commonInfoSearchDto) throws RuntimeException{
 
         long currentTime = System.currentTimeMillis();
 
-        List<Equipment> selectedTotalEquipment = equipmentService.getEquipment(commonSearchDto);
+        List<Equipment> selectedTotalEquipment = equipmentService.getEquipment(commonInfoSearchDto);
 
         LOGGER.info("[getTotalEquipment] response Time: {}ms,{}", System.currentTimeMillis() - currentTime);
 

@@ -1,7 +1,7 @@
 package com.springboot.java_eco.service;
 
 
-import com.springboot.java_eco.data.dto.common.CommonSearchDto;
+import com.springboot.java_eco.data.dto.common.CommonInfoSearchDto;
 import com.springboot.java_eco.data.dto.item.ItemDto;
 
 import com.springboot.java_eco.data.entity.Item;
@@ -13,8 +13,8 @@ import java.util.Map;
 @Service
 public interface ItemService {
 
-    List<Item> getTotalItem(CommonSearchDto commonSearchDto);
-    List<Item> getItem(CommonSearchDto commonSearchDto);
+    List<Item> getTotalItem(CommonInfoSearchDto commonInfoSearchDto);
+    List<Item> getItem(CommonInfoSearchDto commonInfoSearchDto);
 
     Item saveItem(ItemDto ItemDto) throws Exception;
 

@@ -1,7 +1,7 @@
 package com.springboot.java_eco.data.dao.impl;
 
 import com.springboot.java_eco.data.dao.EmploymentDAO;
-import com.springboot.java_eco.data.dto.common.CommonSearchDto;
+import com.springboot.java_eco.data.dto.common.CommonInfoSearchDto;
 import com.springboot.java_eco.data.dto.employment.EmploymentDto;
 import com.springboot.java_eco.data.entity.Company;
 import com.springboot.java_eco.data.entity.Employment;
@@ -46,14 +46,14 @@ public class EmploymentDAOImpl implements EmploymentDAO {
 
     }
     @Override
-    public List<Employment> selectTotalEmployment(CommonSearchDto commonSearchDto) {
-        return employmentRepository.findAll(commonSearchDto);
+    public List<Employment> selectTotalEmployment(CommonInfoSearchDto commonInfoSearchDto) {
+        return employmentRepository.findAll(commonInfoSearchDto);
 
     }
 
     @Override
-    public List<Employment> selectEmployment(CommonSearchDto commonSearchDto) {
-        return employmentRepository.findInfo(commonSearchDto);
+    public List<Employment> selectEmployment(CommonInfoSearchDto commonInfoSearchDto) {
+        return employmentRepository.findInfo(commonInfoSearchDto);
 
     }
 

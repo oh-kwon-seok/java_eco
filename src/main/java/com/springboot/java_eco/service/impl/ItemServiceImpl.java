@@ -1,7 +1,7 @@
 package com.springboot.java_eco.service.impl;
 
 import com.springboot.java_eco.data.dao.ItemDAO;
-import com.springboot.java_eco.data.dto.common.CommonSearchDto;
+import com.springboot.java_eco.data.dto.common.CommonInfoSearchDto;
 import com.springboot.java_eco.data.dto.item.ItemDto;
 import com.springboot.java_eco.data.entity.Item;
 import com.springboot.java_eco.service.ItemService;
@@ -23,13 +23,13 @@ public class ItemServiceImpl implements ItemService {
 
 
     @Override
-    public List<Item> getTotalItem(CommonSearchDto commonSearchDto){
-        return ItemDAO.selectTotalItem(commonSearchDto);
+    public List<Item> getTotalItem(CommonInfoSearchDto commonInfoSearchDto){
+        return ItemDAO.selectTotalItem(commonInfoSearchDto);
     }
 
     @Override
-    public List<Item> getItem(CommonSearchDto commonSearchDto){
-        return ItemDAO.selectItem(commonSearchDto);
+    public List<Item> getItem(CommonInfoSearchDto commonInfoSearchDto){
+        return ItemDAO.selectItem(commonInfoSearchDto);
     }
 
     @Override

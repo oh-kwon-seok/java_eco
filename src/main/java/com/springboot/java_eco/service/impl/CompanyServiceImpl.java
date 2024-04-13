@@ -1,7 +1,7 @@
 package com.springboot.java_eco.service.impl;
 
 import com.springboot.java_eco.data.dao.CompanyDAO;
-import com.springboot.java_eco.data.dto.common.CommonSearchDto;
+import com.springboot.java_eco.data.dto.common.CommonInfoSearchDto;
 import com.springboot.java_eco.data.dto.company.CompanyDto;
 import com.springboot.java_eco.data.entity.Company;
 import com.springboot.java_eco.service.CompanyService;
@@ -23,13 +23,13 @@ public class CompanyServiceImpl implements CompanyService {
 
 
     @Override
-    public List<Company> getTotalCompany(CommonSearchDto commonSearchDto){
-        return companyDAO.selectTotalCompany(commonSearchDto);
+    public List<Company> getTotalCompany(CommonInfoSearchDto commonInfoSearchDto){
+        return companyDAO.selectTotalCompany(commonInfoSearchDto);
     }
 
     @Override
-    public List<Company> getCompany(CommonSearchDto commonSearchDto){
-        return companyDAO.selectCompany(commonSearchDto);
+    public List<Company> getCompany(CommonInfoSearchDto commonInfoSearchDto){
+        return companyDAO.selectCompany(commonInfoSearchDto);
     }
     @Override
     public Company saveCompany(CompanyDto companyDto) throws Exception {

@@ -2,7 +2,7 @@ package com.springboot.java_eco.data.dao.impl;
 
 import ch.qos.logback.classic.Logger;
 import com.springboot.java_eco.data.dao.ItemDAO;
-import com.springboot.java_eco.data.dto.common.CommonSearchDto;
+import com.springboot.java_eco.data.dto.common.CommonInfoSearchDto;
 import com.springboot.java_eco.data.dto.item.ItemDto;
 import com.springboot.java_eco.data.entity.*;
 import com.springboot.java_eco.data.repository.company.CompanyRepository;
@@ -109,13 +109,13 @@ public class ItemDAOImpl implements ItemDAO {
     }
 
     @Override
-    public List<Item> selectTotalItem(CommonSearchDto commonSearchDto) {
-        return itemRepository.findAll(commonSearchDto);
+    public List<Item> selectTotalItem(CommonInfoSearchDto commonInfoSearchDto) {
+        return itemRepository.findAll(commonInfoSearchDto);
 
     }
     @Override
-    public List<Item> selectItem(CommonSearchDto commonSearchDto) {
-        return itemRepository.findInfo(commonSearchDto);
+    public List<Item> selectItem(CommonInfoSearchDto commonInfoSearchDto) {
+        return itemRepository.findInfo(commonInfoSearchDto);
 
     }
 

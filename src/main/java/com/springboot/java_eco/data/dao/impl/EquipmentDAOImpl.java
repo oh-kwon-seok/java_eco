@@ -1,11 +1,9 @@
 package com.springboot.java_eco.data.dao.impl;
 
 import com.springboot.java_eco.data.dao.EquipmentDAO;
-import com.springboot.java_eco.data.dto.common.CommonSearchDto;
-import com.springboot.java_eco.data.dto.equipment.EquipmentDto;
+import com.springboot.java_eco.data.dto.common.CommonInfoSearchDto;
 import com.springboot.java_eco.data.dto.equipment.EquipmentDto;
 import com.springboot.java_eco.data.entity.Company;
-import com.springboot.java_eco.data.entity.Equipment;
 import com.springboot.java_eco.data.entity.Equipment;
 import com.springboot.java_eco.data.repository.company.CompanyRepository;
 import com.springboot.java_eco.data.repository.equipment.EquipmentRepository;
@@ -62,14 +60,14 @@ public class EquipmentDAOImpl implements EquipmentDAO {
 
     }
     @Override
-    public List<Equipment> selectTotalEquipment(CommonSearchDto commonSearchDto) {
-        return equipmentRepository.findAll(commonSearchDto);
+    public List<Equipment> selectTotalEquipment(CommonInfoSearchDto commonInfoSearchDto) {
+        return equipmentRepository.findAll(commonInfoSearchDto);
 
     }
 
     @Override
-    public List<Equipment> selectEquipment(CommonSearchDto commonSearchDto) {
-        return equipmentRepository.findInfo(commonSearchDto);
+    public List<Equipment> selectEquipment(CommonInfoSearchDto commonInfoSearchDto) {
+        return equipmentRepository.findInfo(commonInfoSearchDto);
 
     }
 

@@ -2,7 +2,7 @@ package com.springboot.java_eco.controller;
 
 
 import ch.qos.logback.classic.Logger;
-import com.springboot.java_eco.data.dto.common.CommonSearchDto;
+import com.springboot.java_eco.data.dto.common.CommonInfoSearchDto;
 import com.springboot.java_eco.data.dto.employment.EmploymentDto;
 import com.springboot.java_eco.data.entity.Employment;
 import com.springboot.java_eco.service.EmploymentService;
@@ -29,11 +29,11 @@ public class EmploymentController {
     }
 
     @GetMapping(value= "/select")
-    public ResponseEntity<List<Employment>> getTotalEmployment(@ModelAttribute CommonSearchDto commonSearchDto) throws RuntimeException{
+    public ResponseEntity<List<Employment>> getTotalEmployment(@ModelAttribute CommonInfoSearchDto commonInfoSearchDto) throws RuntimeException{
 
         long currentTime = System.currentTimeMillis();
 
-        List<Employment> selectedTotalEmployment = employmentService.getTotalEmployment(commonSearchDto);
+        List<Employment> selectedTotalEmployment = employmentService.getTotalEmployment(commonInfoSearchDto);
 
         LOGGER.info("[getTotalEmployment] response Time: {}ms,{}", System.currentTimeMillis() - currentTime);
 
@@ -41,11 +41,11 @@ public class EmploymentController {
 
     }
     @GetMapping(value= "/info_select")
-    public ResponseEntity<List<Employment>> getEmployment(@ModelAttribute CommonSearchDto commonSearchDto) throws RuntimeException{
+    public ResponseEntity<List<Employment>> getEmployment(@ModelAttribute CommonInfoSearchDto commonInfoSearchDto) throws RuntimeException{
 
         long currentTime = System.currentTimeMillis();
 
-        List<Employment> selectedTotalEmployment = employmentService.getEmployment(commonSearchDto);
+        List<Employment> selectedTotalEmployment = employmentService.getEmployment(commonInfoSearchDto);
 
         LOGGER.info("[getTotalEmployment] response Time: {}ms,{}", System.currentTimeMillis() - currentTime);
 

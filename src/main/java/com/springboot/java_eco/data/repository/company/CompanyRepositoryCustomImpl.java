@@ -3,7 +3,7 @@ package com.springboot.java_eco.data.repository.company;
 
 import com.querydsl.core.BooleanBuilder;
 import com.querydsl.core.types.Predicate;
-import com.springboot.java_eco.data.dto.common.CommonSearchDto;
+import com.springboot.java_eco.data.dto.common.CommonInfoSearchDto;
 import com.springboot.java_eco.data.entity.Company;
 import com.springboot.java_eco.data.entity.QCompany;
 import org.springframework.data.jpa.repository.support.QuerydslRepositorySupport;
@@ -20,14 +20,12 @@ public class CompanyRepositoryCustomImpl extends QuerydslRepositorySupport imple
     }
 
     @Override
-    public List<Company> findAll(CommonSearchDto commonSearchDto){
+    public List<Company> findAll(CommonInfoSearchDto commonInfoSearchDto){
         QCompany company = QCompany.company;
 
-        String filter_title = commonSearchDto.getFilter_title();
-        String search_text = commonSearchDto.getSearch_text();
+        String filter_title = commonInfoSearchDto.getFilter_title();
+        String search_text = commonInfoSearchDto.getSearch_text();
 
-        LocalDateTime start_date = commonSearchDto.getStart_date();
-        LocalDateTime end_date = commonSearchDto.getEnd_date();
 
 
         BooleanBuilder builder = new BooleanBuilder();
@@ -65,19 +63,19 @@ public class CompanyRepositoryCustomImpl extends QuerydslRepositorySupport imple
                 builder.and(company.emp_name.like("%" + search_text + "%"));
             }
         }
-        Predicate dateRange = company.created.between(start_date, end_date);
+
         // used 필드가 1인 항목만 검색 조건 추가
         Predicate used = company.used.eq(1);
-
+        Predicate predicate = builder.getValue();
         List<Company> companyList = from(company)
                 .select(company)
-                .where(used,dateRange)
+                .where(predicate,used)
                 .fetch();
 
         return companyList;
     }
     @Override
-    public List<Company> findInfo(CommonSearchDto commonSearchDto){
+    public List<Company> findInfo(CommonInfoSearchDto commonInfoSearchDto){
 
         QCompany company = QCompany.company;
 

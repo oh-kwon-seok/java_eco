@@ -3,19 +3,16 @@ package com.springboot.java_eco.data.repository.factory;
 
 import ch.qos.logback.classic.Logger;
 import com.querydsl.core.BooleanBuilder;
-import com.querydsl.core.Tuple;
 import com.querydsl.core.types.Predicate;
 
 import com.springboot.java_eco.controller.FactoryController;
-import com.springboot.java_eco.data.dto.common.CommonSearchDto;
-import com.springboot.java_eco.data.dto.factorySub.FactorySubSearchDto;
+import com.springboot.java_eco.data.dto.common.CommonInfoSearchDto;
 import com.springboot.java_eco.data.entity.*;
 import org.slf4j.LoggerFactory;
 import org.springframework.data.jpa.repository.support.QuerydslRepositorySupport;
 import org.springframework.stereotype.Component;
 
 import java.time.LocalDateTime;
-import java.util.ArrayList;
 import java.util.List;
 
 @Component
@@ -29,14 +26,12 @@ public class FactoryRepositoryCustomImpl extends QuerydslRepositorySupport imple
 
     
     @Override
-    public List<Factory> findAll(CommonSearchDto commonSearchDto){
+    public List<Factory> findAll(CommonInfoSearchDto commonInfoSearchDto){
         QFactory factory = QFactory.factory;
 
-        String filter_title = commonSearchDto.getFilter_title();
-        String search_text = commonSearchDto.getSearch_text();
+        String filter_title = commonInfoSearchDto.getFilter_title();
+        String search_text = commonInfoSearchDto.getSearch_text();
 
-        LocalDateTime start_date = commonSearchDto.getStart_date();
-        LocalDateTime end_date = commonSearchDto.getEnd_date();
 
 
         BooleanBuilder builder = new BooleanBuilder();
@@ -73,7 +68,7 @@ public class FactoryRepositoryCustomImpl extends QuerydslRepositorySupport imple
             }
 
         }
-        Predicate dateRange = factory.created.between(start_date, end_date);
+
         // used 필드가 1인 항목만 검색 조건 추가
         Predicate used = factory.used.eq(1);
 
@@ -83,7 +78,7 @@ public class FactoryRepositoryCustomImpl extends QuerydslRepositorySupport imple
 
         List<Factory> factoryList = from(factory)
                 .select(factory)
-                .where(predicate,used,dateRange)
+                .where(predicate,used)
                 .orderBy(factory.created.desc()) // Order by created field in descending order
                 .fetch();
 
@@ -94,7 +89,7 @@ public class FactoryRepositoryCustomImpl extends QuerydslRepositorySupport imple
     }
 
     @Override
-    public List<Factory> findInfo(CommonSearchDto commonSubSearchDto){
+    public List<Factory> findInfo(CommonInfoSearchDto commonSubSearchDto){
 
         QFactory factory = QFactory.factory;
 

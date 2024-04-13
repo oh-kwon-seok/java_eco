@@ -1,7 +1,7 @@
 package com.springboot.java_eco.service;
 
 
-import com.springboot.java_eco.data.dto.common.CommonSearchDto;
+import com.springboot.java_eco.data.dto.common.CommonInfoSearchDto;
 import com.springboot.java_eco.data.dto.department.DepartmentDto;
 import com.springboot.java_eco.data.entity.Department;
 import org.springframework.stereotype.Service;
@@ -11,9 +11,9 @@ import java.util.List;
 @Service
 public interface DepartmentService {
 
-    List<Department> getTotalDepartment(CommonSearchDto commonSearchDto);
+    List<Department> getTotalDepartment(CommonInfoSearchDto commonInfoSearchDto);
 
-    List<Department> getDepartment(CommonSearchDto commonSearchDto);
+    List<Department> getDepartment(CommonInfoSearchDto commonInfoSearchDto);
 
 
     Department saveDepartment(DepartmentDto departmentDto) throws Exception;

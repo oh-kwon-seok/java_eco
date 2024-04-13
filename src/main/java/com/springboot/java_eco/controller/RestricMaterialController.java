@@ -2,11 +2,10 @@ package com.springboot.java_eco.controller;
 
 
 import ch.qos.logback.classic.Logger;
+import com.springboot.java_eco.data.dto.common.CommonInfoSearchDto;
 import com.springboot.java_eco.data.dto.common.CommonResultDto;
-import com.springboot.java_eco.data.dto.common.CommonSearchDto;
 import com.springboot.java_eco.data.dto.restricMaterial.RestricMaterialDto;
 import com.springboot.java_eco.data.entity.RestricMaterial;
-import com.springboot.java_eco.data.entity.User;
 import com.springboot.java_eco.service.RestricMaterialService;
 import jakarta.servlet.http.HttpServletRequest;
 import org.slf4j.LoggerFactory;
@@ -32,11 +31,11 @@ public class RestricMaterialController {
     }
 
     @GetMapping(value= "/select")
-    public ResponseEntity<List<RestricMaterial>> getTotalRestricMaterial(@ModelAttribute CommonSearchDto commonSearchDto) throws RuntimeException{
+    public ResponseEntity<List<RestricMaterial>> getTotalRestricMaterial(@ModelAttribute CommonInfoSearchDto commonInfoSearchDto) throws RuntimeException{
 
         long currentTime = System.currentTimeMillis();
 
-        List<RestricMaterial> selectedTotalRestricMaterial = restricMaterialService.getTotalRestricMaterial(commonSearchDto);
+        List<RestricMaterial> selectedTotalRestricMaterial = restricMaterialService.getTotalRestricMaterial(commonInfoSearchDto);
 
         LOGGER.info("[getTotalRestricMaterial] response Time: {}ms,{}", System.currentTimeMillis() - currentTime);
 
@@ -44,11 +43,11 @@ public class RestricMaterialController {
 
     }
     @GetMapping(value= "/info_select")
-    public ResponseEntity<List<RestricMaterial>> getRestricMaterial(@ModelAttribute CommonSearchDto commonSearchDto) throws RuntimeException{
+    public ResponseEntity<List<RestricMaterial>> getRestricMaterial(@ModelAttribute CommonInfoSearchDto commonInfoSearchDto) throws RuntimeException{
 
         long currentTime = System.currentTimeMillis();
 
-        List<RestricMaterial> selectedTotalRestricMaterial = restricMaterialService.getRestricMaterial(commonSearchDto);
+        List<RestricMaterial> selectedTotalRestricMaterial = restricMaterialService.getRestricMaterial(commonInfoSearchDto);
 
         LOGGER.info("[getTotalRestricMaterial] response Time: {}ms,{}", System.currentTimeMillis() - currentTime);
 

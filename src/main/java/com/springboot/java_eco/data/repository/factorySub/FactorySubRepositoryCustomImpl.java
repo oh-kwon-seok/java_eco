@@ -6,7 +6,6 @@ import com.querydsl.core.BooleanBuilder;
 import com.querydsl.core.Tuple;
 import com.querydsl.core.types.Predicate;
 import com.springboot.java_eco.controller.FactorySubController;
-import com.springboot.java_eco.data.dto.common.CommonSearchDto;
 import com.springboot.java_eco.data.dto.factorySub.FactorySubSearchDto;
 import com.springboot.java_eco.data.entity.FactorySub;
 

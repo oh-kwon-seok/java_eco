@@ -2,10 +2,9 @@ package com.springboot.java_eco.controller;
 
 
 import ch.qos.logback.classic.Logger;
-import com.springboot.java_eco.data.dto.common.CommonResultDto;
+import com.springboot.java_eco.data.dto.common.CommonInfoSearchDto;
 import com.springboot.java_eco.data.dto.common.CommonSearchDto;
 import com.springboot.java_eco.data.dto.sensor.SensorDto;
-import com.springboot.java_eco.data.entity.Item;
 import com.springboot.java_eco.data.entity.Sensor;
 import com.springboot.java_eco.service.SensorService;
 import jakarta.servlet.http.HttpServletRequest;
@@ -17,7 +16,6 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
-import java.util.Map;
 
 @RestController
 @RequestMapping("/sensor")

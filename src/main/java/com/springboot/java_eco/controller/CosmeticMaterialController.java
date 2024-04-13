@@ -2,8 +2,8 @@ package com.springboot.java_eco.controller;
 
 
 import ch.qos.logback.classic.Logger;
+import com.springboot.java_eco.data.dto.common.CommonInfoSearchDto;
 import com.springboot.java_eco.data.dto.common.CommonResultDto;
-import com.springboot.java_eco.data.dto.common.CommonSearchDto;
 
 import com.springboot.java_eco.data.dto.costmeticMaterial.CosmeticMaterialDto;
 import com.springboot.java_eco.data.entity.CosmeticMaterial;
@@ -32,11 +32,11 @@ public class CosmeticMaterialController {
     }
 
     @GetMapping(value= "/select")
-    public ResponseEntity<List<CosmeticMaterial>> getTotalCosmeticMaterial(@ModelAttribute CommonSearchDto commonSearchDto) throws RuntimeException{
+    public ResponseEntity<List<CosmeticMaterial>> getTotalCosmeticMaterial(@ModelAttribute CommonInfoSearchDto commonInfoSearchDto) throws RuntimeException{
 
         long currentTime = System.currentTimeMillis();
 
-        List<CosmeticMaterial> selectedTotalCosmeticMaterial = cosmeticMaterialService.getTotalCosmeticMaterial(commonSearchDto);
+        List<CosmeticMaterial> selectedTotalCosmeticMaterial = cosmeticMaterialService.getTotalCosmeticMaterial(commonInfoSearchDto);
 
         LOGGER.info("[getTotalCosmeticMaterial] response Time: {}ms,{}", System.currentTimeMillis() - currentTime);
 
@@ -44,11 +44,11 @@ public class CosmeticMaterialController {
 
     }
     @GetMapping(value= "/info_select")
-    public ResponseEntity<List<CosmeticMaterial>> getCosmeticMaterial(@ModelAttribute CommonSearchDto commonSearchDto) throws RuntimeException{
+    public ResponseEntity<List<CosmeticMaterial>> getCosmeticMaterial(@ModelAttribute CommonInfoSearchDto commonInfoSearchDto) throws RuntimeException{
 
         long currentTime = System.currentTimeMillis();
 
-        List<CosmeticMaterial> selectedTotalCosmeticMaterial = cosmeticMaterialService.getCosmeticMaterial(commonSearchDto);
+        List<CosmeticMaterial> selectedTotalCosmeticMaterial = cosmeticMaterialService.getCosmeticMaterial(commonInfoSearchDto);
 
         LOGGER.info("[getTotalCosmeticMaterial] response Time: {}ms,{}", System.currentTimeMillis() - currentTime);
 

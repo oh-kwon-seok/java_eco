@@ -1,8 +1,8 @@
 package com.springboot.java_eco.service;
 
 
+import com.springboot.java_eco.data.dto.common.CommonInfoSearchDto;
 import com.springboot.java_eco.data.dto.common.CommonResultDto;
-import com.springboot.java_eco.data.dto.common.CommonSearchDto;
 
 import com.springboot.java_eco.data.dto.restricMaterialCountry.RestricMaterialCountryDto;
 
@@ -14,9 +14,9 @@ import java.util.List;
 @Service
 public interface RestricMaterialCountryService {
 
-    List<RestricMaterialCountry> getTotalRestricMaterialCountry(CommonSearchDto commonSearchDto);
+    List<RestricMaterialCountry> getTotalRestricMaterialCountry(CommonInfoSearchDto commonInfoSearchDto);
 
-    List<RestricMaterialCountry> getRestricMaterialCountry(CommonSearchDto commonSearchDto);
+    List<RestricMaterialCountry> getRestricMaterialCountry(CommonInfoSearchDto commonInfoSearchDto);
 
 
     CommonResultDto saveRestricMaterialCountry(RestricMaterialCountryDto restricMaterialCountryDto, String clientIp) throws Exception;

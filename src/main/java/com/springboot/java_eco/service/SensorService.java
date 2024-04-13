@@ -1,6 +1,7 @@
 package com.springboot.java_eco.service;
 
 
+import com.springboot.java_eco.data.dto.common.CommonInfoSearchDto;
 import com.springboot.java_eco.data.dto.common.CommonSearchDto;
 import com.springboot.java_eco.data.dto.sensor.SensorDto;
 import com.springboot.java_eco.data.entity.Sensor;

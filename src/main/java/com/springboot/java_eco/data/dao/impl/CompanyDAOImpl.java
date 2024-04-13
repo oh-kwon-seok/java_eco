@@ -1,7 +1,7 @@
 package com.springboot.java_eco.data.dao.impl;
 
 import com.springboot.java_eco.data.dao.CompanyDAO;
-import com.springboot.java_eco.data.dto.common.CommonSearchDto;
+import com.springboot.java_eco.data.dto.common.CommonInfoSearchDto;
 import com.springboot.java_eco.data.dto.company.CompanyDto;
 import com.springboot.java_eco.data.entity.Company;
 import com.springboot.java_eco.data.repository.company.CompanyRepository;
@@ -56,14 +56,14 @@ public class CompanyDAOImpl implements CompanyDAO {
 
     }
     @Override
-    public List<Company> selectTotalCompany(CommonSearchDto commonSearchDto) {
-        return companyRepository.findAll(commonSearchDto);
+    public List<Company> selectTotalCompany(CommonInfoSearchDto commonInfoSearchDto) {
+        return companyRepository.findAll(commonInfoSearchDto);
 
     }
 
     @Override
-    public List<Company> selectCompany(CommonSearchDto commonSearchDto) {
-        return companyRepository.findInfo(commonSearchDto);
+    public List<Company> selectCompany(CommonInfoSearchDto commonInfoSearchDto) {
+        return companyRepository.findInfo(commonInfoSearchDto);
 
     }
 

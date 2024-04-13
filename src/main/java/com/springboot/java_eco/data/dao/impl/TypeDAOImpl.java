@@ -1,7 +1,7 @@
 package com.springboot.java_eco.data.dao.impl;
 
 import com.springboot.java_eco.data.dao.TypeDAO;
-import com.springboot.java_eco.data.dto.common.CommonSearchDto;
+import com.springboot.java_eco.data.dto.common.CommonInfoSearchDto;
 import com.springboot.java_eco.data.dto.type.TypeDto;
 import com.springboot.java_eco.data.entity.Company;
 import com.springboot.java_eco.data.entity.Type;
@@ -57,14 +57,14 @@ public class TypeDAOImpl implements TypeDAO {
 
     }
     @Override
-    public List<Type> selectTotalType(CommonSearchDto commonSearchDto) {
-        return typeRepository.findAll(commonSearchDto);
+    public List<Type> selectTotalType(CommonInfoSearchDto commonInfoSearchDto) {
+        return typeRepository.findAll(commonInfoSearchDto);
 
     }
 
     @Override
-    public List<Type> selectType(CommonSearchDto commonSearchDto) {
-        return typeRepository.findInfo(commonSearchDto);
+    public List<Type> selectType(CommonInfoSearchDto commonInfoSearchDto) {
+        return typeRepository.findInfo(commonInfoSearchDto);
 
     }
 

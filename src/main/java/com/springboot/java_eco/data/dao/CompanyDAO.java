@@ -1,7 +1,7 @@
 package com.springboot.java_eco.data.dao;
 
 
-import com.springboot.java_eco.data.dto.common.CommonSearchDto;
+import com.springboot.java_eco.data.dto.common.CommonInfoSearchDto;
 import com.springboot.java_eco.data.dto.company.CompanyDto;
 import com.springboot.java_eco.data.entity.Company;
 
@@ -12,8 +12,8 @@ import java.util.Map;
 public interface CompanyDAO {
     Company insertCompany(CompanyDto companyDto);
 
-    List<Company> selectTotalCompany(CommonSearchDto CommonSearchDto);
-    List<Company> selectCompany(CommonSearchDto companySearchDto);
+    List<Company> selectTotalCompany(CommonInfoSearchDto CommonInfoSearchDto);
+    List<Company> selectCompany(CommonInfoSearchDto companySearchDto);
 
     Company updateCompany(CompanyDto companyDto) throws Exception;
 

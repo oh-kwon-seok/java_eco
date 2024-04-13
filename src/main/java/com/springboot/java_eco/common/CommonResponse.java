@@ -2,8 +2,10 @@ package com.springboot.java_eco.common;
 
 public enum CommonResponse {
 
-    SUCCESS(0,"Success"),
-    FAIL(-1,"FAIL");
+    SUCCESS(0,"Success"), // 등록 성공
+    FAIL(-1,"FAIL"); // 등록 실패
+
+
     int code;
     String msg;
 

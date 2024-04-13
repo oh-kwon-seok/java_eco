@@ -1,14 +1,11 @@
 package com.springboot.java_eco.data.repository.bom;
 
 
-import ch.qos.logback.classic.Logger;
 import com.querydsl.core.BooleanBuilder;
 import com.querydsl.core.Tuple;
 import com.querydsl.core.types.Predicate;
-import com.springboot.java_eco.controller.ItemController;
-import com.springboot.java_eco.data.dto.common.CommonSearchDto;
+import com.springboot.java_eco.data.dto.common.CommonInfoSearchDto;
 import com.springboot.java_eco.data.entity.*;
-import org.slf4j.LoggerFactory;
 import org.springframework.data.jpa.repository.support.QuerydslRepositorySupport;
 import org.springframework.stereotype.Component;
 
@@ -22,20 +19,16 @@ public class BomRepositoryCustomImpl extends QuerydslRepositorySupport implement
     public BomRepositoryCustomImpl(){
         super(Bom.class);
     }
-    private final Logger LOGGER = (Logger) LoggerFactory.getLogger(ItemController.class);
+//    private final Logger LOGGER = (Logger) LoggerFactory.getLogger(ItemController.class);
     @Override
-    public List<Bom> findAll(CommonSearchDto commonSearchDto){
+    public List<Bom> findAll(CommonInfoSearchDto commonInfoSearchDto){
         QBom bom = QBom.bom;
         QCompany company = QCompany.company;
         QItem item = QItem.item;
 
 
-        String filter_title = commonSearchDto.getFilter_title();
-        String search_text = commonSearchDto.getSearch_text();
-
-        LocalDateTime start_date = commonSearchDto.getStart_date();
-        LocalDateTime end_date = commonSearchDto.getEnd_date();
-
+        String filter_title = commonInfoSearchDto.getFilter_title();
+        String search_text = commonInfoSearchDto.getSearch_text();
 
         BooleanBuilder builder = new BooleanBuilder();
 
@@ -62,7 +55,7 @@ public class BomRepositoryCustomImpl extends QuerydslRepositorySupport implement
                 builder.and(item.ingr_eng_name.like("%" + search_text + "%"));
             }
         }
-        Predicate dateRange = bom.created.between(start_date, end_date);
+
         // used 필드가 1인 항목만 검색 조건 추가
 
 
@@ -73,7 +66,7 @@ public class BomRepositoryCustomImpl extends QuerydslRepositorySupport implement
                 .leftJoin(bom.company, company).fetchJoin()
                 .leftJoin(bom.item, item).fetchJoin()
                 .select(bom,company,item)
-                .where(predicate,dateRange,used)
+                .where(predicate,used)
                 .fetch();
 
         List<Bom> bomList = new ArrayList<>();
@@ -81,12 +74,12 @@ public class BomRepositoryCustomImpl extends QuerydslRepositorySupport implement
         for (Tuple result : results) {
             Bom bomEntity = result.get(bom);
             bomList.add(bomEntity);
-            LOGGER.info("[Entity] data: {}", bomEntity);
+//            LOGGER.info("[Entity] data: {}", bomEntity);
         }
         return bomList;
     }
     @Override
-    public List<Bom> findInfo(CommonSearchDto commonSearchDto){
+    public List<Bom> findInfo(CommonInfoSearchDto commonInfoSearchDto){
 
         QBom bom = QBom.bom;
 

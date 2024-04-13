@@ -1,8 +1,8 @@
 package com.springboot.java_eco.service.impl;
 
 import com.springboot.java_eco.data.dao.BomDAO;
+import com.springboot.java_eco.data.dto.common.CommonInfoSearchDto;
 import com.springboot.java_eco.data.dto.common.CommonResultDto;
-import com.springboot.java_eco.data.dto.common.CommonSearchDto;
 import com.springboot.java_eco.data.dto.bom.BomDto;
 import com.springboot.java_eco.data.entity.Bom;
 import com.springboot.java_eco.service.BomService;
@@ -24,13 +24,13 @@ public class BomServiceImpl implements BomService {
 
 
     @Override
-    public List<Bom> getTotalBom(CommonSearchDto commonSearchDto){
-        return bomDAO.selectTotalBom(commonSearchDto);
+    public List<Bom> getTotalBom(CommonInfoSearchDto commonInfoSearchDto){
+        return bomDAO.selectTotalBom(commonInfoSearchDto);
     }
 
     @Override
-    public List<Bom> getBom(CommonSearchDto commonSearchDto){
-        return bomDAO.selectBom(commonSearchDto);
+    public List<Bom> getBom(CommonInfoSearchDto commonInfoSearchDto){
+        return bomDAO.selectBom(commonInfoSearchDto);
     }
     @Override
     public CommonResultDto saveBom(BomDto bomDto) throws Exception {
@@ -39,16 +39,16 @@ public class BomServiceImpl implements BomService {
 
     }
     @Override
-    public Bom updateBom(BomDto bomDto) throws Exception {
+    public CommonResultDto updateBom(BomDto bomDto) throws Exception {
         return bomDAO.updateBom(bomDto);
     }
     @Override
-    public void deleteBom(List<Long> uid) throws Exception {
-        bomDAO.deleteBom(uid);
+    public void deleteBom(List<Map<String, Object>> requestList) throws Exception {
+        bomDAO.deleteBom(requestList);
     }
-//    @Override
-//    public void excelUploadBom(List<Map<String, Object>> requestList) throws Exception {
-//        bomDAO.excelUploadBom(requestList);
-//    }
+    @Override
+    public void excelUploadBom(List<Map<String, Object>> requestList) throws Exception {
+        bomDAO.excelUploadBom(requestList);
+    }
 
 }

@@ -1,7 +1,7 @@
 package com.springboot.java_eco.service.impl;
 
 import com.springboot.java_eco.data.dao.EquipmentDAO;
-import com.springboot.java_eco.data.dto.common.CommonSearchDto;
+import com.springboot.java_eco.data.dto.common.CommonInfoSearchDto;
 import com.springboot.java_eco.data.dto.equipment.EquipmentDto;
 import com.springboot.java_eco.data.entity.Equipment;
 import com.springboot.java_eco.service.EquipmentService;
@@ -23,13 +23,13 @@ public class EquipmentServiceImpl implements EquipmentService {
 
 
     @Override
-    public List<Equipment> getTotalEquipment(CommonSearchDto commonSearchDto){
-        return equipmentDAO.selectTotalEquipment(commonSearchDto);
+    public List<Equipment> getTotalEquipment(CommonInfoSearchDto commonInfoSearchDto){
+        return equipmentDAO.selectTotalEquipment(commonInfoSearchDto);
     }
 
     @Override
-    public List<Equipment> getEquipment(CommonSearchDto commonSearchDto){
-        return equipmentDAO.selectEquipment(commonSearchDto);
+    public List<Equipment> getEquipment(CommonInfoSearchDto commonInfoSearchDto){
+        return equipmentDAO.selectEquipment(commonInfoSearchDto);
     }
     @Override
     public Equipment saveEquipment(EquipmentDto equipmentDto) throws Exception {

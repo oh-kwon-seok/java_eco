@@ -1,9 +1,8 @@
 package com.springboot.java_eco.data.dao.impl;
 
 import ch.qos.logback.classic.Logger;
-import com.springboot.java_eco.common.CommonResponse;
 import com.springboot.java_eco.data.dao.SensorDAO;
-import com.springboot.java_eco.data.dto.common.CommonResultDto;
+import com.springboot.java_eco.data.dto.common.CommonInfoSearchDto;
 import com.springboot.java_eco.data.dto.common.CommonSearchDto;
 import com.springboot.java_eco.data.dto.sensor.SensorDto;
 import com.springboot.java_eco.data.entity.*;
@@ -15,7 +14,6 @@ import org.springframework.stereotype.Component;
 
 import java.time.LocalDateTime;
 import java.util.List;
-import java.util.Optional;
 
 @Component
 public class SensorDAOImpl implements SensorDAO {

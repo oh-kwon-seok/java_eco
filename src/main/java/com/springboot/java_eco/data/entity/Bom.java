@@ -32,6 +32,9 @@ public class Bom extends BaseEntity{
     private Long parent_uid;
 
     @Column(nullable = false)
+    private Long main;
+
+    @Column(nullable = false)
     private String code;
 
     @Column(nullable = false)

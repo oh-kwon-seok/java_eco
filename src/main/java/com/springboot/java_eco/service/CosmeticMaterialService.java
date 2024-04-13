@@ -1,8 +1,8 @@
 package com.springboot.java_eco.service;
 
 
+import com.springboot.java_eco.data.dto.common.CommonInfoSearchDto;
 import com.springboot.java_eco.data.dto.common.CommonResultDto;
-import com.springboot.java_eco.data.dto.common.CommonSearchDto;
 
 import com.springboot.java_eco.data.dto.costmeticMaterial.CosmeticMaterialDto;
 import com.springboot.java_eco.data.entity.CosmeticMaterial;
@@ -13,9 +13,9 @@ import java.util.List;
 @Service
 public interface CosmeticMaterialService {
 
-    List<CosmeticMaterial> getTotalCosmeticMaterial(CommonSearchDto commonSearchDto);
+    List<CosmeticMaterial> getTotalCosmeticMaterial(CommonInfoSearchDto commonInfoSearchDto);
 
-    List<CosmeticMaterial> getCosmeticMaterial(CommonSearchDto commonSearchDto);
+    List<CosmeticMaterial> getCosmeticMaterial(CommonInfoSearchDto commonInfoSearchDto);
 
 
     CommonResultDto saveCosmeticMaterial(CosmeticMaterialDto cosmeticMaterialDto, String clientIp) throws Exception;

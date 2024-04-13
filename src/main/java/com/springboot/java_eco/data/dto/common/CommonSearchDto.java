@@ -15,7 +15,9 @@ import java.time.LocalDateTime;
 public class CommonSearchDto {
 
     private LocalDateTime start_date;
+    private LocalDateTime end_date;
+
     private String search_text;
     private String filter_title;
-    private LocalDateTime end_date;
+
 }

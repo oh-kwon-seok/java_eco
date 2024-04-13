@@ -3,8 +3,8 @@ package com.springboot.java_eco.data.dao.impl;
 import ch.qos.logback.classic.Logger;
 import com.springboot.java_eco.common.CommonResponse;
 import com.springboot.java_eco.data.dao.FactoryDAO;
+import com.springboot.java_eco.data.dto.common.CommonInfoSearchDto;
 import com.springboot.java_eco.data.dto.common.CommonResultDto;
-import com.springboot.java_eco.data.dto.common.CommonSearchDto;
 import com.springboot.java_eco.data.dto.factory.FactoryDto;
 import com.springboot.java_eco.data.entity.Company;
 import com.springboot.java_eco.data.entity.Factory;
@@ -191,14 +191,14 @@ public class FactoryDAOImpl implements FactoryDAO {
 
 
     @Override
-    public List<Factory> selectFactory(CommonSearchDto commonSearchDto) {
-        return factoryRepository.findInfo(commonSearchDto);
+    public List<Factory> selectFactory(CommonInfoSearchDto commonInfoSearchDto) {
+        return factoryRepository.findInfo(commonInfoSearchDto);
 
     }
 
     @Override
-    public List<Factory> selectTotalFactory(CommonSearchDto commonSearchDto) {
-        return factoryRepository.findAll(commonSearchDto);
+    public List<Factory> selectTotalFactory(CommonInfoSearchDto commonInfoSearchDto) {
+        return factoryRepository.findAll(commonInfoSearchDto);
 
     }
 

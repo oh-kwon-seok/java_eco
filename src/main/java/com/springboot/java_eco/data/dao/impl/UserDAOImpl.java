@@ -3,7 +3,7 @@ package com.springboot.java_eco.data.dao.impl;
 import ch.qos.logback.classic.Logger;
 import com.springboot.java_eco.data.dao.UserDAO;
 
-import com.springboot.java_eco.data.dto.common.CommonSearchDto;
+import com.springboot.java_eco.data.dto.common.CommonInfoSearchDto;
 import com.springboot.java_eco.data.entity.*;
 import com.springboot.java_eco.data.repository.company.CompanyRepository;
 import com.springboot.java_eco.data.repository.department.DepartmentRepository;
@@ -48,11 +48,11 @@ public class UserDAOImpl implements UserDAO {
     }
 
     @Override
-    public List<User> selectTotalUser(CommonSearchDto commonSearchDto) {
-        return userRepository.findAll(commonSearchDto);
+    public List<User> selectTotalUser(CommonInfoSearchDto commonInfoSearchDto) {
+        return userRepository.findAll(commonInfoSearchDto);
     }
-    public List<User> selectUser(CommonSearchDto commonSearchDto) {
-        return userRepository.findInfo(commonSearchDto);
+    public List<User> selectUser(CommonInfoSearchDto commonInfoSearchDto) {
+        return userRepository.findInfo(commonInfoSearchDto);
     }
 
     @Override

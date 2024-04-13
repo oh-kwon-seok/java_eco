@@ -1,6 +1,6 @@
 package com.springboot.java_eco.data.dao;
 
-import com.springboot.java_eco.data.dto.common.CommonSearchDto;
+import com.springboot.java_eco.data.dto.common.CommonInfoSearchDto;
 import com.springboot.java_eco.data.dto.item.ItemDto;
 import com.springboot.java_eco.data.entity.Item;
 
@@ -16,9 +16,9 @@ public interface ItemDAO {
     Item insertItem(ItemDto itemDto) throws Exception;
 
 
-    List<Item> selectTotalItem(CommonSearchDto commonSearchDto);
+    List<Item> selectTotalItem(CommonInfoSearchDto commonInfoSearchDto);
 
-    List<Item> selectItem(CommonSearchDto commonSearchDto);
+    List<Item> selectItem(CommonInfoSearchDto commonInfoSearchDto);
 
 
     Item updateItem(ItemDto itemDto) throws Exception;

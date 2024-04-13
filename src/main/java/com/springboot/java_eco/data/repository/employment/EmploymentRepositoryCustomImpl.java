@@ -3,7 +3,7 @@ package com.springboot.java_eco.data.repository.employment;
 
 import com.querydsl.core.BooleanBuilder;
 import com.querydsl.core.types.Predicate;
-import com.springboot.java_eco.data.dto.common.CommonSearchDto;
+import com.springboot.java_eco.data.dto.common.CommonInfoSearchDto;
 import com.springboot.java_eco.data.entity.Employment;
 import com.springboot.java_eco.data.entity.QEmployment;
 import org.springframework.data.jpa.repository.support.QuerydslRepositorySupport;
@@ -20,14 +20,12 @@ public class EmploymentRepositoryCustomImpl extends QuerydslRepositorySupport im
     }
 
     @Override
-    public List<Employment> findAll(CommonSearchDto commonSearchDto){
+    public List<Employment> findAll(CommonInfoSearchDto commonInfoSearchDto){
         QEmployment employment = QEmployment.employment;
 
-        String filter_title = commonSearchDto.getFilter_title();
-        String search_text = commonSearchDto.getSearch_text();
+        String filter_title = commonInfoSearchDto.getFilter_title();
+        String search_text = commonInfoSearchDto.getSearch_text();
 
-        LocalDateTime start_date = commonSearchDto.getStart_date();
-        LocalDateTime end_date = commonSearchDto.getEnd_date();
 
 
         BooleanBuilder builder = new BooleanBuilder();
@@ -54,19 +52,20 @@ public class EmploymentRepositoryCustomImpl extends QuerydslRepositorySupport im
                 builder.and(employment.company.name.like("%" + search_text + "%"));
             }
         }
-        Predicate dateRange = employment.created.between(start_date, end_date);
         // used 필드가 1인 항목만 검색 조건 추가
         Predicate used = employment.used.eq(1);
+        Predicate predicate = builder.getValue();
+
 
         List<Employment> employmentList = from(employment)
                 .select(employment)
-                .where(used,dateRange)
+                .where(predicate,used)
                 .fetch();
 
         return employmentList;
     }
     @Override
-    public List<Employment> findInfo(CommonSearchDto commonSearchDto){
+    public List<Employment> findInfo(CommonInfoSearchDto commonInfoSearchDto){
 
         QEmployment employment = QEmployment.employment;
 

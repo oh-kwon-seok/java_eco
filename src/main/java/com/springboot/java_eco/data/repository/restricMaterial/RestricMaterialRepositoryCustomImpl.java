@@ -2,20 +2,16 @@ package com.springboot.java_eco.data.repository.restricMaterial;
 
 import ch.qos.logback.classic.Logger;
 import com.querydsl.core.BooleanBuilder;
-import com.querydsl.core.Tuple;
 import com.querydsl.core.types.Predicate;
 import com.springboot.java_eco.controller.RestricMaterialController;
-import com.springboot.java_eco.data.dto.common.CommonSearchDto;
-import com.springboot.java_eco.data.entity.Company;
+import com.springboot.java_eco.data.dto.common.CommonInfoSearchDto;
 import com.springboot.java_eco.data.entity.RestricMaterial;
-import com.springboot.java_eco.data.entity.QCompany;
 import com.springboot.java_eco.data.entity.QRestricMaterial;
 import org.slf4j.LoggerFactory;
 import org.springframework.data.jpa.repository.support.QuerydslRepositorySupport;
 import org.springframework.stereotype.Component;
 
 import java.time.LocalDateTime;
-import java.util.ArrayList;
 import java.util.List;
 
 @Component
@@ -27,13 +23,10 @@ public class RestricMaterialRepositoryCustomImpl extends QuerydslRepositorySuppo
     private final Logger LOGGER = (Logger) LoggerFactory.getLogger(RestricMaterialController.class);
 
     @Override
-    public List<RestricMaterial> findAll(CommonSearchDto commonSearchDto){
+    public List<RestricMaterial> findAll(CommonInfoSearchDto commonInfoSearchDto){
         QRestricMaterial restricMaterial = QRestricMaterial.restricMaterial;
-        String filter_title = commonSearchDto.getFilter_title();
-        String search_text = commonSearchDto.getSearch_text();
-
-        LocalDateTime start_date = commonSearchDto.getStart_date();
-        LocalDateTime end_date = commonSearchDto.getEnd_date();
+        String filter_title = commonInfoSearchDto.getFilter_title();
+        String search_text = commonInfoSearchDto.getSearch_text();
 
 
         BooleanBuilder builder = new BooleanBuilder();
@@ -101,8 +94,7 @@ public class RestricMaterialRepositoryCustomImpl extends QuerydslRepositorySuppo
 
 
         }
-        Predicate dateRange = restricMaterial.created.between(start_date, end_date);
-        // used 필드가 1인 항목만 검색 조건 추가
+
         Predicate used = restricMaterial.used.eq(1);
         Predicate predicate = builder.getValue();
 
@@ -115,7 +107,7 @@ public class RestricMaterialRepositoryCustomImpl extends QuerydslRepositorySuppo
         return restricMaterialList;
     }
     @Override
-    public List<RestricMaterial> findInfo(CommonSearchDto commonSearchDto){
+    public List<RestricMaterial> findInfo(CommonInfoSearchDto commonInfoSearchDto){
 
         QRestricMaterial restricMaterial = QRestricMaterial.restricMaterial;
 

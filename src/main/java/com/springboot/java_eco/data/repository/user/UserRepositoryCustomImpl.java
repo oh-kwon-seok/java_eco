@@ -5,7 +5,7 @@ import ch.qos.logback.classic.Logger;
 import com.querydsl.core.BooleanBuilder;
 import com.querydsl.core.types.Predicate;
 import com.springboot.java_eco.controller.ItemController;
-import com.springboot.java_eco.data.dto.common.CommonSearchDto;
+import com.springboot.java_eco.data.dto.common.CommonInfoSearchDto;
 import com.springboot.java_eco.data.entity.User;
 import com.springboot.java_eco.data.entity.QUser;
 import org.slf4j.LoggerFactory;
@@ -25,15 +25,14 @@ public class UserRepositoryCustomImpl extends QuerydslRepositorySupport implemen
     private final Logger LOGGER = (Logger) LoggerFactory.getLogger(ItemController.class);
 
     @Override
-    public List<User> findAll(CommonSearchDto commonSearchDto){
+    public List<User> findAll(CommonInfoSearchDto commonInfoSearchDto){
         QUser user = QUser.user;
 
 
-        String filter_title = commonSearchDto.getFilter_title();
-        String search_text = commonSearchDto.getSearch_text();
+        String filter_title = commonInfoSearchDto.getFilter_title();
+        String search_text = commonInfoSearchDto.getSearch_text();
 
-        LocalDateTime start_date = commonSearchDto.getStart_date();
-        LocalDateTime end_date = commonSearchDto.getEnd_date();
+
 
 
         BooleanBuilder builder = new BooleanBuilder();
@@ -90,7 +89,6 @@ public class UserRepositoryCustomImpl extends QuerydslRepositorySupport implemen
 
 
         }
-        Predicate dateRange = user.created.between(start_date, end_date);
         // used 필드가 1인 항목만 검색 조건 추가
         Predicate used = user.used.eq(1);
 
@@ -102,7 +100,7 @@ public class UserRepositoryCustomImpl extends QuerydslRepositorySupport implemen
         List<User> userList = from(user)
 
                 .select(user)
-                .where(predicate,used,dateRange)
+                .where(predicate,used)
                 .orderBy(user.company.name.desc()) // Order by created field in descending order
                 .fetch();
 
@@ -110,7 +108,7 @@ public class UserRepositoryCustomImpl extends QuerydslRepositorySupport implemen
 
     }
     @Override
-    public List<User> findInfo(CommonSearchDto CommonSearchDto){
+    public List<User> findInfo(CommonInfoSearchDto CommonInfoSearchDto){
 
         QUser user = QUser.user;
 

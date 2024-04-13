@@ -4,7 +4,7 @@ import ch.qos.logback.classic.Logger;
 import com.springboot.java_eco.common.CommonResponse;
 import com.springboot.java_eco.data.dao.CosmeticMaterialDAO;
 import com.springboot.java_eco.data.dto.common.CommonResultDto;
-import com.springboot.java_eco.data.dto.common.CommonSearchDto;
+import com.springboot.java_eco.data.dto.common.CommonInfoSearchDto;
 
 import com.springboot.java_eco.data.dto.costmeticMaterial.CosmeticMaterialDto;
 import com.springboot.java_eco.data.entity.History;
@@ -100,12 +100,12 @@ public class CosmeticMaterialDAOImpl implements CosmeticMaterialDAO {
     }
 
     @Override
-    public List<CosmeticMaterial> selectTotalCosmeticMaterial(CommonSearchDto commonSearchDto) {
-        return cosmeticMaterialRepository.findAll(commonSearchDto);
+    public List<CosmeticMaterial> selectTotalCosmeticMaterial(CommonInfoSearchDto commonInfoSearchDto) {
+        return cosmeticMaterialRepository.findAll(commonInfoSearchDto);
 
     }  @Override
-    public List<CosmeticMaterial> selectCosmeticMaterial(CommonSearchDto commonSearchDto) {
-        return cosmeticMaterialRepository.findInfo(commonSearchDto);
+    public List<CosmeticMaterial> selectCosmeticMaterial(CommonInfoSearchDto commonInfoSearchDto) {
+        return cosmeticMaterialRepository.findInfo(commonInfoSearchDto);
 
     }
 

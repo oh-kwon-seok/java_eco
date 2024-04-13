@@ -1,8 +1,8 @@
 package com.springboot.java_eco.service.impl;
 
 import com.springboot.java_eco.data.dao.FactoryDAO;
+import com.springboot.java_eco.data.dto.common.CommonInfoSearchDto;
 import com.springboot.java_eco.data.dto.common.CommonResultDto;
-import com.springboot.java_eco.data.dto.common.CommonSearchDto;
 import com.springboot.java_eco.data.dto.factory.FactoryDto;
 import com.springboot.java_eco.data.entity.Factory;
 import com.springboot.java_eco.service.FactoryService;
@@ -23,12 +23,12 @@ public class FactoryServiceImpl implements FactoryService {
     }
 
     @Override
-    public List<Factory> getFactory(CommonSearchDto commonSearchDto){
-        return factoryDAO.selectFactory(commonSearchDto);
+    public List<Factory> getFactory(CommonInfoSearchDto commonInfoSearchDto){
+        return factoryDAO.selectFactory(commonInfoSearchDto);
     }
     @Override
-    public List<Factory> getTotalFactory(CommonSearchDto commonSearchDto){
-        return factoryDAO.selectTotalFactory(commonSearchDto);
+    public List<Factory> getTotalFactory(CommonInfoSearchDto commonInfoSearchDto){
+        return factoryDAO.selectTotalFactory(commonInfoSearchDto);
     }
     @Override
     public CommonResultDto saveFactory(FactoryDto factoryDto) throws Exception {

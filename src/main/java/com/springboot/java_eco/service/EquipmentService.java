@@ -1,7 +1,7 @@
 package com.springboot.java_eco.service;
 
 
-import com.springboot.java_eco.data.dto.common.CommonSearchDto;
+import com.springboot.java_eco.data.dto.common.CommonInfoSearchDto;
 import com.springboot.java_eco.data.dto.equipment.EquipmentDto;
 import com.springboot.java_eco.data.entity.Equipment;
 import org.springframework.stereotype.Service;
@@ -12,9 +12,9 @@ import java.util.Map;
 @Service
 public interface EquipmentService {
 
-    List<Equipment> getTotalEquipment(CommonSearchDto commonSearchDto);
+    List<Equipment> getTotalEquipment(CommonInfoSearchDto commonInfoSearchDto);
 
-    List<Equipment> getEquipment(CommonSearchDto commonSearchDto);
+    List<Equipment> getEquipment(CommonInfoSearchDto commonInfoSearchDto);
 
 
     Equipment saveEquipment(EquipmentDto equipmentDto) throws Exception;

@@ -1,7 +1,7 @@
 package com.springboot.java_eco.data.dao.impl;
 
 import com.springboot.java_eco.data.dao.DepartmentDAO;
-import com.springboot.java_eco.data.dto.common.CommonSearchDto;
+import com.springboot.java_eco.data.dto.common.CommonInfoSearchDto;
 import com.springboot.java_eco.data.dto.department.DepartmentDto;
 import com.springboot.java_eco.data.entity.Company;
 import com.springboot.java_eco.data.entity.Department;
@@ -43,14 +43,14 @@ public class DepartmentDAOImpl implements DepartmentDAO {
 
     }
     @Override
-    public List<Department> selectTotalDepartment(CommonSearchDto commonSearchDto) {
-        return departmentRepository.findAll(commonSearchDto);
+    public List<Department> selectTotalDepartment(CommonInfoSearchDto commonInfoSearchDto) {
+        return departmentRepository.findAll(commonInfoSearchDto);
 
     }
 
     @Override
-    public List<Department> selectDepartment(CommonSearchDto commonSearchDto) {
-        return departmentRepository.findInfo(commonSearchDto);
+    public List<Department> selectDepartment(CommonInfoSearchDto commonInfoSearchDto) {
+        return departmentRepository.findInfo(commonInfoSearchDto);
 
     }
 

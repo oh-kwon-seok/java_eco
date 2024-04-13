@@ -3,8 +3,8 @@ package com.springboot.java_eco.data.dao.impl;
 import ch.qos.logback.classic.Logger;
 import com.springboot.java_eco.common.CommonResponse;
 import com.springboot.java_eco.data.dao.RestricMaterialCountryDAO;
+import com.springboot.java_eco.data.dto.common.CommonInfoSearchDto;
 import com.springboot.java_eco.data.dto.common.CommonResultDto;
-import com.springboot.java_eco.data.dto.common.CommonSearchDto;
 import com.springboot.java_eco.data.dto.restricMaterialCountry.RestricMaterialCountryDto;
 import com.springboot.java_eco.data.entity.History;
 import com.springboot.java_eco.data.entity.RestricMaterialCountry;
@@ -111,12 +111,12 @@ public class RestricMaterialCountryDAOImpl implements RestricMaterialCountryDAO 
     }
 
     @Override
-    public List<RestricMaterialCountry> selectTotalRestricMaterialCountry(CommonSearchDto commonSearchDto) {
-        return restricMaterialCountryRepository.findAll(commonSearchDto);
+    public List<RestricMaterialCountry> selectTotalRestricMaterialCountry(CommonInfoSearchDto commonInfoSearchDto) {
+        return restricMaterialCountryRepository.findAll(commonInfoSearchDto);
 
     }  @Override
-    public List<RestricMaterialCountry> selectRestricMaterialCountry(CommonSearchDto commonSearchDto) {
-        return restricMaterialCountryRepository.findInfo(commonSearchDto);
+    public List<RestricMaterialCountry> selectRestricMaterialCountry(CommonInfoSearchDto commonInfoSearchDto) {
+        return restricMaterialCountryRepository.findInfo(commonInfoSearchDto);
 
     }
 

@@ -1,8 +1,8 @@
 package com.springboot.java_eco.controller;
 
 import ch.qos.logback.classic.Logger;
+import com.springboot.java_eco.data.dto.common.CommonInfoSearchDto;
 import com.springboot.java_eco.data.dto.common.CommonResultDto;
-import com.springboot.java_eco.data.dto.common.CommonSearchDto;
 import com.springboot.java_eco.data.dto.bom.BomDto;
 import com.springboot.java_eco.data.entity.Bom;
 import com.springboot.java_eco.service.BomService;
@@ -29,11 +29,11 @@ public class BomController {
     }
 
     @GetMapping(value= "/select")
-    public ResponseEntity<List<Bom>> getTotalBom(@ModelAttribute CommonSearchDto commonSearchDto) throws RuntimeException{
+    public ResponseEntity<List<Bom>> getTotalBom(@ModelAttribute CommonInfoSearchDto commonInfoSearchDto) throws RuntimeException{
 
         long currentTime = System.currentTimeMillis();
 
-        List<Bom> selectedTotalBom = bomService.getTotalBom(commonSearchDto);
+        List<Bom> selectedTotalBom = bomService.getTotalBom(commonInfoSearchDto);
 
         LOGGER.info("[getTotalBom] response Time: {}ms,{}", System.currentTimeMillis() - currentTime);
 
@@ -41,11 +41,11 @@ public class BomController {
 
     }
     @GetMapping(value= "/info_select")
-    public ResponseEntity<List<Bom>> getBom(@ModelAttribute CommonSearchDto commonSearchDto) throws RuntimeException{
+    public ResponseEntity<List<Bom>> getBom(@ModelAttribute CommonInfoSearchDto commonInfoSearchDto) throws RuntimeException{
 
         long currentTime = System.currentTimeMillis();
 
-        List<Bom> selectedTotalBom = bomService.getBom(commonSearchDto);
+        List<Bom> selectedTotalBom = bomService.getBom(commonInfoSearchDto);
 
         LOGGER.info("[getTotalBom] response Time: {}ms,{}", System.currentTimeMillis() - currentTime);
 
@@ -62,29 +62,33 @@ public class BomController {
         return bomResultDto;
     }
     @PostMapping(value= "/update", consumes = "application/json", produces = "application/json")
-    public ResponseEntity<Bom> updateBom(@RequestBody BomDto bomDto)
+    public CommonResultDto updateBom(@RequestBody BomDto bomDto)
             throws Exception{
 
-        Bom updateBom = bomService.updateBom(bomDto);
+        CommonResultDto bomResultDto = bomService.updateBom(bomDto);
         long currentTime = System.currentTimeMillis();
         LOGGER.info("[bomDto]  : {}", bomDto);
 
         LOGGER.info("[updateBom] response Time : {}ms", System.currentTimeMillis() - currentTime);
 
-        return ResponseEntity.status(HttpStatus.OK).body(updateBom);
+        return  bomResultDto;
     }
+
     @PostMapping(value= "/delete", consumes = "application/json", produces = "application/json")
-    public ResponseEntity<String> deleteBom(@RequestBody Map<String, List<Long>> requestMap) throws Exception {
-        List<Long> uid = requestMap.get("uid");
-        bomService.deleteBom(uid);
+    public ResponseEntity<String> deleteBom(@RequestBody Map<String, List<Map<String, Object>>> requestMap) throws Exception {
+        List<Map<String, Object>> requestList = requestMap.get("data");
+        LOGGER.info("LIST555 : {}",requestList);
+
+        bomService.deleteBom(requestList);
         return ResponseEntity.status(HttpStatus.OK).body("정상적으로 삭제되었습니다.");
     }
-//    @PostMapping(value= "/excel_upload", consumes = "application/json", produces = "application/json")
-//    public ResponseEntity<String> excelUploadUser(@RequestBody Map<String, List<Map<String, Object>>> requestMap) throws Exception {
-//        List<Map<String, Object>> requestList = requestMap.get("data");
-//        LOGGER.info("LIST : {}",requestList);
-//
-//        bomService.excelUploadBom(requestList);
-//        return ResponseEntity.status(HttpStatus.OK).body("정상적으로 삭제되었습니다.");
-//    }
+
+    @PostMapping(value= "/excel_upload", consumes = "application/json", produces = "application/json")
+    public ResponseEntity<String> excelUploadBom(@RequestBody Map<String, List<Map<String, Object>>> requestMap) throws Exception {
+        List<Map<String, Object>> requestList = requestMap.get("data");
+        LOGGER.info("LIST : {}",requestList);
+
+        bomService.excelUploadBom(requestList);
+        return ResponseEntity.status(HttpStatus.OK).body("정상적으로 삭제되었습니다.");
+    }
 }

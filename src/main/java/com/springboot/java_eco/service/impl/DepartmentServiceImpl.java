@@ -1,7 +1,7 @@
 package com.springboot.java_eco.service.impl;
 
 import com.springboot.java_eco.data.dao.DepartmentDAO;
-import com.springboot.java_eco.data.dto.common.CommonSearchDto;
+import com.springboot.java_eco.data.dto.common.CommonInfoSearchDto;
 import com.springboot.java_eco.data.dto.department.DepartmentDto;
 import com.springboot.java_eco.data.entity.Department;
 import com.springboot.java_eco.service.DepartmentService;
@@ -22,13 +22,13 @@ public class DepartmentServiceImpl implements DepartmentService {
 
 
     @Override
-    public List<Department> getTotalDepartment(CommonSearchDto commonSearchDto){
-        return departmentDAO.selectTotalDepartment(commonSearchDto);
+    public List<Department> getTotalDepartment(CommonInfoSearchDto commonInfoSearchDto){
+        return departmentDAO.selectTotalDepartment(commonInfoSearchDto);
     }
 
     @Override
-    public List<Department> getDepartment(CommonSearchDto commonSearchDto){
-        return departmentDAO.selectDepartment(commonSearchDto);
+    public List<Department> getDepartment(CommonInfoSearchDto commonInfoSearchDto){
+        return departmentDAO.selectDepartment(commonInfoSearchDto);
     }
     @Override
     public Department saveDepartment(DepartmentDto departmentDto) throws Exception {

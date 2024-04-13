@@ -5,13 +5,12 @@ import com.querydsl.core.BooleanBuilder;
 import com.querydsl.core.Tuple;
 import com.querydsl.core.types.Predicate;
 import com.springboot.java_eco.controller.ItemController;
-import com.springboot.java_eco.data.dto.common.CommonSearchDto;
+import com.springboot.java_eco.data.dto.common.CommonInfoSearchDto;
 import com.springboot.java_eco.data.entity.*;
 import org.slf4j.LoggerFactory;
 import org.springframework.data.jpa.repository.support.QuerydslRepositorySupport;
 import org.springframework.stereotype.Component;
 
-import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -24,16 +23,16 @@ public class ItemRepositoryCustomImpl extends QuerydslRepositorySupport implemen
     private final Logger LOGGER = (Logger) LoggerFactory.getLogger(ItemController.class);
 
     @Override
-    public List<Item> findAll(CommonSearchDto commonSearchDto){
+    public List<Item> findAll(CommonInfoSearchDto commonInfoSearchDto){
         QItem item = QItem.item;
         QCompany company = QCompany.company;
         QType type = QType.type;
 
-        String filter_title = commonSearchDto.getFilter_title();
-        String search_text = commonSearchDto.getSearch_text();
+        String filter_title = commonInfoSearchDto.getFilter_title();
+        String search_text = commonInfoSearchDto.getSearch_text();
 
-        LocalDateTime start_date = commonSearchDto.getStart_date();
-        LocalDateTime end_date = commonSearchDto.getEnd_date();
+//        LocalDateTime start_date = commonInfoSearchDto.getStart_date();
+//        LocalDateTime end_date = commonInfoSearchDto.getEnd_date();
 
 
         BooleanBuilder builder = new BooleanBuilder();
@@ -61,7 +60,7 @@ public class ItemRepositoryCustomImpl extends QuerydslRepositorySupport implemen
             }
 
         }
-        Predicate dateRange = item.created.between(start_date, end_date);
+        //Predicate dateRange = item.created.between(start_date, end_date);
         // used 필드가 1인 항목만 검색 조건 추가
         Predicate used = item.used.eq(1);
         Predicate predicate = builder.getValue();
@@ -71,7 +70,7 @@ public class ItemRepositoryCustomImpl extends QuerydslRepositorySupport implemen
                 .leftJoin(item.company, company).fetchJoin()
                 .leftJoin(item.type, type).fetchJoin()
                 .select(item,company,type)
-                .where(predicate,dateRange,used)
+                .where(predicate,used)
                 .orderBy(item.created.desc()) // Order by created field in descending order
                 .fetch();
         List<Item> itemList = new ArrayList<>();
@@ -85,7 +84,7 @@ public class ItemRepositoryCustomImpl extends QuerydslRepositorySupport implemen
         return itemList;
     }
     @Override
-    public List<Item> findInfo(CommonSearchDto commonSearchDto){
+    public List<Item> findInfo(CommonInfoSearchDto commonInfoSearchDto){
 
         QItem item = QItem.item;
 

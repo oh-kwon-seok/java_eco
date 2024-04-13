@@ -1,8 +1,7 @@
 package com.springboot.java_eco.data.dao;
 
 
-import com.springboot.java_eco.data.dto.common.CommonSearchDto;
-import com.springboot.java_eco.data.dto.equipment.EquipmentDto;
+import com.springboot.java_eco.data.dto.common.CommonInfoSearchDto;
 import com.springboot.java_eco.data.dto.equipment.EquipmentDto;
 import com.springboot.java_eco.data.entity.Equipment;
 
@@ -13,8 +12,8 @@ import java.util.Map;
 public interface EquipmentDAO {
     Equipment insertEquipment(EquipmentDto equipmentDto);
 
-    List<Equipment> selectTotalEquipment(CommonSearchDto commonSearchDto);
-    List<Equipment> selectEquipment(CommonSearchDto commonSearchDto);
+    List<Equipment> selectTotalEquipment(CommonInfoSearchDto commonInfoSearchDto);
+    List<Equipment> selectEquipment(CommonInfoSearchDto commonInfoSearchDto);
 
     Equipment updateEquipment(EquipmentDto equipmentDto) throws Exception;
 

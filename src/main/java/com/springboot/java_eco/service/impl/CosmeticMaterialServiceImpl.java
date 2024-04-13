@@ -2,7 +2,7 @@ package com.springboot.java_eco.service.impl;
 
 import com.springboot.java_eco.data.dao.CosmeticMaterialDAO;
 import com.springboot.java_eco.data.dto.common.CommonResultDto;
-import com.springboot.java_eco.data.dto.common.CommonSearchDto;
+import com.springboot.java_eco.data.dto.common.CommonInfoSearchDto;
 import com.springboot.java_eco.data.dto.costmeticMaterial.CosmeticMaterialDto;
 import com.springboot.java_eco.data.entity.CosmeticMaterial;
 import com.springboot.java_eco.service.CosmeticMaterialService;
@@ -23,13 +23,13 @@ public class CosmeticMaterialServiceImpl implements CosmeticMaterialService {
 
 
     @Override
-    public List<CosmeticMaterial> getTotalCosmeticMaterial(CommonSearchDto commonSearchDto){
-        return cosmeticMaterialDAO.selectTotalCosmeticMaterial(commonSearchDto);
+    public List<CosmeticMaterial> getTotalCosmeticMaterial(CommonInfoSearchDto commonInfoSearchDto){
+        return cosmeticMaterialDAO.selectTotalCosmeticMaterial(commonInfoSearchDto);
     }
 
     @Override
-    public List<CosmeticMaterial> getCosmeticMaterial(CommonSearchDto commonSearchDto){
-        return cosmeticMaterialDAO.selectCosmeticMaterial(commonSearchDto);
+    public List<CosmeticMaterial> getCosmeticMaterial(CommonInfoSearchDto commonInfoSearchDto){
+        return cosmeticMaterialDAO.selectCosmeticMaterial(commonInfoSearchDto);
     }
     @Override
     public CommonResultDto saveCosmeticMaterial(CosmeticMaterialDto cosmeticMaterialDto, String clientIp) throws Exception {

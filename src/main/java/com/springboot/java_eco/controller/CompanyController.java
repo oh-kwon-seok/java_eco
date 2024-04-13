@@ -2,7 +2,7 @@ package com.springboot.java_eco.controller;
 
 
 import ch.qos.logback.classic.Logger;
-import com.springboot.java_eco.data.dto.common.CommonSearchDto;
+import com.springboot.java_eco.data.dto.common.CommonInfoSearchDto;
 import com.springboot.java_eco.data.dto.company.CompanyDto;
 import com.springboot.java_eco.data.entity.Company;
 import com.springboot.java_eco.service.CompanyService;
@@ -29,11 +29,11 @@ public class CompanyController {
     }
 
     @GetMapping(value= "/select")
-    public ResponseEntity<List<Company>> getTotalCompany(@ModelAttribute CommonSearchDto commonSearchDto) throws RuntimeException{
+    public ResponseEntity<List<Company>> getTotalCompany(@ModelAttribute CommonInfoSearchDto commonInfoSearchDto) throws RuntimeException{
 
         long currentTime = System.currentTimeMillis();
 
-        List<Company> selectedTotalCompany = companyService.getTotalCompany(commonSearchDto);
+        List<Company> selectedTotalCompany = companyService.getTotalCompany(commonInfoSearchDto);
 
         LOGGER.info("[getTotalCompany] response Time: {}ms,{}", System.currentTimeMillis() - currentTime);
 
@@ -41,11 +41,11 @@ public class CompanyController {
 
     }
     @GetMapping(value= "/info_select")
-    public ResponseEntity<List<Company>> getCompany(@ModelAttribute CommonSearchDto commonSearchDto) throws RuntimeException{
+    public ResponseEntity<List<Company>> getCompany(@ModelAttribute CommonInfoSearchDto commonInfoSearchDto) throws RuntimeException{
 
         long currentTime = System.currentTimeMillis();
 
-        List<Company> selectedTotalCompany = companyService.getCompany(commonSearchDto);
+        List<Company> selectedTotalCompany = companyService.getCompany(commonInfoSearchDto);
 
         LOGGER.info("[getTotalCompany] response Time: {}ms,{}", System.currentTimeMillis() - currentTime);
 

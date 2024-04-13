@@ -3,8 +3,8 @@ package com.springboot.java_eco.data.dao.impl;
 import ch.qos.logback.classic.Logger;
 import com.springboot.java_eco.common.CommonResponse;
 import com.springboot.java_eco.data.dao.RestricMaterialDAO;
+import com.springboot.java_eco.data.dto.common.CommonInfoSearchDto;
 import com.springboot.java_eco.data.dto.common.CommonResultDto;
-import com.springboot.java_eco.data.dto.common.CommonSearchDto;
 import com.springboot.java_eco.data.dto.restricMaterial.RestricMaterialDto;
 import com.springboot.java_eco.data.entity.*;
 import com.springboot.java_eco.data.repository.history.HistoryRepository;
@@ -110,12 +110,12 @@ public class RestricMaterialDAOImpl implements RestricMaterialDAO {
     }
 
     @Override
-    public List<RestricMaterial> selectTotalRestricMaterial(CommonSearchDto commonSearchDto) {
-        return restricMaterialRepository.findAll(commonSearchDto);
+    public List<RestricMaterial> selectTotalRestricMaterial(CommonInfoSearchDto commonInfoSearchDto) {
+        return restricMaterialRepository.findAll(commonInfoSearchDto);
 
     }  @Override
-    public List<RestricMaterial> selectRestricMaterial(CommonSearchDto commonSearchDto) {
-        return restricMaterialRepository.findInfo(commonSearchDto);
+    public List<RestricMaterial> selectRestricMaterial(CommonInfoSearchDto commonInfoSearchDto) {
+        return restricMaterialRepository.findInfo(commonInfoSearchDto);
 
     }
 

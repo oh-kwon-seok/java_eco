@@ -2,7 +2,7 @@ package com.springboot.java_eco.controller;
 
 
 import ch.qos.logback.classic.Logger;
-import com.springboot.java_eco.data.dto.common.CommonSearchDto;
+import com.springboot.java_eco.data.dto.common.CommonInfoSearchDto;
 import com.springboot.java_eco.data.dto.department.DepartmentDto;
 import com.springboot.java_eco.data.entity.Department;
 import com.springboot.java_eco.service.DepartmentService;
@@ -29,11 +29,11 @@ public class DepartmentController {
     }
 
     @GetMapping(value= "/select")
-    public ResponseEntity<List<Department>> getTotalDepartment(@ModelAttribute CommonSearchDto commonSearchDto) throws RuntimeException{
+    public ResponseEntity<List<Department>> getTotalDepartment(@ModelAttribute CommonInfoSearchDto commonInfoSearchDto) throws RuntimeException{
 
         long currentTime = System.currentTimeMillis();
 
-        List<Department> selectedTotalDepartment = departmentService.getTotalDepartment(commonSearchDto);
+        List<Department> selectedTotalDepartment = departmentService.getTotalDepartment(commonInfoSearchDto);
 
         LOGGER.info("[getTotalDepartment] response Time: {}ms,{}", System.currentTimeMillis() - currentTime);
 
@@ -41,11 +41,11 @@ public class DepartmentController {
 
     }
     @GetMapping(value= "/info_select")
-    public ResponseEntity<List<Department>> getDepartment(@ModelAttribute CommonSearchDto commonSearchDto) throws RuntimeException{
+    public ResponseEntity<List<Department>> getDepartment(@ModelAttribute CommonInfoSearchDto commonInfoSearchDto) throws RuntimeException{
 
         long currentTime = System.currentTimeMillis();
 
-        List<Department> selectedTotalDepartment = departmentService.getDepartment(commonSearchDto);
+        List<Department> selectedTotalDepartment = departmentService.getDepartment(commonInfoSearchDto);
 
         LOGGER.info("[getTotalDepartment] response Time: {}ms,{}", System.currentTimeMillis() - currentTime);
 

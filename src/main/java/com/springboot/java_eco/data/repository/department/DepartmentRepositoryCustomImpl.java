@@ -3,7 +3,7 @@ package com.springboot.java_eco.data.repository.department;
 
 import com.querydsl.core.BooleanBuilder;
 import com.querydsl.core.types.Predicate;
-import com.springboot.java_eco.data.dto.common.CommonSearchDto;
+import com.springboot.java_eco.data.dto.common.CommonInfoSearchDto;
 import com.springboot.java_eco.data.entity.Department;
 import com.springboot.java_eco.data.entity.QDepartment;
 import org.springframework.data.jpa.repository.support.QuerydslRepositorySupport;
@@ -20,14 +20,11 @@ public class DepartmentRepositoryCustomImpl extends QuerydslRepositorySupport im
     }
 
     @Override
-    public List<Department> findAll(CommonSearchDto commonSearchDto){
+    public List<Department> findAll(CommonInfoSearchDto commonInfoSearchDto){
         QDepartment department = QDepartment.department;
 
-        String filter_title = commonSearchDto.getFilter_title();
-        String search_text = commonSearchDto.getSearch_text();
-
-        LocalDateTime start_date = commonSearchDto.getStart_date();
-        LocalDateTime end_date = commonSearchDto.getEnd_date();
+        String filter_title = commonInfoSearchDto.getFilter_title();
+        String search_text = commonInfoSearchDto.getSearch_text();
 
 
         BooleanBuilder builder = new BooleanBuilder();
@@ -47,19 +44,19 @@ public class DepartmentRepositoryCustomImpl extends QuerydslRepositorySupport im
                 builder.and(department.company.name.like("%" + search_text + "%"));
             }
         }
-        Predicate dateRange = department.created.between(start_date, end_date);
+
         // used 필드가 1인 항목만 검색 조건 추가
         Predicate used = department.used.eq(1);
-
+        Predicate predicate = builder.getValue();
         List<Department> departmentList = from(department)
                 .select(department)
-                .where(used,dateRange)
+                .where(predicate,used)
                 .fetch();
 
         return departmentList;
     }
     @Override
-    public List<Department> findInfo(CommonSearchDto DepartmentSearchDto){
+    public List<Department> findInfo(CommonInfoSearchDto DepartmentSearchDto){
 
         QDepartment department = QDepartment.department;
 

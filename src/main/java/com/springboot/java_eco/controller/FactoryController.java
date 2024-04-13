@@ -3,11 +3,9 @@ package com.springboot.java_eco.controller;
 
 import ch.qos.logback.classic.Logger;
 import com.springboot.java_eco.data.dto.common.CommonResultDto;
-import com.springboot.java_eco.data.dto.common.CommonSearchDto;
+import com.springboot.java_eco.data.dto.common.CommonInfoSearchDto;
 import com.springboot.java_eco.data.dto.factory.FactoryDto;
-import com.springboot.java_eco.data.dto.factorySub.FactorySubSearchDto;
 import com.springboot.java_eco.data.entity.Factory;
-import com.springboot.java_eco.data.entity.FactorySub;
 import com.springboot.java_eco.service.FactoryService;
 
 import org.slf4j.LoggerFactory;
@@ -33,11 +31,11 @@ public class FactoryController {
     }
 
     @GetMapping(value= "/info_select")
-    public ResponseEntity<List<Factory>> getFactory(@ModelAttribute CommonSearchDto commonSearchDto) throws RuntimeException{
+    public ResponseEntity<List<Factory>> getFactory(@ModelAttribute CommonInfoSearchDto commonInfoSearchDto) throws RuntimeException{
 
         long currentTime = System.currentTimeMillis();
 
-        List<Factory> selectedFactory = factoryService.getFactory(commonSearchDto);
+        List<Factory> selectedFactory = factoryService.getFactory(commonInfoSearchDto);
 
         LOGGER.info("[getTotalFactorySub] response Time: {}ms,{}", System.currentTimeMillis() - currentTime);
 
@@ -48,11 +46,11 @@ public class FactoryController {
 
     
     @GetMapping(value= "/select")
-    public ResponseEntity<List<Factory>> getTotalFactory(@ModelAttribute CommonSearchDto commonSearchDto) throws RuntimeException{
+    public ResponseEntity<List<Factory>> getTotalFactory(@ModelAttribute CommonInfoSearchDto commonInfoSearchDto) throws RuntimeException{
 
         long currentTime = System.currentTimeMillis();
 
-        List<Factory> selectedTotalFactory = factoryService.getTotalFactory(commonSearchDto);
+        List<Factory> selectedTotalFactory = factoryService.getTotalFactory(commonInfoSearchDto);
 
         LOGGER.info("[getTotalFactory] response Time: {}ms,{}", System.currentTimeMillis() - currentTime);
 

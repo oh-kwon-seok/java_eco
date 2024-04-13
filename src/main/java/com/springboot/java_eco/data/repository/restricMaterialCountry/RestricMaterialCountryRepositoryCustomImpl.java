@@ -4,7 +4,7 @@ import ch.qos.logback.classic.Logger;
 import com.querydsl.core.BooleanBuilder;
 import com.querydsl.core.types.Predicate;
 import com.springboot.java_eco.controller.RestricMaterialCountryController;
-import com.springboot.java_eco.data.dto.common.CommonSearchDto;
+import com.springboot.java_eco.data.dto.common.CommonInfoSearchDto;
 import com.springboot.java_eco.data.entity.QRestricMaterialCountry;
 import com.springboot.java_eco.data.entity.RestricMaterialCountry;
 import com.springboot.java_eco.data.repository.restricMaterialCountry.RestricMaterialCountryRepositoryCustom;
@@ -24,13 +24,11 @@ public class RestricMaterialCountryRepositoryCustomImpl extends QuerydslReposito
     private final Logger LOGGER = (Logger) LoggerFactory.getLogger(RestricMaterialCountryController.class);
 
     @Override
-    public List<RestricMaterialCountry> findAll(CommonSearchDto commonSearchDto){
+    public List<RestricMaterialCountry> findAll(CommonInfoSearchDto commonInfoSearchDto){
         QRestricMaterialCountry restricMaterialCountry = QRestricMaterialCountry.restricMaterialCountry;
-        String filter_title = commonSearchDto.getFilter_title();
-        String search_text = commonSearchDto.getSearch_text();
+        String filter_title = commonInfoSearchDto.getFilter_title();
+        String search_text = commonInfoSearchDto.getSearch_text();
 
-        LocalDateTime start_date = commonSearchDto.getStart_date();
-        LocalDateTime end_date = commonSearchDto.getEnd_date();
 
 
         BooleanBuilder builder = new BooleanBuilder();
@@ -88,8 +86,7 @@ public class RestricMaterialCountryRepositoryCustomImpl extends QuerydslReposito
 
 
         }
-        Predicate dateRange = restricMaterialCountry.created.between(start_date, end_date);
-        // used 필드가 1인 항목만 검색 조건 추가
+         // used 필드가 1인 항목만 검색 조건 추가
         Predicate used = restricMaterialCountry.used.eq(1);
         Predicate predicate = builder.getValue();
 
@@ -102,7 +99,7 @@ public class RestricMaterialCountryRepositoryCustomImpl extends QuerydslReposito
         return restricMaterialCountryList;
     }
     @Override
-    public List<RestricMaterialCountry> findInfo(CommonSearchDto commonSearchDto){
+    public List<RestricMaterialCountry> findInfo(CommonInfoSearchDto commonInfoSearchDto){
 
         QRestricMaterialCountry restricMaterialCountry = QRestricMaterialCountry.restricMaterialCountry;
 

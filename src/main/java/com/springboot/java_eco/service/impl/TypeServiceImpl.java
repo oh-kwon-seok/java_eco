@@ -1,7 +1,7 @@
 package com.springboot.java_eco.service.impl;
 
 import com.springboot.java_eco.data.dao.TypeDAO;
-import com.springboot.java_eco.data.dto.common.CommonSearchDto;
+import com.springboot.java_eco.data.dto.common.CommonInfoSearchDto;
 import com.springboot.java_eco.data.dto.type.TypeDto;
 import com.springboot.java_eco.data.entity.Type;
 import com.springboot.java_eco.service.TypeService;
@@ -22,13 +22,13 @@ public class TypeServiceImpl implements TypeService {
 
 
     @Override
-    public List<Type> getTotalType(CommonSearchDto commonSearchDto){
-        return typeDAO.selectTotalType(commonSearchDto);
+    public List<Type> getTotalType(CommonInfoSearchDto commonInfoSearchDto){
+        return typeDAO.selectTotalType(commonInfoSearchDto);
     }
 
     @Override
-    public List<Type> getType(CommonSearchDto commonSearchDto){
-        return typeDAO.selectType(commonSearchDto);
+    public List<Type> getType(CommonInfoSearchDto commonInfoSearchDto){
+        return typeDAO.selectType(commonInfoSearchDto);
     }
     @Override
     public Type saveType(TypeDto typeDto) throws Exception {
