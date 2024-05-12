@@ -32,6 +32,10 @@ public class CompanyServiceImpl implements CompanyService {
         return companyDAO.selectCompany(commonInfoSearchDto);
     }
     @Override
+    public List<Company> getCustomer(CommonInfoSearchDto commonInfoSearchDto){
+        return companyDAO.selectCustomer(commonInfoSearchDto);
+    }
+    @Override
     public Company saveCompany(CompanyDto companyDto) throws Exception {
 
         return companyDAO.insertCompany(companyDto);

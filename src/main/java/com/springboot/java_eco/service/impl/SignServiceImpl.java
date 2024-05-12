@@ -102,19 +102,13 @@ public class SignServiceImpl implements SignService {
             if (auth.equalsIgnoreCase("admin")) {
                 user = User.builder()
                         .id(id)
-
                         .name(name)
                         .company(company)
                         .employment(employment)
                         .department(department)
-
                         .password(passwordEncoder.encode(password))
                         .email(email)
                         .phone(phone)
-
-
-
-
                         .auth(Collections.singletonList("ROLE_ADMIN"))
                         .created(LocalDateTime.now())
                         .used(1)

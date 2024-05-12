@@ -16,6 +16,9 @@ public interface CompanyService {
 
     List<Company> getCompany(CommonInfoSearchDto commonInfoSearchDto);
 
+    List<Company> getCustomer(CommonInfoSearchDto commonInfoSearchDto);
+
+
 
     Company saveCompany(CompanyDto companyDto) throws Exception;
 

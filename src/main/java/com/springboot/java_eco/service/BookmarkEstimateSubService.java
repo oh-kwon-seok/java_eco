@@ -17,6 +17,10 @@ public interface BookmarkEstimateSubService {
 
     List<BookmarkEstimateSub> getBookmarkEstimateSub(BookmarkEstimateSubSearchDto bookmarkEstimateSubSearchDto);
 
+    List<BookmarkEstimateSub> getBookmarkEstimateUidSelect(BookmarkEstimateSubSearchDto bookmarkEstimateSubSearchDto);
+
+
     void excelUploadBookmarkEstimateSub(List<Map<String, Object>> requestList) throws Exception;
+
 
 }

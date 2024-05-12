@@ -19,11 +19,13 @@ public class BookmarkEstimate extends BaseEntity{
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long uid;
 
-    @ManyToOne(fetch = FetchType.EAGER)  // ToOne은 fetch = FetchType.LAZY로 꼭 !!! 세팅
+    @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name="company_uid")
     private Company company;
 
-    @ManyToOne(fetch = FetchType.EAGER)  // ToOne은 fetch = FetchType.LAZY로 꼭 !!! 세팅
+
+
+    @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name="user_id")
     private User user;
 
@@ -31,10 +33,13 @@ public class BookmarkEstimate extends BaseEntity{
     private String name; // 제목
 
     @Column
-    private String status; // 상태
+    private String product_spec; // 제품사양
 
     @Column
-    private String description; // 비고
+    private String ship_place; // 납품장소
+
+    @Column
+    private String description; // 발주조건 및 기타 특이사항
 
     @Column(nullable = false)
     private Integer used;

@@ -34,14 +34,21 @@ public class BookmarkEstimateSub extends BaseEntity{
     private String unit;
 
     @Column(nullable = false)
-    private Integer price;
-    @Column(nullable = false)
-    private Integer supply_price;
-    @Column(nullable = false)
-    private Integer vat_price;
+    private Integer buy_price;
+
 
     @Column(nullable = false)
-    private Integer used;
+    private Integer price;
+
+    @Column(nullable = false)
+    private Integer supply_price;
+
+    @Column(nullable = false)
+    private Integer vat_price;
+    @Column
+    private String description;
+
+
 
 
 }

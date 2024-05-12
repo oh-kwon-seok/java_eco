@@ -1,9 +1,9 @@
 package com.springboot.java_eco.service.impl;
 
-import com.springboot.java_eco.data.dao.ProcessQcDAO;
-import com.springboot.java_eco.data.dto.processQc.ProcessQcSearchDto;
-import com.springboot.java_eco.data.entity.ProcessQc;
-import com.springboot.java_eco.service.ProcessQcService;
+import com.springboot.java_eco.data.dao.BookmarkEstimateSubDAO;
+import com.springboot.java_eco.data.dto.bookmarkEstimateSub.BookmarkEstimateSubSearchDto;
+import com.springboot.java_eco.data.entity.BookmarkEstimateSub;
+import com.springboot.java_eco.service.BookmarkEstimateSubService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
@@ -12,30 +12,36 @@ import java.util.List;
 import java.util.Map;
 
 @Service
-public class BookmarkEstimateSubServiceImpl implements ProcessQcService {
-    private final ProcessQcDAO processQcDAO;
+public class BookmarkEstimateSubServiceImpl implements BookmarkEstimateSubService {
+    private final BookmarkEstimateSubDAO bookmarkEstimateSubDAO;
 
     @Autowired
-    public BookmarkEstimateSubServiceImpl(@Qualifier("processQcDAOImpl") ProcessQcDAO processQcDAO){
-        this.processQcDAO = processQcDAO;
+    public BookmarkEstimateSubServiceImpl(@Qualifier("bookmarkEstimateSubDAOImpl") BookmarkEstimateSubDAO bookmarkEstimateSubDAO){
+        this.bookmarkEstimateSubDAO = bookmarkEstimateSubDAO;
     }
 
     @Override
-    public List<ProcessQc> getTotalProcessQc(ProcessQcSearchDto processQcSearchDto){
-        return processQcDAO.selectTotalProcessQc(processQcSearchDto);
+    public List<BookmarkEstimateSub> getTotalBookmarkEstimateSub(BookmarkEstimateSubSearchDto bookmarkEstimateSubSearchDto){
+        return bookmarkEstimateSubDAO.selectTotalBookmarkEstimateSub(bookmarkEstimateSubSearchDto);
     }
 
   
 
     @Override
-    public List<ProcessQc> getProcessQc(ProcessQcSearchDto processQcSearchDto){
-        return processQcDAO.selectProcessQc(processQcSearchDto);
-    }
-    @Override
-    public void excelUploadProcessQc(List<Map<String, Object>> requestList) throws Exception {
-        processQcDAO.excelUploadProcessQc(requestList);
+    public List<BookmarkEstimateSub> getBookmarkEstimateSub(BookmarkEstimateSubSearchDto bookmarkEstimateSubSearchDto){
+        return bookmarkEstimateSubDAO.selectBookmarkEstimateSub(bookmarkEstimateSubSearchDto);
     }
 
+
+    @Override
+    public List<BookmarkEstimateSub> getBookmarkEstimateUidSelect(BookmarkEstimateSubSearchDto bookmarkEstimateSubSearchDto){
+        return bookmarkEstimateSubDAO.selectBookmarkEstimateUidSelect(bookmarkEstimateSubSearchDto);
+    }
+
+    @Override
+    public void excelUploadBookmarkEstimateSub(List<Map<String, Object>> requestList) throws Exception {
+        bookmarkEstimateSubDAO.excelUploadBookmarkEstimateSub(requestList);
+    }
 
 
 }

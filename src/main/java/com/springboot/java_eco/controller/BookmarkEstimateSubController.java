@@ -53,6 +53,19 @@ public class BookmarkEstimateSubController {
         return ResponseEntity.status(HttpStatus.OK).body(selectedTotalBookmarkEstimateSub);
 
     }
+    @GetMapping(value= "/uid_select")
+    public ResponseEntity<List<BookmarkEstimateSub>> getBookmarkEstimateUidSelect(@ModelAttribute BookmarkEstimateSubSearchDto bookmarkEstimateSearchDto) throws RuntimeException{
+
+        long currentTime = System.currentTimeMillis();
+
+        List<BookmarkEstimateSub> selectBookmarkEstimateUidSelect = bookmarkEstimateSubService.getBookmarkEstimateUidSelect(bookmarkEstimateSearchDto);
+
+        LOGGER.info("[getTotalBookmarkEstimateSub] response Time: {}ms,{}", System.currentTimeMillis() - currentTime);
+
+        return ResponseEntity.status(HttpStatus.OK).body(selectBookmarkEstimateUidSelect);
+
+    }
+
     @PostMapping(value= "/excel_upload", consumes = "application/json", produces = "application/json")
     public ResponseEntity<String> excelUploadBookmarkEstimateSub(@RequestBody Map<String, List<Map<String, Object>>> requestMap) throws Exception {
         List<Map<String, Object>> requestList = requestMap.get("data");
@@ -61,7 +74,4 @@ public class BookmarkEstimateSubController {
         bookmarkEstimateSubService.excelUploadBookmarkEstimateSub(requestList);
         return ResponseEntity.status(HttpStatus.OK).body("정상적으로 업로드되었습니다.");
     }
-
-
-
 }

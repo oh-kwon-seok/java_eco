@@ -69,7 +69,8 @@ public class BookmarkEstimateDAOImpl implements BookmarkEstimateDAO {
         bookmarkEstimate.setCompany(company);
 
         bookmarkEstimate.setName(bookmarkEstimateDto.getName());
-        bookmarkEstimate.setStatus(bookmarkEstimateDto.getStatus());
+        bookmarkEstimate.setProduct_spec(bookmarkEstimateDto.getProduct_spec());
+        bookmarkEstimate.setShip_place(bookmarkEstimateDto.getShip_place());
 
         bookmarkEstimate.setDescription(bookmarkEstimateDto.getDescription());
         bookmarkEstimate.setUsed(Math.toIntExact(bookmarkEstimateDto.getUsed()));
@@ -99,12 +100,13 @@ public class BookmarkEstimateDAOImpl implements BookmarkEstimateDAO {
                 bookmarkEstimateSub.setUnit(bookmarkEstimateSubData.get("unit").toString());
                 bookmarkEstimateSub.setQty(Double.valueOf(bookmarkEstimateSubData.get("qty").toString()));
                 bookmarkEstimateSub.setPrice(Integer.valueOf(bookmarkEstimateSubData.get("price").toString()));
+                bookmarkEstimateSub.setBuy_price(Integer.valueOf(bookmarkEstimateSubData.get("buy_price").toString()));
                 bookmarkEstimateSub.setSupply_price(Integer.valueOf(bookmarkEstimateSubData.get("supply_price").toString()));
                 bookmarkEstimateSub.setVat_price(Integer.valueOf(bookmarkEstimateSubData.get("vat_price").toString()));
-
+                bookmarkEstimateSub.setDescription(bookmarkEstimateSubData.get("description").toString());
 
                 bookmarkEstimateSub.setCreated(LocalDateTime.now());
-                bookmarkEstimateSub.setUsed(1);
+
 
                 bookmarkEstimateSubRepository.save(bookmarkEstimateSub);
             }
@@ -141,7 +143,10 @@ public class BookmarkEstimateDAOImpl implements BookmarkEstimateDAO {
 
             
             bookmarkEstimate.setName(bookmarkEstimateDto.getName());
-            bookmarkEstimate.setStatus(bookmarkEstimateDto.getStatus());
+
+            bookmarkEstimate.setProduct_spec(bookmarkEstimateDto.getProduct_spec());
+            bookmarkEstimate.setShip_place(bookmarkEstimateDto.getShip_place());
+
             bookmarkEstimate.setDescription(bookmarkEstimateDto.getDescription());
             bookmarkEstimate.setUsed(Math.toIntExact(bookmarkEstimateDto.getUsed()));
             bookmarkEstimate.setCreated(LocalDateTime.now());
@@ -177,13 +182,60 @@ public class BookmarkEstimateDAOImpl implements BookmarkEstimateDAO {
                 }
 
 
+                if (bookmarkEstimateSubData.get("unit") != null && !bookmarkEstimateSubData.get("unit").toString().isEmpty()) {
+                    bookmarkEstimateSub.setUnit(bookmarkEstimateSubData.get("unit").toString());
+                } else {
+                    bookmarkEstimateSub.setUnit("");
+                }
+                if (!bookmarkEstimateSubData.get("qty").toString().isEmpty()) {
+                    try {
+                        bookmarkEstimateSub.setQty(Double.valueOf(bookmarkEstimateSubData.get("qty").toString()));
+                    } catch (NumberFormatException e) {
+                        bookmarkEstimateSub.setQty((double) 0L);
+                    }
+                }
+                if (!bookmarkEstimateSubData.get("price").toString().isEmpty()) {
+                    try {
+                        bookmarkEstimateSub.setPrice(Integer.valueOf(bookmarkEstimateSubData.get("price").toString()));
+                    } catch (NumberFormatException e) {
+                        bookmarkEstimateSub.setPrice(0);
+                    }
+                }
+                if (!bookmarkEstimateSubData.get("buy_price").toString().isEmpty()) {
+                    try {
+                        bookmarkEstimateSub.setBuy_price(Integer.valueOf(bookmarkEstimateSubData.get("buy_price").toString()));
+                    } catch (NumberFormatException e) {
+                        bookmarkEstimateSub.setBuy_price(0);
+                    }
+                }
+                if (!bookmarkEstimateSubData.get("supply_price").toString().isEmpty()) {
+                    try {
+                        bookmarkEstimateSub.setSupply_price(Integer.valueOf(bookmarkEstimateSubData.get("supply_price").toString()));
+                    } catch (NumberFormatException e) {
+                        bookmarkEstimateSub.setSupply_price(0);
+                    }
+                }
+                if (!bookmarkEstimateSubData.get("vat_price").toString().isEmpty()) {
+                    try {
+                        bookmarkEstimateSub.setVat_price(Integer.valueOf(bookmarkEstimateSubData.get("vat_price").toString()));
+                    } catch (NumberFormatException e) {
+                        bookmarkEstimateSub.setVat_price(0);
+                    }
+                }
+                if (bookmarkEstimateSubData.get("description") != null && !bookmarkEstimateSubData.get("description").toString().isEmpty()) {
+                    bookmarkEstimateSub.setDescription(bookmarkEstimateSubData.get("description").toString());
+                } else {
+                    bookmarkEstimateSub.setDescription("");
+                }
 
-                bookmarkEstimateSub.setUnit(bookmarkEstimateSubData.get("unit").toString());
-                bookmarkEstimateSub.setQty(Double.valueOf(bookmarkEstimateSubData.get("qty").toString()));
-                bookmarkEstimateSub.setPrice(Integer.valueOf(bookmarkEstimateSubData.get("price").toString()));
-                bookmarkEstimateSub.setSupply_price(Integer.valueOf(bookmarkEstimateSubData.get("supply_price").toString()));
-                bookmarkEstimateSub.setVat_price(Integer.valueOf(bookmarkEstimateSubData.get("vat_price").toString()));
-                bookmarkEstimateSub.setUsed(Math.toIntExact(bookmarkEstimateDto.getUsed()));
+
+
+               // bookmarkEstimateSub.setUnit(bookmarkEstimateSubData.get("unit").toString());
+//                bookmarkEstimateSub.setQty(Double.valueOf(bookmarkEstimateSubData.get("qty").toString()));
+//                bookmarkEstimateSub.setPrice(Integer.valueOf(bookmarkEstimateSubData.get("price").toString()));
+//                bookmarkEstimateSub.setSupply_price(Integer.valueOf(bookmarkEstimateSubData.get("supply_price").toString()));
+//                bookmarkEstimateSub.setVat_price(Integer.valueOf(bookmarkEstimateSubData.get("vat_price").toString()));
+//                bookmarkEstimateSub.setDescription(bookmarkEstimateSubData.get("description").toString());
 
                 bookmarkEstimateSub.setCreated(LocalDateTime.now());
                 bookmarkEstimateSub.setUpdated(LocalDateTime.now());
@@ -239,7 +291,10 @@ public class BookmarkEstimateDAOImpl implements BookmarkEstimateDAO {
         for (Map<String, Object> data : requestList) {
 
             String name = String.valueOf(data.get("name"));
-            String status = String.valueOf(data.get("status"));
+            String product_spec = String.valueOf(data.get("product_spec"));
+            String ship_place = String.valueOf(data.get("ship_place"));
+
+
             String description = String.valueOf(data.get("description"));
 
 
@@ -258,7 +313,8 @@ public class BookmarkEstimateDAOImpl implements BookmarkEstimateDAO {
 
                     bookmarkEstimate.setCompany(company);
                     bookmarkEstimate.setName(name);
-                    bookmarkEstimate.setStatus(status);
+                    bookmarkEstimate.setProduct_spec(product_spec);
+                    bookmarkEstimate.setShip_place(ship_place);
                     bookmarkEstimate.setDescription(description);
                     bookmarkEstimate.setUsed(1);
 
@@ -270,7 +326,8 @@ public class BookmarkEstimateDAOImpl implements BookmarkEstimateDAO {
 
                     bookmarkEstimate.setCompany(company);
                     bookmarkEstimate.setName(name);
-                    bookmarkEstimate.setStatus(status);
+                    bookmarkEstimate.setProduct_spec(product_spec);
+                    bookmarkEstimate.setShip_place(ship_place);
                     bookmarkEstimate.setDescription(description);
                     bookmarkEstimate.setUsed(1);
                     bookmarkEstimate.setCreated(LocalDateTime.now());

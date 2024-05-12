@@ -17,8 +17,11 @@ public class BookmarkEstimateSubDto {
     private Double qty;
     private String unit;
     private Integer price;
+    private Integer buy_price;
     private Integer supply_price;
     private Integer vat_price;
+    private String description;
+
 
     private Long used;
     private String token;
@@ -32,8 +35,10 @@ public class BookmarkEstimateSubDto {
 
                 String unit,
                 Integer price,
+                Integer buy_price,
                 Integer supply_price,
                 Integer vat_price,
+                String description,
                 Long used,
                 String token
     ){
@@ -43,8 +48,10 @@ public class BookmarkEstimateSubDto {
         this.qty = qty;
         this.unit = unit;
         this.price = price;
+        this.buy_price = buy_price;
         this.supply_price = supply_price;
         this.vat_price = vat_price;
+        this.description = description;
         this.used = used;
         this.token = token;
 

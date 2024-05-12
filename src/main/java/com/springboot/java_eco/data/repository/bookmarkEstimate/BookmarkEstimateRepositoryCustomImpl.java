@@ -40,9 +40,13 @@ public class BookmarkEstimateRepositoryCustomImpl extends QuerydslRepositorySupp
             if (bookmarkEstimate.name != null) {
                 builder.or(bookmarkEstimate.name.like("%" + search_text + "%"));
             }
-            if (bookmarkEstimate.status != null) {
-                builder.or(bookmarkEstimate.status.like("%" + search_text + "%"));
+            if (bookmarkEstimate.product_spec != null) {
+                builder.or(bookmarkEstimate.product_spec.like("%" + search_text + "%"));
             }
+            if (bookmarkEstimate.ship_place != null) {
+                builder.or(bookmarkEstimate.ship_place.like("%" + search_text + "%"));
+            }
+
             if (bookmarkEstimate.description != null) {
                 builder.or(bookmarkEstimate.description.like("%" + search_text + "%"));
             }
@@ -56,8 +60,10 @@ public class BookmarkEstimateRepositoryCustomImpl extends QuerydslRepositorySupp
             if("name".equals(filter_title)){
                 builder.and(bookmarkEstimate.name.like("%" + search_text + "%"));
             }
-            else if("status".equals(filter_title)){
-                builder.and(bookmarkEstimate.status.like("%" + search_text + "%"));
+            else if("product_spec".equals(filter_title)){
+                builder.and(bookmarkEstimate.product_spec.like("%" + search_text + "%"));
+            }else if("ship_place".equals(filter_title)){
+                builder.and(bookmarkEstimate.ship_place.like("%" + search_text + "%"));
             }
             else if("description".equals(filter_title)){
                 builder.and(bookmarkEstimate.description.like("%" + search_text + "%"));

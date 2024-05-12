@@ -1,5 +1,6 @@
 package com.springboot.java_eco.data.repository.factorySub;
 
+import com.springboot.java_eco.data.entity.Factory;
 import com.springboot.java_eco.data.entity.FactorySub;
 
 import org.springframework.data.jpa.repository.JpaRepository;
@@ -12,6 +13,7 @@ public interface FactorySubRepository extends JpaRepository<FactorySub,String>, 
 
 
     List<FactorySub> findByFactoryUid(Long uid);
+    FactorySub findByUid(Long uid);
 
 
 

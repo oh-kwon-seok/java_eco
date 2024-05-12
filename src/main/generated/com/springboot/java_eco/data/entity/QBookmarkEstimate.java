@@ -36,7 +36,9 @@ public class QBookmarkEstimate extends EntityPathBase<BookmarkEstimate> {
 
     public final StringPath name = createString("name");
 
-    public final StringPath status = createString("status");
+    public final StringPath product_spec = createString("product_spec");
+
+    public final StringPath ship_place = createString("ship_place");
 
     public final NumberPath<Long> uid = createNumber("uid", Long.class);
 

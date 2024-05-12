@@ -52,6 +52,19 @@ public class CompanyController {
         return ResponseEntity.status(HttpStatus.OK).body(selectedTotalCompany);
 
     }
+    @GetMapping(value= "/customer_select")
+    public ResponseEntity<List<Company>> getCustomer(@ModelAttribute CommonInfoSearchDto commonInfoSearchDto) throws RuntimeException{
+
+        long currentTime = System.currentTimeMillis();
+
+        List<Company> selectedTotalCustomer = companyService.getCustomer(commonInfoSearchDto);
+
+        LOGGER.info("[getTotalCompany] response Time: {}ms,{}", System.currentTimeMillis() - currentTime);
+
+        return ResponseEntity.status(HttpStatus.OK).body(selectedTotalCustomer);
+
+    }
+
 
     @PostMapping(value= "/save", consumes = "application/json", produces = "application/json")
     public ResponseEntity<Company> createCompany(@RequestBody CompanyDto companyDto) throws Exception{

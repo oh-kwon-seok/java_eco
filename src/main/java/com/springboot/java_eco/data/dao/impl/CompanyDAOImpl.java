@@ -66,6 +66,11 @@ public class CompanyDAOImpl implements CompanyDAO {
         return companyRepository.findInfo(commonInfoSearchDto);
 
     }
+    @Override
+    public List<Company> selectCustomer(CommonInfoSearchDto commonInfoSearchDto) {
+        return companyRepository.findInfoCustomer(commonInfoSearchDto);
+
+    }
 
 
     @Override

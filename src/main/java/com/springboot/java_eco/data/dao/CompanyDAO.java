@@ -15,6 +15,8 @@ public interface CompanyDAO {
     List<Company> selectTotalCompany(CommonInfoSearchDto CommonInfoSearchDto);
     List<Company> selectCompany(CommonInfoSearchDto companySearchDto);
 
+    List<Company> selectCustomer(CommonInfoSearchDto companySearchDto);
+
     Company updateCompany(CompanyDto companyDto) throws Exception;
 
     String deleteCompany(List<Long> uid) throws Exception;

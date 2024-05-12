@@ -18,7 +18,7 @@ import java.util.List;
 import java.util.Map;
 
 @RestController
-@RequestMapping("/bookmarkEstimate")
+@RequestMapping("/bookmark_estimate")
 @Controller
 public class BookmarkEstimateController {
     private final BookmarkEstimateService bookmarkEstimateService;

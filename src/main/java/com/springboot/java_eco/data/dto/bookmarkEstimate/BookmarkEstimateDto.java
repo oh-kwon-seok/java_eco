@@ -18,7 +18,9 @@ public class BookmarkEstimateDto {
     private Long company_uid;
     private String user_id;
     private String name;
-    private String status;
+
+    private String product_spec;
+    private String ship_place;
     private String description;
 
 
@@ -33,7 +35,8 @@ public class BookmarkEstimateDto {
                 Long company_uid,
                 String user_id,
                 String name,
-                String status,
+                String product_spec,
+                String ship_place,
                 String description,
                 Long used,
                 String token,
@@ -43,7 +46,8 @@ public class BookmarkEstimateDto {
         this.company_uid = company_uid;
         this.user_id = user_id;
         this.name = name;
-        this.status = status;
+        this.product_spec = product_spec;
+        this.ship_place = ship_place;
         this.description = description;
 
         this.used = used;

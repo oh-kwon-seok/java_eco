@@ -8,5 +8,7 @@ import java.util.List;
 public interface CompanyRepositoryCustom {
     List<Company> findAll(CommonInfoSearchDto commonInfoSearchDto);
     List<Company> findInfo(CommonInfoSearchDto commonInfoSearchDto);
+    List<Company> findInfoCustomer(CommonInfoSearchDto commonInfoSearchDto);
+
 
 }

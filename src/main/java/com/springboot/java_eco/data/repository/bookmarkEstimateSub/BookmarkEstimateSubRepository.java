@@ -14,7 +14,6 @@ public interface BookmarkEstimateSubRepository extends JpaRepository<BookmarkEst
 
     BookmarkEstimateSub getById(String user_id);
     BookmarkEstimateSub findByUid(Long uid);
-    BookmarkEstimateSub findByNameAndCompanyAndUsed(String name, Company company, Long used);
 
     List<BookmarkEstimateSub> findByBookmarkEstimateUid(Long uid);
 

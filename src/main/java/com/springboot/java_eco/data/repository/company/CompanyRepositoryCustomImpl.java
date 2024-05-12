@@ -88,6 +88,26 @@ public class CompanyRepositoryCustomImpl extends QuerydslRepositorySupport imple
 
         return companyList;
     }
+    @Override
+    public List<Company> findInfoCustomer(CommonInfoSearchDto commonInfoSearchDto){
+
+        QCompany company = QCompany.company;
+        BooleanBuilder builder = new BooleanBuilder();
+
+        builder.and(company.type.like("%매출%"));
+        Predicate used = company.used.eq(1);
+
+
+        Predicate predicate = builder.getValue();
+
+
+        List<Company> companyList = from(company)
+                .select(company)
+                .where(predicate,used)
+                .fetch();
+
+        return companyList;
+    }
 
 
 

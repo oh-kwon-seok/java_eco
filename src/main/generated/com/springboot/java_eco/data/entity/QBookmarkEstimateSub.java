@@ -26,11 +26,15 @@ public class QBookmarkEstimateSub extends EntityPathBase<BookmarkEstimateSub> {
 
     public final QBookmarkEstimate bookmarkEstimate;
 
+    public final NumberPath<Integer> buy_price = createNumber("buy_price", Integer.class);
+
     //inherited
     public final DateTimePath<java.time.LocalDateTime> created = _super.created;
 
     //inherited
     public final DateTimePath<java.time.LocalDateTime> deleted = _super.deleted;
+
+    public final StringPath description = createString("description");
 
     public final QItem item;
 
@@ -46,8 +50,6 @@ public class QBookmarkEstimateSub extends EntityPathBase<BookmarkEstimateSub> {
 
     //inherited
     public final DateTimePath<java.time.LocalDateTime> updated = _super.updated;
-
-    public final NumberPath<Integer> used = createNumber("used", Integer.class);
 
     public final NumberPath<Integer> vat_price = createNumber("vat_price", Integer.class);
 
