@@ -32,13 +32,17 @@ public class QStockRecord extends EntityPathBase<StockRecord> {
     //inherited
     public final DateTimePath<java.time.LocalDateTime> deleted = _super.deleted;
 
-    public final QFactory factory;
+    public final QFactory inFactory;
 
-    public final QFactorySub factorySub;
+    public final QFactorySub inFactorySub;
 
     public final QItem item;
 
     public final StringPath lot = createString("lot");
+
+    public final QFactory outFactory;
+
+    public final QFactorySub outFactorySub;
 
     public final NumberPath<Double> qty = createNumber("qty", Double.class);
 
@@ -74,9 +78,11 @@ public class QStockRecord extends EntityPathBase<StockRecord> {
     public QStockRecord(Class<? extends StockRecord> type, PathMetadata metadata, PathInits inits) {
         super(type, metadata, inits);
         this.company = inits.isInitialized("company") ? new QCompany(forProperty("company")) : null;
-        this.factory = inits.isInitialized("factory") ? new QFactory(forProperty("factory"), inits.get("factory")) : null;
-        this.factorySub = inits.isInitialized("factorySub") ? new QFactorySub(forProperty("factorySub"), inits.get("factorySub")) : null;
+        this.inFactory = inits.isInitialized("inFactory") ? new QFactory(forProperty("inFactory"), inits.get("inFactory")) : null;
+        this.inFactorySub = inits.isInitialized("inFactorySub") ? new QFactorySub(forProperty("inFactorySub"), inits.get("inFactorySub")) : null;
         this.item = inits.isInitialized("item") ? new QItem(forProperty("item"), inits.get("item")) : null;
+        this.outFactory = inits.isInitialized("outFactory") ? new QFactory(forProperty("outFactory"), inits.get("outFactory")) : null;
+        this.outFactorySub = inits.isInitialized("outFactorySub") ? new QFactorySub(forProperty("outFactorySub"), inits.get("outFactorySub")) : null;
         this.stockInout = inits.isInitialized("stockInout") ? new QStockInout(forProperty("stockInout"), inits.get("stockInout")) : null;
     }
 

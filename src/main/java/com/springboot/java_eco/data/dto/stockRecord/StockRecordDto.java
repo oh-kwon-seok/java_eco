@@ -15,8 +15,12 @@ public class StockRecordDto {
 
     private Long item_uid;
     private Long company_uid;
-    private Long factory_uid;
-    private Long factory_sub_uid;
+    private Long out_factory_uid;
+    private Long out_factory_sub_uid;
+
+    private Long in_factory_uid;
+    private Long in_factory_sub_uid;
+
     private String lot;
     private Double qty;
     private String unit;
@@ -30,8 +34,10 @@ public class StockRecordDto {
             Long stock_inout_uid,
             Long item_uid,
             Long company_uid,
-           Long factory_uid,
-            Long factory_sub_uid,
+            Long out_factory_uid,
+            Long out_factory_sub_uid,
+             Long in_factory_uid,
+             Long in_factory_sub_uid,
             String lot,
             Double qty,
             String unit,
@@ -43,8 +49,11 @@ public class StockRecordDto {
         this.stock_inout_uid = stock_inout_uid;
         this.item_uid = item_uid;
         this.company_uid = company_uid;
-        this.factory_uid = factory_uid;
-        this.factory_sub_uid = factory_sub_uid;
+        this.out_factory_uid = out_factory_uid;
+        this.out_factory_sub_uid = out_factory_sub_uid;
+        this.in_factory_uid = in_factory_uid;
+        this.in_factory_sub_uid = in_factory_sub_uid;
+
         this.lot = lot;
         this.qty = qty;
         this.unit = unit;

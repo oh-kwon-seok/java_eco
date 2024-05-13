@@ -2,6 +2,9 @@ package com.springboot.java_eco.data.dto.stockInout;
 
 import lombok.*;
 
+import java.util.List;
+import java.util.Map;
+
 @Getter
 @Setter
 
@@ -13,22 +16,22 @@ public class StockInoutDto {
     private Long uid;
     private String code;
     private Long doc_uid;
-    private Long doc_type;
+    private String doc_type;
     private String status;
 
     private Long company_uid;
-    private Long user_id;
+    private String user_id;
     private String token;
-
+    private List<Map<String, Object>> stock_inout_sub;
 
     public StockInoutDto(
              Long uid,
             String code,
             Long doc_uid,
-            Long doc_type,
+            String doc_type,
             String status,
             Long company_uid,
-            Long user_id,
+            String user_id,
             String token
     ){
         this.uid = uid;

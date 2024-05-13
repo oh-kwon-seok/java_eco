@@ -33,12 +33,22 @@ public class StockRecord extends BaseEntity{
     private Company company;
 
     @ManyToOne
-    @JoinColumn(name="factory_uid")
-    private Factory factory;
+    @JoinColumn(name="out_factory_uid")
+    private Factory outFactory;
 
     @ManyToOne
-    @JoinColumn(name="factory_sub_uid")
-    private FactorySub factorySub;
+    @JoinColumn(name="out_factory_sub_uid")
+    private FactorySub outFactorySub;
+
+    @ManyToOne
+    @JoinColumn(name="in_factory_uid")
+    private Factory inFactory;
+
+    @ManyToOne
+    @JoinColumn(name="in_factory_sub_uid")
+    private FactorySub inFactorySub;
+
+
 
     @Column(nullable = false)
     private String lot; // 로트

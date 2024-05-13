@@ -28,11 +28,11 @@ public class StockControlDto {
     private Double prev_qty;
     private Double after_qty;
 
-
+    private String control_reason;
 
     private String unit;
     private String status;
-    private Long used;
+
     private String token;
 
 
@@ -50,7 +50,7 @@ public class StockControlDto {
              Double after_qty,
             String unit,
             String status,
-            Long used,
+            String control_reason,
             String token
     ){
         this.uid = uid;
@@ -66,7 +66,7 @@ public class StockControlDto {
         this.after_qty = after_qty;
         this.unit = unit;
         this.status = status;
-        this.used = used;
+        this.control_reason = control_reason;
         this.token = token;
 
     }
