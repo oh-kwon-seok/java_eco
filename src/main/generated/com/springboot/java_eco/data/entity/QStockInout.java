@@ -24,8 +24,6 @@ public class QStockInout extends EntityPathBase<StockInout> {
 
     public final QBaseEntity _super = new QBaseEntity(this);
 
-    public final StringPath code = createString("code");
-
     public final QCompany company;
 
     //inherited
@@ -36,16 +34,12 @@ public class QStockInout extends EntityPathBase<StockInout> {
 
     public final StringPath doc_type = createString("doc_type");
 
-    public final NumberPath<Long> doc_uid = createNumber("doc_uid", Long.class);
-
     public final StringPath status = createString("status");
 
     public final NumberPath<Long> uid = createNumber("uid", Long.class);
 
     //inherited
     public final DateTimePath<java.time.LocalDateTime> updated = _super.updated;
-
-    public final NumberPath<Integer> used = createNumber("used", Integer.class);
 
     public final QUser user;
 

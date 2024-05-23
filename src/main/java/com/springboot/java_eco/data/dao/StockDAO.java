@@ -3,6 +3,7 @@ package com.springboot.java_eco.data.dao;
 import com.springboot.java_eco.data.dto.common.CommonInfoSearchDto;
 import com.springboot.java_eco.data.dto.common.CommonResultDto;
 import com.springboot.java_eco.data.dto.common.CommonSearchDto;
+import com.springboot.java_eco.data.dto.stock.LotSearchDto;
 import com.springboot.java_eco.data.dto.stock.StockDto;
 import com.springboot.java_eco.data.entity.Stock;
 
@@ -16,6 +17,7 @@ public interface StockDAO {
     List<Stock> selectTotalStock(CommonSearchDto commonSearchDto);
 
 
+    List<Stock> selectLotStock(LotSearchDto lotSearchDto);
      CommonResultDto insertStock(StockDto stockDto)  throws Exception;
 
 

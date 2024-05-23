@@ -2,6 +2,7 @@ package com.springboot.java_eco.controller;
 
 
 import ch.qos.logback.classic.Logger;
+import com.springboot.java_eco.data.dto.common.CommonInfoSearchDto;
 import com.springboot.java_eco.data.dto.factorySub.FactorySubSearchDto;
 import com.springboot.java_eco.data.entity.FactorySub;
 import com.springboot.java_eco.service.FactorySubService;
@@ -53,6 +54,18 @@ public class FactorySubController {
         LOGGER.info("[getTotalFactorySub] response Time: {}ms,{}", System.currentTimeMillis() - currentTime);
 
         return ResponseEntity.status(HttpStatus.OK).body(selectedTotalFactorySub);
+
+    }
+    @GetMapping(value= "/info_total_select")
+    public ResponseEntity<List<FactorySub>> getTotalInfoFactorySub(@ModelAttribute CommonInfoSearchDto commonInfoSearchDto) throws RuntimeException{
+
+        long currentTime = System.currentTimeMillis();
+
+        List<FactorySub> selectedInfoTotalFactorySub = factorySubService.getTotalInfoFactorySub(commonInfoSearchDto);
+
+        LOGGER.info("[getTotalFactorySub] response Time: {}ms,{}", System.currentTimeMillis() - currentTime);
+
+        return ResponseEntity.status(HttpStatus.OK).body(selectedInfoTotalFactorySub);
 
     }
 

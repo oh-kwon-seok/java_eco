@@ -12,7 +12,7 @@ import lombok.*;
 @AllArgsConstructor
 @ToString(callSuper = true)
 @EqualsAndHashCode(callSuper = true)
-@Table(name="Item")
+@Table(name="item")
 public class Item extends BaseEntity{
 
     @Id

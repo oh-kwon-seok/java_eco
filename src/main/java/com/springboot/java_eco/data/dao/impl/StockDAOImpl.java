@@ -6,6 +6,7 @@ import com.springboot.java_eco.data.dao.StockDAO;
 import com.springboot.java_eco.data.dto.common.CommonInfoSearchDto;
 import com.springboot.java_eco.data.dto.common.CommonResultDto;
 import com.springboot.java_eco.data.dto.common.CommonSearchDto;
+import com.springboot.java_eco.data.dto.stock.LotSearchDto;
 import com.springboot.java_eco.data.dto.stock.StockDto;
 import com.springboot.java_eco.data.entity.*;
 import com.springboot.java_eco.data.repository.company.CompanyRepository;
@@ -115,6 +116,13 @@ public class StockDAOImpl implements StockDAO {
         return stockRepository.findAll(commonSearchDto);
 
     }
+    @Override
+    public List<Stock> selectLotStock(LotSearchDto lotSearchDto) {
+
+
+        return stockRepository.findLotStock(lotSearchDto);
+
+    }
 
     @Override
     public String deleteStock(List<Long> uids) throws Exception {
@@ -124,8 +132,8 @@ public class StockDAOImpl implements StockDAO {
             if (selectedStock.isPresent()) {
                 Stock stock = selectedStock.get();
 
-                stock.setDeleted(LocalDateTime.now());
-                stockRepository.save(stock);
+
+                stockRepository.delete(stock);
             } else {
                 throw new Exception("Stock with UID " + uid + " not found.");
             }

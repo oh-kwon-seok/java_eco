@@ -12,8 +12,10 @@ import com.springboot.java_eco.data.repository.company.CompanyRepository;
 import com.springboot.java_eco.data.repository.factory.FactoryRepository;
 import com.springboot.java_eco.data.repository.factorySub.FactorySubRepository;
 import com.springboot.java_eco.data.repository.item.ItemRepository;
-import com.springboot.java_eco.data.repository.stockInout.StockInoutRepository;
+import com.springboot.java_eco.data.repository.stock.StockRepository;
+
 import com.springboot.java_eco.data.repository.stockControl.StockControlRepository;
+import com.springboot.java_eco.data.repository.stockRecord.StockRecordRepository;
 import com.springboot.java_eco.data.repository.user.UserRepository;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -30,7 +32,9 @@ public class StockControlDAOImpl implements StockControlDAO {
 
     private final StockControlRepository stockControlRepository;
 
-    private final StockInoutRepository stockInoutRepository;
+    private final StockRepository stockRepository;
+    private final StockRecordRepository stockRecordRepository;
+
 
     private final ItemRepository itemRepository;
 
@@ -44,7 +48,8 @@ public class StockControlDAOImpl implements StockControlDAO {
 
     @Autowired
     public StockControlDAOImpl(StockControlRepository stockControlRepository,
-                               StockInoutRepository stockInoutRepository,
+                               StockRepository stockRepository,
+                               StockRecordRepository stockRecordRepository,
                                FactoryRepository factoryRepository,
                                FactorySubRepository factorySubRepository,
                                ItemRepository itemRepository,
@@ -55,7 +60,8 @@ public class StockControlDAOImpl implements StockControlDAO {
         this.stockControlRepository = stockControlRepository;
         this.factoryRepository = factoryRepository;
         this.factorySubRepository = factorySubRepository;
-        this.stockInoutRepository = stockInoutRepository;
+        this.stockRepository = stockRepository;
+        this.stockRecordRepository = stockRecordRepository;
         this.itemRepository = itemRepository;
         this.companyRepository = companyRepository;
         this.userRepository = userRepository;
@@ -104,21 +110,81 @@ public class StockControlDAOImpl implements StockControlDAO {
         StockControl insertStockControl = stockControlRepository.save(stockControl);
 
         Long uid = insertStockControl.getUid();
-
-
-        StockControl selectedStockControl = stockControlRepository.findByUid(uid);
-
         CommonResultDto CommonResultDto = new CommonResultDto();
-        if (selectedStockControl != null) {
 
-            setSuccessResult(CommonResultDto);
-            return CommonResultDto;
+        if(uid != null){
+            StockControl selectedStockControl = stockControlRepository.findByUid(uid);
+            if(selectedStockControl != null){
 
-        }else {
+                StockRecord stockRecord = new StockRecord();
+                stockRecord.setItem(item);
+                stockRecord.setCompany(company);
+                stockRecord.setOutFactory(prevfactory);
+                stockRecord.setOutFactorySub(prevfactorySub);
+                stockRecord.setInFactory(afterFactory);
+                stockRecord.setInFactorySub(afterfactorySub);
+
+                stockRecord.setLot(stockControl.getLot());
+                stockRecord.setQty(stockControl.getAfter_qty());
+                stockRecord.setUnit(stockControl.getUnit());
+                stockRecord.setType("재고조정");
+                stockRecord.setStatus(stockControl.getStatus());
+                stockRecord.setReason(stockControl.getControl_reason());
+                stockRecord.setCreated(LocalDateTime.now());
+
+                StockRecord insertStockRecord = stockRecordRepository.save(stockRecord);
+                Long recordUid = insertStockRecord.getUid();
+                if(recordUid != null){
+
+                    Optional<Stock> selectedStock = Optional.ofNullable(stockRepository.findByUid(stockControlDto.getUid()));
+                    if (selectedStock.isPresent()) {
+                        Stock stock = selectedStock.get();
+                        stock.setLot(stockControl.getLot());
+                        stock.setItem(item);
+                        stock.setCompany(company);
+                        stock.setFactory(afterFactory);
+                        stock.setFactorySub(afterfactorySub);
+                        stock.setUser(user);
+                        stock.setQty(stockControl.getAfter_qty());
+                        stock.setUnit(stockControl.getUnit());
+                        stock.setStatus(stockControl.getStatus());
+                        stock.setUpdated(LocalDateTime.now());
+
+                        Stock updateStock = stockRepository.save(stock);
+
+                        Long stockUid = updateStock.getUid();
+                        if(stockUid != null) {
+                            setSuccessResult(CommonResultDto);
+                            return CommonResultDto;
+                        }else{
+                            setFailResult(CommonResultDto);
+                            return CommonResultDto;
+                        }
+
+
+                    }else{
+                        setFailResult(CommonResultDto);
+                        return CommonResultDto;
+                    }
+
+                }else{
+                    setFailResult(CommonResultDto);
+                    return CommonResultDto;
+
+                }
+
+
+
+            }else{
+                setFailResult(CommonResultDto);
+                return CommonResultDto;
+            }
+        }else{
             setFailResult(CommonResultDto);
             return CommonResultDto;
-
         }
+
+
     }
 
     @Override

@@ -11,7 +11,7 @@ import lombok.*;
 
 public class StockRecordDto {
     private Long uid;
-    private Long stock_inout_uid;
+
 
     private Long item_uid;
     private Long company_uid;
@@ -22,8 +22,10 @@ public class StockRecordDto {
     private Long in_factory_sub_uid;
 
     private String lot;
+
     private Double qty;
     private String unit;
+    private String type;
     private String status;
     private String reason;
 
@@ -31,7 +33,7 @@ public class StockRecordDto {
 
     public StockRecordDto(
              Long uid,
-            Long stock_inout_uid,
+
             Long item_uid,
             Long company_uid,
             Long out_factory_uid,
@@ -41,12 +43,13 @@ public class StockRecordDto {
             String lot,
             Double qty,
             String unit,
+             String type,
             String status,
             String reason,
             String token
             ){
         this.uid = uid;
-        this.stock_inout_uid = stock_inout_uid;
+
         this.item_uid = item_uid;
         this.company_uid = company_uid;
         this.out_factory_uid = out_factory_uid;
@@ -57,6 +60,7 @@ public class StockRecordDto {
         this.lot = lot;
         this.qty = qty;
         this.unit = unit;
+        this.type = type;
         this.status = status;
         this.reason = reason;
         this.token = token;

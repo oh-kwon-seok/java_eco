@@ -41,15 +41,27 @@ public class ItemController {
 
     }
     @GetMapping(value= "/info_select")
-    public ResponseEntity<List<Item>> getEquipment(@ModelAttribute CommonInfoSearchDto commonInfoSearchDto) throws RuntimeException{
+    public ResponseEntity<List<Item>> getItem(@ModelAttribute CommonInfoSearchDto commonInfoSearchDto) throws RuntimeException{
 
         long currentTime = System.currentTimeMillis();
 
         List<Item> selectedTotalItem = itemService.getItem(commonInfoSearchDto);
 
-        LOGGER.info("[getTotalEquipment] response Time: {}ms,{}", System.currentTimeMillis() - currentTime);
+        LOGGER.info("[getItem] response Time: {}ms,{}", System.currentTimeMillis() - currentTime);
 
         return ResponseEntity.status(HttpStatus.OK).body(selectedTotalItem);
+
+    }
+    @GetMapping(value= "/material_select")
+    public ResponseEntity<List<Item>> getMaterial(@ModelAttribute CommonInfoSearchDto commonInfoSearchDto) throws RuntimeException{
+
+        long currentTime = System.currentTimeMillis();
+
+        List<Item> selectedMaterial = itemService.getMaterial(commonInfoSearchDto);
+
+        LOGGER.info("[getItem] response Time: {}ms,{}", System.currentTimeMillis() - currentTime);
+
+        return ResponseEntity.status(HttpStatus.OK).body(selectedMaterial);
 
     }
 

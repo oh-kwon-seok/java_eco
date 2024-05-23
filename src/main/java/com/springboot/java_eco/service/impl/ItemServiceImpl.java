@@ -31,6 +31,10 @@ public class ItemServiceImpl implements ItemService {
     public List<Item> getItem(CommonInfoSearchDto commonInfoSearchDto){
         return ItemDAO.selectItem(commonInfoSearchDto);
     }
+    @Override
+    public List<Item> getMaterial(CommonInfoSearchDto commonInfoSearchDto){
+        return ItemDAO.selectMaterial(commonInfoSearchDto);
+    }
 
     @Override
     public Item saveItem(ItemDto ItemDto) throws Exception {

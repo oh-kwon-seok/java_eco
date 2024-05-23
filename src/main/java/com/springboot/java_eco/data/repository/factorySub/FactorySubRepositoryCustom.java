@@ -1,6 +1,8 @@
 package com.springboot.java_eco.data.repository.factorySub;
 
+import com.springboot.java_eco.data.dto.common.CommonInfoSearchDto;
 import com.springboot.java_eco.data.dto.factorySub.FactorySubSearchDto;
+import com.springboot.java_eco.data.entity.Factory;
 import com.springboot.java_eco.data.entity.FactorySub;
 
 
@@ -14,5 +16,8 @@ public interface FactorySubRepositoryCustom {
 
 
     List<FactorySub> findInfo(FactorySubSearchDto factorySubSearchDto);
+
+
+    List<FactorySub> findInfoFactorySub(CommonInfoSearchDto commonInfoSearchDto);
 
 }

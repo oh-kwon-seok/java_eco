@@ -39,9 +39,7 @@ public class StockInoutRepositoryCustomImpl extends QuerydslRepositorySupport im
 
 
         if("all".equals(filter_title)){
-            if (stockInout.code != null) {
-                builder.or(stockInout.code.like("%" + search_text + "%"));
-            }
+
 
             if (stockInout.doc_type != null) {
                 builder.or(stockInout.doc_type.like("%" + search_text + "%"));
@@ -50,24 +48,17 @@ public class StockInoutRepositoryCustomImpl extends QuerydslRepositorySupport im
                 builder.or(stockInout.status.like("%" + search_text + "%"));
             }
 
-            if (stockInout.company.name != null) {
-                builder.or(stockInout.company.name.like("%" + search_text + "%"));
-            }
 
 
         }else {
-            if("code".equals(filter_title)){
-                builder.and(stockInout.code.like("%" + search_text + "%"));
-            }
-            else if("doc_type".equals(filter_title)){
+
+            if("doc_type".equals(filter_title)){
                 builder.and(stockInout.doc_type.like("%" + search_text + "%"));
             }
             else if("status".equals(filter_title)){
                 builder.and(stockInout.status.like("%" + search_text + "%"));
             }
-            else if("company".equals(filter_title)){
-                builder.and(stockInout.company.name.like("%" + search_text + "%"));
-            }
+
         }
 
 

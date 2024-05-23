@@ -15,7 +15,7 @@ public interface ItemService {
 
     List<Item> getTotalItem(CommonInfoSearchDto commonInfoSearchDto);
     List<Item> getItem(CommonInfoSearchDto commonInfoSearchDto);
-
+    List<Item> getMaterial(CommonInfoSearchDto commonInfoSearchDto);
     Item saveItem(ItemDto ItemDto) throws Exception;
 
     Item updateItem(ItemDto ItemDto) throws Exception;

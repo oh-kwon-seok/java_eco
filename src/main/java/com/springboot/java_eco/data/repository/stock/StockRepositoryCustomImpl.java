@@ -7,8 +7,8 @@ import com.querydsl.core.types.Predicate;
 import com.springboot.java_eco.controller.StockController;
 import com.springboot.java_eco.data.dto.common.CommonInfoSearchDto;
 import com.springboot.java_eco.data.dto.common.CommonSearchDto;
-import com.springboot.java_eco.data.entity.Stock;
-import com.springboot.java_eco.data.entity.QStock;
+import com.springboot.java_eco.data.dto.stock.LotSearchDto;
+import com.springboot.java_eco.data.entity.*;
 import org.slf4j.LoggerFactory;
 import org.springframework.data.jpa.repository.support.QuerydslRepositorySupport;
 import org.springframework.stereotype.Component;
@@ -86,6 +86,34 @@ public class StockRepositoryCustomImpl extends QuerydslRepositorySupport impleme
                 .select(stock)
                 .where()
                 .fetch();
+
+        return stockList;
+
+    }
+
+    @Override
+    public List<Stock> findLotStock(LotSearchDto lotSearchDto){
+        QStock stock = QStock.stock;
+
+        String lot = lotSearchDto.getLot();
+        Long company = lotSearchDto.getCompany_uid();
+        Long factory = lotSearchDto.getFactory_uid();
+        Long factorySub = lotSearchDto.getFactory_sub_uid();
+
+
+
+        List<Stock> stockList = from(stock)
+                .select(stock)
+                .where(
+                        stock.lot.eq(lot),
+                        stock.company.uid.eq(company),
+                        stock.factory.uid.eq(factory),
+                        stock.factorySub.uid.eq(factorySub)
+                )
+                .orderBy(stock.created.desc()) // Stock by created field in descending stock
+                .fetch();
+
+
 
         return stockList;
 

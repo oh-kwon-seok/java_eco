@@ -19,7 +19,7 @@ public class FactorySub extends BaseEntity{
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long uid;
 
-    @ManyToOne(fetch = FetchType.LAZY)  // ToOne은 fetch = FetchType.LAZY로 꼭 !!! 세팅
+    @ManyToOne(fetch = FetchType.EAGER)  // ToOne은 fetch = FetchType.LAZY로 꼭 !!! 세팅
     @JoinColumn(name="factory_uid")
     private Factory factory;
 

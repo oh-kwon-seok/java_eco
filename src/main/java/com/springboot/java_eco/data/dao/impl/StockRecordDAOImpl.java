@@ -72,10 +72,9 @@ public class StockRecordDAOImpl implements StockRecordDAO {
         Factory inFactory = factoryRepository.findByUid(stockRecordDto.getIn_factory_uid());
         FactorySub inFactorySub = factorySubRepository.findByUid(stockRecordDto.getIn_factory_sub_uid());
 
-        StockInout stockInout = stockInoutRepository.findByUid(stockRecordDto.getStock_inout_uid());
 
         StockRecord stockRecord = new StockRecord();
-        stockRecord.setStockInout(stockInout);
+
         stockRecord.setItem(item);
         stockRecord.setCompany(company);
 
@@ -88,6 +87,7 @@ public class StockRecordDAOImpl implements StockRecordDAO {
         stockRecord.setLot(stockRecordDto.getLot());
         stockRecord.setQty(stockRecordDto.getQty());
         stockRecord.setUnit(stockRecordDto.getUnit());
+        stockRecord.setType(stockRecordDto.getType());
         stockRecord.setStatus(stockRecordDto.getStatus());
         stockRecord.setReason(stockRecordDto.getReason());
         stockRecord.setCreated(LocalDateTime.now());

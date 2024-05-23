@@ -89,7 +89,7 @@ public class FactoryRepositoryCustomImpl extends QuerydslRepositorySupport imple
     }
 
     @Override
-    public List<Factory> findInfo(CommonInfoSearchDto commonSubSearchDto){
+    public List<Factory> findInfo(CommonInfoSearchDto commonSubSearchDto) {
 
         QFactory factory = QFactory.factory;
 

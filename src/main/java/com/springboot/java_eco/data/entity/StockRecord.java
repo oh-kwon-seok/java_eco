@@ -20,9 +20,6 @@ public class StockRecord extends BaseEntity{
 
     private Long uid;
 
-    @ManyToOne
-    @JoinColumn(name="stock_inout_uid")
-    private StockInout stockInout;
 
     @ManyToOne
     @JoinColumn(name="item_uid")
@@ -59,6 +56,8 @@ public class StockRecord extends BaseEntity{
 
     @Column(nullable = false)
     private String unit; // 단위
+    @Column(nullable = false)
+    private String type;
 
     @Column(nullable = false)
     private String status;

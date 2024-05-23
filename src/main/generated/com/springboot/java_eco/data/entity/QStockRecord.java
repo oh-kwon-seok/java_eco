@@ -50,7 +50,7 @@ public class QStockRecord extends EntityPathBase<StockRecord> {
 
     public final StringPath status = createString("status");
 
-    public final QStockInout stockInout;
+    public final StringPath type = createString("type");
 
     public final NumberPath<Long> uid = createNumber("uid", Long.class);
 
@@ -83,7 +83,6 @@ public class QStockRecord extends EntityPathBase<StockRecord> {
         this.item = inits.isInitialized("item") ? new QItem(forProperty("item"), inits.get("item")) : null;
         this.outFactory = inits.isInitialized("outFactory") ? new QFactory(forProperty("outFactory"), inits.get("outFactory")) : null;
         this.outFactorySub = inits.isInitialized("outFactorySub") ? new QFactorySub(forProperty("outFactorySub"), inits.get("outFactorySub")) : null;
-        this.stockInout = inits.isInitialized("stockInout") ? new QStockInout(forProperty("stockInout"), inits.get("stockInout")) : null;
     }
 
 }

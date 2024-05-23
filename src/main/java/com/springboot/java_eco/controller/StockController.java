@@ -5,6 +5,7 @@ import ch.qos.logback.classic.Logger;
 import com.springboot.java_eco.data.dto.common.CommonInfoSearchDto;
 import com.springboot.java_eco.data.dto.common.CommonResultDto;
 import com.springboot.java_eco.data.dto.common.CommonSearchDto;
+import com.springboot.java_eco.data.dto.stock.LotSearchDto;
 import com.springboot.java_eco.data.dto.stock.StockDto;
 import com.springboot.java_eco.data.entity.Stock;
 import com.springboot.java_eco.service.StockService;
@@ -40,6 +41,19 @@ public class StockController {
         LOGGER.info("[getTotalStockSub] response Time: {}ms,{}", System.currentTimeMillis() - currentTime);
 
         return ResponseEntity.status(HttpStatus.OK).body(selectedStock);
+
+    }
+
+    @GetMapping(value= "/lot_select")
+    public ResponseEntity<List<Stock>> getLotStock(@ModelAttribute LotSearchDto lotSearchDto) throws RuntimeException{
+
+        long currentTime = System.currentTimeMillis();
+
+        List<Stock> selectedLotStock = stockService.getLotStock(lotSearchDto);
+
+        LOGGER.info("[getTotalStockSub] response Time: {}ms,{}", System.currentTimeMillis() - currentTime);
+
+        return ResponseEntity.status(HttpStatus.OK).body(selectedLotStock);
 
     }
 

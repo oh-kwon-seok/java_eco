@@ -1,6 +1,7 @@
 package com.springboot.java_eco.service.impl;
 
 import com.springboot.java_eco.data.dao.FactorySubDAO;
+import com.springboot.java_eco.data.dto.common.CommonInfoSearchDto;
 import com.springboot.java_eco.data.dto.factorySub.FactorySubSearchDto;
 import com.springboot.java_eco.data.entity.FactorySub;
 import com.springboot.java_eco.service.FactorySubService;
@@ -31,6 +32,11 @@ public class FactorySubServiceImpl implements FactorySubService {
     public List<FactorySub> getFactorySub(FactorySubSearchDto factorySubSearchDto){
         return factorySubDAO.selectFactorySub(factorySubSearchDto);
     }
+    @Override
+    public List<FactorySub> getTotalInfoFactorySub(CommonInfoSearchDto commonInfoSearchDto){
+        return factorySubDAO.selectTotalInfoFactorySub(commonInfoSearchDto);
+    }
+
 
 
 }

@@ -11,6 +11,6 @@ public interface StockInoutRepository extends JpaRepository<StockInout,String>, 
 
     StockInout getById(String user_id);
     StockInout findByUid(Long uid);
-    StockInout findByCodeAndCompanyAndUsed(String code, Company company, Long used);
+
 
 }

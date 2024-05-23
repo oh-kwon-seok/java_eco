@@ -67,8 +67,6 @@ public class StockControl extends BaseEntity{
     private String control_reason;
 
 
-    @Column(nullable = false)
-    private Integer used;
 
 
 

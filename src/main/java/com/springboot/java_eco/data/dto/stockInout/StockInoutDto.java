@@ -14,8 +14,7 @@ import java.util.Map;
 
 public class StockInoutDto {
     private Long uid;
-    private String code;
-    private Long doc_uid;
+
     private String doc_type;
     private String status;
 
@@ -26,8 +25,7 @@ public class StockInoutDto {
 
     public StockInoutDto(
              Long uid,
-            String code,
-            Long doc_uid,
+
             String doc_type,
             String status,
             Long company_uid,
@@ -35,8 +33,6 @@ public class StockInoutDto {
             String token
     ){
         this.uid = uid;
-        this.code = code;
-        this.doc_uid = doc_uid;
         this.doc_type = doc_type;
         this.status = status;
         this.company_uid = company_uid;

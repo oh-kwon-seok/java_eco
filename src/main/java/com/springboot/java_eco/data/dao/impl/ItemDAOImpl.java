@@ -118,6 +118,11 @@ public class ItemDAOImpl implements ItemDAO {
         return itemRepository.findInfo(commonInfoSearchDto);
 
     }
+    @Override
+    public List<Item> selectMaterial(CommonInfoSearchDto commonInfoSearchDto) {
+        return itemRepository.findMaterial(commonInfoSearchDto);
+
+    }
 
     @Override
     public Item updateItem(ItemDto itemDto) throws Exception {

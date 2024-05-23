@@ -8,6 +8,6 @@ import java.util.List;
 public interface ItemRepositoryCustom {
     List<Item> findAll(CommonInfoSearchDto commonInfoSearchDto);
     List<Item> findInfo(CommonInfoSearchDto commonInfoSearchDto);
-
+    List<Item> findMaterial(CommonInfoSearchDto commonInfoSearchDto);
 
 }

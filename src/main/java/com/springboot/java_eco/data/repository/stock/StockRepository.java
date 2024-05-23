@@ -1,8 +1,7 @@
 package com.springboot.java_eco.data.repository.stock;
 
 
-import com.springboot.java_eco.data.entity.Company;
-import com.springboot.java_eco.data.entity.Stock;
+import com.springboot.java_eco.data.entity.*;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
@@ -10,6 +9,7 @@ import org.springframework.stereotype.Repository;
 public interface StockRepository extends JpaRepository<Stock,String>, StockRepositoryCustom {
 
     Stock findByUid(Long uid);
-    Stock findByLotAndCompany(String lot, Company company);
+    Stock findByLotAndItemAndCompanyAndFactoryAndFactorySub(String lot, Item item, Company company, Factory factory, FactorySub factorySub);
+
 
 }

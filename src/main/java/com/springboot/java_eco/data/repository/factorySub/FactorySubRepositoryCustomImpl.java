@@ -6,7 +6,9 @@ import com.querydsl.core.BooleanBuilder;
 import com.querydsl.core.Tuple;
 import com.querydsl.core.types.Predicate;
 import com.springboot.java_eco.controller.FactorySubController;
+import com.springboot.java_eco.data.dto.common.CommonInfoSearchDto;
 import com.springboot.java_eco.data.dto.factorySub.FactorySubSearchDto;
+import com.springboot.java_eco.data.entity.Factory;
 import com.springboot.java_eco.data.entity.FactorySub;
 
 import com.springboot.java_eco.data.entity.QFactory;
@@ -136,6 +138,21 @@ public class FactorySubRepositoryCustomImpl extends QuerydslRepositorySupport im
             FactorySub factorySubEntity = result.get(factorySub);
             factorySubList.add(factorySubEntity);
         }
+        return factorySubList;
+
+    }
+    @Override
+    public List<FactorySub> findInfoFactorySub(CommonInfoSearchDto commonSubSearchDto){
+
+        QFactorySub factorySub = QFactorySub.factorySub;
+
+        Predicate used = factorySub.used.eq(1);
+
+        List<FactorySub> factorySubList = from(factorySub)
+                .select(factorySub)
+                .where(used)
+                .fetch();
+
         return factorySubList;
 
     }

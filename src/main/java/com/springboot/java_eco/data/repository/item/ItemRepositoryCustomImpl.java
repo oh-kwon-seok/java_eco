@@ -31,9 +31,6 @@ public class ItemRepositoryCustomImpl extends QuerydslRepositorySupport implemen
         String filter_title = commonInfoSearchDto.getFilter_title();
         String search_text = commonInfoSearchDto.getSearch_text();
 
-//        LocalDateTime start_date = commonInfoSearchDto.getStart_date();
-//        LocalDateTime end_date = commonInfoSearchDto.getEnd_date();
-
 
         BooleanBuilder builder = new BooleanBuilder();
 
@@ -93,6 +90,19 @@ public class ItemRepositoryCustomImpl extends QuerydslRepositorySupport implemen
         List<Item> itemList = from(item)
                 .select(item)
                 .where(used)
+                .fetch();
+
+        return itemList;
+    }  @Override
+    public List<Item> findMaterial(CommonInfoSearchDto commonInfoSearchDto){
+
+        QItem item = QItem.item;
+
+        Predicate type = item.type_code.eq("원료");
+
+        List<Item> itemList = from(item)
+                .select(item)
+                .where(type)
                 .fetch();
 
         return itemList;

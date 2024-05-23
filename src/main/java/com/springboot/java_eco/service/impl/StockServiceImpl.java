@@ -4,6 +4,7 @@ import com.springboot.java_eco.data.dao.StockDAO;
 import com.springboot.java_eco.data.dto.common.CommonInfoSearchDto;
 import com.springboot.java_eco.data.dto.common.CommonResultDto;
 import com.springboot.java_eco.data.dto.common.CommonSearchDto;
+import com.springboot.java_eco.data.dto.stock.LotSearchDto;
 import com.springboot.java_eco.data.dto.stock.StockDto;
 import com.springboot.java_eco.data.entity.Stock;
 import com.springboot.java_eco.service.StockService;
@@ -29,6 +30,10 @@ public class StockServiceImpl implements StockService {
     @Override
     public List<Stock> getTotalStock(CommonSearchDto commonSearchDto){
         return stockDAO.selectTotalStock(commonSearchDto);
+    }
+    @Override
+    public List<Stock> getLotStock(LotSearchDto lotSearchDto){
+        return stockDAO.selectLotStock(lotSearchDto);
     }
     @Override
     public CommonResultDto saveStock(StockDto stockDto) throws Exception {

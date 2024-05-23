@@ -19,11 +19,6 @@ public class StockInout extends BaseEntity{
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long uid;
 
-    @Column(nullable = false)
-    private String code; // 로트
-
-    @Column(nullable = false)
-    private Long doc_uid; // 문서코드
 
     @Column(nullable = false)
     private String doc_type; // 문서 테이블명
@@ -40,11 +35,6 @@ public class StockInout extends BaseEntity{
     @ManyToOne
     @JoinColumn(name="user_id")
     private User user;
-
-
-
-    @Column(nullable = false)
-    private Integer used;
 
 
 

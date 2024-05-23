@@ -20,6 +20,7 @@ public interface ItemDAO {
 
     List<Item> selectItem(CommonInfoSearchDto commonInfoSearchDto);
 
+    List<Item> selectMaterial(CommonInfoSearchDto commonInfoSearchDto);
 
     Item updateItem(ItemDto itemDto) throws Exception;
 

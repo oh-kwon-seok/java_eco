@@ -59,8 +59,6 @@ public class QStockControl extends EntityPathBase<StockControl> {
     //inherited
     public final DateTimePath<java.time.LocalDateTime> updated = _super.updated;
 
-    public final NumberPath<Integer> used = createNumber("used", Integer.class);
-
     public final QUser user;
 
     public QStockControl(String variable) {
