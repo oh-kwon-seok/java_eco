@@ -16,37 +16,62 @@ import java.util.List;
 
 @Service
 public class WorkTaskServiceImpl implements WorkTaskService {
-    private final WorkTaskDAO workPlanDAO;
+    private final WorkTaskDAO workTaskDAO;
 
     @Autowired
-    public WorkTaskServiceImpl(@Qualifier("workTaskDAOImpl") WorkTaskDAO workPlanDAO){
-        this.workPlanDAO = workPlanDAO;
+    public WorkTaskServiceImpl(@Qualifier("workTaskDAOImpl") WorkTaskDAO workTaskDAO){
+        this.workTaskDAO = workTaskDAO;
     }
 
     @Override
     public List<WorkTask> getWorkTask(CommonInfoSearchDto commonInfoSearchDto){
-        return workPlanDAO.selectWorkTask(commonInfoSearchDto);
+        return workTaskDAO.selectWorkTask(commonInfoSearchDto);
     }
     @Override
     public List<WorkTask> getTotalWorkTask(CommonSearchDto commonSearchDto){
-        return workPlanDAO.selectTotalWorkTask(commonSearchDto);
+        return workTaskDAO.selectTotalWorkTask(commonSearchDto);
     }
     @Override
     public CommonResultDto saveWorkTask(WorkTaskDto workPlanDto) throws Exception {
 
-        return workPlanDAO.insertWorkTask(workPlanDto);
+        return workTaskDAO.insertWorkTask(workPlanDto);
 
     }
     @Override
     public CommonResultDto updateWorkTask(WorkTaskDto workPlanDto) throws Exception {
 
-        return workPlanDAO.updateWorkTask(workPlanDto);
+        return workTaskDAO.updateWorkTask(workPlanDto);
+
+    }
+    @Override
+    public CommonResultDto approvalWorkTask(WorkTaskDto workPlanDto) throws Exception {
+
+        return workTaskDAO.approvalWorkTask(workPlanDto);
+
+    }
+    @Override
+    public CommonResultDto measureWorkTask(WorkTaskDto workPlanDto) throws Exception {
+
+        return workTaskDAO.measureWorkTask(workPlanDto);
+
+    }
+    @Override
+    public CommonResultDto productionWorkTask(WorkTaskDto workPlanDto) throws Exception {
+
+        return workTaskDAO.productionWorkTask(workPlanDto);
+
+    }
+    @Override
+    public CommonResultDto packingWorkTask(WorkTaskDto workPlanDto) throws Exception {
+
+        return workTaskDAO.packingWorkTask(workPlanDto);
 
     }
 
+
     @Override
     public void deleteWorkTask(List<Long> uid) throws Exception {
-        workPlanDAO.deleteWorkTask(uid);
+        workTaskDAO.deleteWorkTask(uid);
     }
 
 

@@ -19,7 +19,11 @@ public interface WorkTaskService {
 
     CommonResultDto saveWorkTask(WorkTaskDto workTaskDto) throws Exception;
     CommonResultDto updateWorkTask(WorkTaskDto workTaskDto) throws Exception;
+    CommonResultDto approvalWorkTask(WorkTaskDto workTaskDto) throws Exception;
 
+    CommonResultDto measureWorkTask(WorkTaskDto workTaskDto) throws Exception;
+    CommonResultDto productionWorkTask(WorkTaskDto workTaskDto) throws Exception;
+    CommonResultDto packingWorkTask(WorkTaskDto workTaskDto) throws Exception;
 
     void deleteWorkTask(List<Long> uid) throws Exception;
 

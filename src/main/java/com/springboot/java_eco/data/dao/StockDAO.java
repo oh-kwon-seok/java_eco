@@ -18,6 +18,8 @@ public interface StockDAO {
 
 
     List<Stock> selectLotStock(LotSearchDto lotSearchDto);
+
+    List<Stock> selectPackingLotStock(LotSearchDto lotSearchDto);
      CommonResultDto insertStock(StockDto stockDto)  throws Exception;
 
 

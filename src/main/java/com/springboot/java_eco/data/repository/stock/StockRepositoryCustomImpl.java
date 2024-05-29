@@ -118,4 +118,27 @@ public class StockRepositoryCustomImpl extends QuerydslRepositorySupport impleme
         return stockList;
 
     }
+    @Override
+    public List<Stock> findPackingLotStock(LotSearchDto lotSearchDto){
+        QStock stock = QStock.stock;
+
+        String lot = lotSearchDto.getLot();
+        Long company = lotSearchDto.getCompany_uid();
+
+        List<Stock> stockList = from(stock)
+                .select(stock)
+                .where(
+                        stock.lot.eq(lot),
+                        stock.company.uid.eq(company),
+                        stock.status.eq("가용")
+
+                )
+                .orderBy(stock.created.desc()) // Stock by created field in descending stock
+                .fetch();
+
+
+
+        return stockList;
+
+    }
 }

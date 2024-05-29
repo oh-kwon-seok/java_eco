@@ -74,7 +74,44 @@ public class WorkTaskController {
         long currentTime = System.currentTimeMillis();
         LOGGER.info("[workTaskDto]  : {}", workTaskDto);
         CommonResultDto workTaskResultDto = workTaskService.updateWorkTask(workTaskDto);
-        LOGGER.info("[createWorkTask] response Time : {}ms", System.currentTimeMillis() - currentTime);
+        LOGGER.info("[updateWorkTask] response Time : {}ms", System.currentTimeMillis() - currentTime);
+        return  workTaskResultDto;
+
+    }
+    @PostMapping(value= "/material_approval", consumes = "application/json", produces = "application/json")
+    public CommonResultDto approvalWorkTask(@RequestBody WorkTaskDto workTaskDto) throws Exception{
+        long currentTime = System.currentTimeMillis();
+        LOGGER.info("[workTaskDto]  : {}", workTaskDto);
+        CommonResultDto workTaskResultDto = workTaskService.approvalWorkTask(workTaskDto);
+        LOGGER.info("[materialApproval] response Time : {}ms", System.currentTimeMillis() - currentTime);
+        return  workTaskResultDto;
+
+    }
+    @PostMapping(value= "/measure_update", consumes = "application/json", produces = "application/json")
+    public CommonResultDto measureWorkTask(@RequestBody WorkTaskDto workTaskDto) throws Exception{
+        long currentTime = System.currentTimeMillis();
+        LOGGER.info("[workTaskDto]  : {}", workTaskDto);
+        CommonResultDto workTaskResultDto = workTaskService.measureWorkTask(workTaskDto);
+        LOGGER.info("[measureWorkTask] response Time : {}ms", System.currentTimeMillis() - currentTime);
+        return  workTaskResultDto;
+
+    }
+
+    @PostMapping(value= "/production_update", consumes = "application/json", produces = "application/json")
+    public CommonResultDto productionWorkTask(@RequestBody WorkTaskDto workTaskDto) throws Exception{
+        long currentTime = System.currentTimeMillis();
+        LOGGER.info("[workTaskDto]  : {}", workTaskDto);
+        CommonResultDto workTaskResultDto = workTaskService.productionWorkTask(workTaskDto);
+        LOGGER.info("[measureWorkTask] response Time : {}ms", System.currentTimeMillis() - currentTime);
+        return  workTaskResultDto;
+
+    }
+    @PostMapping(value= "/packing_update", consumes = "application/json", produces = "application/json")
+    public CommonResultDto packingWorkTask(@RequestBody WorkTaskDto workTaskDto) throws Exception{
+        long currentTime = System.currentTimeMillis();
+        LOGGER.info("[workTaskDto]  : {}", workTaskDto);
+        CommonResultDto workTaskResultDto = workTaskService.packingWorkTask(workTaskDto);
+        LOGGER.info("[measureWorkTask] response Time : {}ms", System.currentTimeMillis() - currentTime);
         return  workTaskResultDto;
 
     }

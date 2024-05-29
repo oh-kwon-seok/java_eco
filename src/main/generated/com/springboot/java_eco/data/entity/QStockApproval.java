@@ -34,11 +34,15 @@ public class QStockApproval extends EntityPathBase<StockApproval> {
 
     public final QItem item;
 
+    public final StringPath lot = createString("lot");
+
+    public final NumberPath<Double> measure_qty = createNumber("measure_qty", Double.class);
+
     public final NumberPath<Double> out_qty = createNumber("out_qty", Double.class);
 
-    public final StringPath status = createString("status");
+    public final NumberPath<Double> prev_qty = createNumber("prev_qty", Double.class);
 
-    public final QStockRequest stockRequest;
+    public final StringPath status = createString("status");
 
     public final NumberPath<Long> uid = createNumber("uid", Long.class);
 
@@ -71,7 +75,6 @@ public class QStockApproval extends EntityPathBase<StockApproval> {
         super(type, metadata, inits);
         this.company = inits.isInitialized("company") ? new QCompany(forProperty("company")) : null;
         this.item = inits.isInitialized("item") ? new QItem(forProperty("item"), inits.get("item")) : null;
-        this.stockRequest = inits.isInitialized("stockRequest") ? new QStockRequest(forProperty("stockRequest"), inits.get("stockRequest")) : null;
         this.user = inits.isInitialized("user") ? new QUser(forProperty("user"), inits.get("user")) : null;
         this.workTask = inits.isInitialized("workTask") ? new QWorkTask(forProperty("workTask"), inits.get("workTask")) : null;
     }

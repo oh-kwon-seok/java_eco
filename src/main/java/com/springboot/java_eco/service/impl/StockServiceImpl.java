@@ -35,6 +35,14 @@ public class StockServiceImpl implements StockService {
     public List<Stock> getLotStock(LotSearchDto lotSearchDto){
         return stockDAO.selectLotStock(lotSearchDto);
     }
+
+    @Override
+    public List<Stock> getPackingLotStock(LotSearchDto lotSearchDto){
+        return stockDAO.selectPackingLotStock(lotSearchDto);
+    }
+
+
+
     @Override
     public CommonResultDto saveStock(StockDto stockDto) throws Exception {
 

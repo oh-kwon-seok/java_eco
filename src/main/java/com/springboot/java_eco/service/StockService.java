@@ -19,6 +19,7 @@ public interface StockService {
     List<Stock> getTotalStock(CommonSearchDto commonSearchDto);
 
     List<Stock> getLotStock(LotSearchDto lotSearchDto);
+    List<Stock> getPackingLotStock(LotSearchDto lotSearchDto);
 
 
     CommonResultDto saveStock(StockDto stockDto) throws Exception;

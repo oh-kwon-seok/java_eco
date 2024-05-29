@@ -12,7 +12,7 @@ import lombok.*;
 @AllArgsConstructor
 @ToString(callSuper = true)
 @EqualsAndHashCode(callSuper = true)
-@Table(name="stock_approve")
+@Table(name="stock_approval")
 public class StockApproval extends BaseEntity{
 
     @Id
@@ -20,7 +20,8 @@ public class StockApproval extends BaseEntity{
 
     private Long uid;
 
-
+    @Column(nullable = false)
+    private String lot; // lot
 
     @ManyToOne
     @JoinColumn(name="item_uid")
@@ -38,13 +39,13 @@ public class StockApproval extends BaseEntity{
     @JoinColumn(name="work_task_uid")
     private WorkTask workTask;
 
-    @ManyToOne
-    @JoinColumn(name="stock_request_uid")
-    private StockRequest stockRequest;
-
+    @Column(nullable = false)
+    private Double prev_qty; // 출고당시수량
+    @Column(nullable = false)
+    private Double out_qty; // 출고수량
 
     @Column(nullable = false)
-    private Double out_qty; // 요청수량
+    private Double measure_qty; // 계량값
 
     @Column
     private String unit; // 단위

@@ -11,5 +11,7 @@ public interface StockRepository extends JpaRepository<Stock,String>, StockRepos
     Stock findByUid(Long uid);
     Stock findByLotAndItemAndCompanyAndFactoryAndFactorySub(String lot, Item item, Company company, Factory factory, FactorySub factorySub);
 
+    Stock findByLotAndItemAndCompany(String lot, Item item, Company company);
+
 
 }

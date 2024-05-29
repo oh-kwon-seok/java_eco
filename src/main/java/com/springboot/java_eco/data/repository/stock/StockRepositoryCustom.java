@@ -14,7 +14,7 @@ public interface StockRepositoryCustom {
     List<Stock> findInfo(CommonInfoSearchDto commonInfoSearchDto);
 
     List<Stock> findLotStock(LotSearchDto lotSearchDto);
-
+    List<Stock> findPackingLotStock(LotSearchDto lotSearchDto);
 
 
 }

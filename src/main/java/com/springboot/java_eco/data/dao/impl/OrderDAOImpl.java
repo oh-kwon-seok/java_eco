@@ -250,10 +250,6 @@ public class OrderDAOImpl implements OrderDAO {
                     orderSub.setDescription("");
                 }
 
-
-
-
-
                 orderSub.setCreated(LocalDateTime.now());
                 orderSub.setUpdated(LocalDateTime.now());
 

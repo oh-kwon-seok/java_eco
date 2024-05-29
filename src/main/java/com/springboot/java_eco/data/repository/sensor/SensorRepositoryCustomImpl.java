@@ -44,16 +44,25 @@ public class SensorRepositoryCustomImpl extends QuerydslRepositorySupport implem
         }else {
             if("code".equals(filter_title)){
                 builder.and(sensor.code.like("%" + search_text + "%"));
-            }else if("type".equals(filter_title)){
-                builder.and(sensor.type.like("%" + search_text + "%"));
+            }else if("temp".equals(filter_title)){
+                builder.and(sensor.type.eq("TEMP"));
+            }
+            else if("humi".equals(filter_title)){
+                builder.and(sensor.type.eq("HUMI"));
+            }
+            else if("ph".equals(filter_title)){
+                builder.and(sensor.type.eq("PH"));
+            }
+            else if("weight".equals(filter_title)){
+                builder.and(sensor.type.eq("WEIGHT"));
             }
         }
         Predicate dateRange = sensor.created.between(start_date, end_date);
-
+        Predicate predicate = builder.getValue();
 
         List<Sensor> sensorList = from(sensor)
                 .select(sensor)
-                .where(dateRange)
+                .where(predicate,dateRange)
                 .fetch();
 
         return sensorList;

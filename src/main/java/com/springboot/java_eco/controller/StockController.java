@@ -56,6 +56,18 @@ public class StockController {
         return ResponseEntity.status(HttpStatus.OK).body(selectedLotStock);
 
     }
+    @GetMapping(value= "/packing_lot_select")
+    public ResponseEntity<List<Stock>> getPackingLotStock(@ModelAttribute LotSearchDto lotSearchDto) throws RuntimeException{
+
+        long currentTime = System.currentTimeMillis();
+
+        List<Stock> selectedPackingLotStock = stockService.getPackingLotStock(lotSearchDto);
+
+        LOGGER.info("[getTotalStockSub] response Time: {}ms,{}", System.currentTimeMillis() - currentTime);
+
+        return ResponseEntity.status(HttpStatus.OK).body(selectedPackingLotStock);
+
+    }
 
 
     

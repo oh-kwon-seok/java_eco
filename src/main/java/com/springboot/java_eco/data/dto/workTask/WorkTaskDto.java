@@ -2,6 +2,9 @@ package com.springboot.java_eco.data.dto.workTask;
 
 import lombok.*;
 
+import java.util.List;
+import java.util.Map;
+
 @Getter
 @Setter
 
@@ -36,6 +39,10 @@ public class WorkTaskDto {
 
     private String token;
 
+    private List<Map<String, Object>> stock_approval;
+    private List<Map<String, Object>> work_task_product;
+    private List<Map<String, Object>> work_task_packing;
+
 
 
     public WorkTaskDto(
@@ -56,8 +63,12 @@ public class WorkTaskDto {
              Long measure_order,
              Long production_order,
              Long packing_order,
-             String token
-    ){
+             String token,
+             List<Map<String, Object>> stock_approval,
+             List<Map<String, Object>> work_task_product,
+             List<Map<String, Object>> work_task_packing
+
+             ){
         this.uid = uid;
         this.code = code;
         this.work_plan_uid = work_plan_uid;
@@ -79,7 +90,9 @@ public class WorkTaskDto {
         this.packing_order = packing_order;
 
         this.token = token;
-
+        this.stock_approval = stock_approval;
+        this.work_task_product = work_task_product;
+        this.work_task_packing = work_task_packing;
 
     }
 

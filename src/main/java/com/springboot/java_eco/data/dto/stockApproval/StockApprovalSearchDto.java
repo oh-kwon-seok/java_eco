@@ -18,6 +18,6 @@ public class StockApprovalSearchDto {
     private String search_text;
     private String filter_title;
     private LocalDateTime end_date;
-    private Long factory_uid;
+    private Long work_task_uid;
 
 }

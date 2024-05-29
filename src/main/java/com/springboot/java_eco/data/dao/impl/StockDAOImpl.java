@@ -123,6 +123,14 @@ public class StockDAOImpl implements StockDAO {
         return stockRepository.findLotStock(lotSearchDto);
 
     }
+    @Override
+    public List<Stock> selectPackingLotStock(LotSearchDto lotSearchDto) {
+
+
+        return stockRepository.findPackingLotStock(lotSearchDto);
+
+    }
+
 
     @Override
     public String deleteStock(List<Long> uids) throws Exception {
