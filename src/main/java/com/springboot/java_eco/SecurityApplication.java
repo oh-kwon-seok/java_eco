@@ -25,7 +25,7 @@ public class SecurityApplication {
             @Override
             public void addCorsMappings(CorsRegistry registry) {
                 registry.addMapping("/**")
-                        .allowedOrigins("http://172.20.80.1:3002","http://10.10.10.40:3002","http://localhost:3002","https://nid.naver.com","https://apis.data.go.kr","https://eco.godsun.co.kr","http://eco.godsun.co.kr")
+                        .allowedOrigins("http://172.20.80.1:3002","http://10.10.10.40:3002","http://localhost:3002","https://nid.naver.com","https://apis.data.go.kr","https://ecomes.kr")
                         .allowedMethods("GET", "POST", "PUT", "DELETE")
                         .allowedHeaders("*")
                         .allowCredentials(true)
